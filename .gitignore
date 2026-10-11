@@ -16,7 +16,11 @@ samples/**/*.pdf
 samples/**/*.jpg
 samples/**/*.png
 # 図面から作ったデータ・確認ページ・候補の図面のページは入れない（kairo fetch / extract で作り直せる）
-samples/derived/
+samples/derived/*/*
+# 正解データ作りに実際に使った確認ページは入れる（図面の画像は埋め込まず、横の p076_300dpi.png を読む）
+!samples/derived/c6_mazak_stx510/p076.circuit_overtravel.html
+!samples/derived/c6_mazak_stx510/p076.circuits.html
+!samples/derived/c6_mazak_stx510/p076.gt_view.html
 samples/candidates/*
 !samples/candidates/manifest.yaml
 docs/vector-pdf/

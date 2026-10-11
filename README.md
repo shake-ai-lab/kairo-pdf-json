@@ -49,6 +49,16 @@ uv run kairo runs c6_mazak_stx510 76
 5. **人が確認する**：`kairo gt-view` で確認ページを作ります。回路の筋を選ぶと図の上で線が光るので、筋ごとに「正しい／違う」を付けます。結果は `kairo review-import` で取り込みます。
 6. **直して確定する**：指摘を直して 4〜5 を繰り返し、人が OK と言ったら `reviewed` にします。
 
+正解データ作りに実際に使った確認ページ（HTML）も入れています。
+
+| ページ | 使い方 |
+|---|---|
+| [p076.circuit_overtravel.html](samples/derived/c6_mazak_stx510/p076.circuit_overtravel.html) | 最初に作った確認シート。「■ 行き過ぎの表示」の回路1本に関係する線だけを図に重ねたもの |
+| [p076.circuits.html](samples/derived/c6_mazak_stx510/p076.circuits.html) | 回路の筋の一覧。筋を選ぶと、その線が図の上で光る |
+| [p076.gt_view.html](samples/derived/c6_mazak_stx510/p076.gt_view.html) | 最終の確認ページ（`kairo gt-view` で作ったもの）。回路の筋・機器・その他を1つずつ選び、正しい／違うとメモ・画像を付ける |
+
+ページの背景の図面は入れていません。`uv run kairo fetch c6_mazak_stx510` と `uv run kairo render c6_mazak_stx510 76` を実行すると、同じフォルダに画像ができて表示されます。
+
 下書きを書くのに使った使い捨てのスクリプトは入れていません。
 
 ## 最新の結果（76ページ、各3回）

@@ -1,0 +1,245 @@
+﻿<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>回路の筋 p.76</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --panel: #ffffff; --ink: #1d2330; --sub: #5b6475; --line: #d9dde5;
+    --ok: #1e7d3a; --ng: #c0392b; --accent: #2b5cad;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font: 14px/1.6 "Yu Gothic UI", "Meiryo", system-ui, sans-serif; }
+  header { padding: 12px 18px; background: var(--panel); border-bottom: 1px solid var(--line); }
+  header h1 { margin: 0; font-size: 18px; }
+  header p { margin: 2px 0 0; color: var(--sub); font-size: 13px; }
+  main { display: grid; grid-template-columns: minmax(0, 1fr) 430px; gap: 14px; padding: 14px 18px; }
+  @media (max-width: 1100px) { main { grid-template-columns: 1fr; } }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; padding: 10px 12px;
+    border-bottom: 1px solid var(--line); }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .seg button { border: 0; background: #fff; padding: 5px 10px; font: inherit; cursor: pointer; }
+  .seg button + button { border-left: 1px solid var(--line); }
+  .seg button.on { background: var(--accent); color: #fff; }
+  label.small { color: var(--sub); font-size: 13px; display: inline-flex; gap: 6px; align-items: center; }
+  .stage { height: calc(100vh - 170px); min-height: 480px; overflow: auto; background: #fff; }
+  svg { display: block; width: 100%; height: auto; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 14px; padding: 8px 12px; border-bottom: 1px solid var(--line); }
+  .legend label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; font-size: 13px; }
+  .legend i { display: inline-block; width: 22px; height: 4px; border-radius: 2px; }
+
+  /* drawing */
+  #bg { transition: opacity .15s; }
+  .net path { fill: none; stroke: var(--c); stroke-width: 1.15; stroke-linecap: round; }
+  .net circle { fill: var(--c); }
+  .sym circle { fill: #fff; stroke: #111; stroke-width: .45; }
+  .sym path { fill: none; stroke: #111; stroke-width: .45; stroke-linejoin: round; }
+  .lbl { fill: #222; font-family: "MS Mincho", "Yu Mincho", serif; }
+  .tag rect { fill: #e8f5e9; stroke: #2e7d32; stroke-width: .3; }
+  .tag text { fill: #1b5e20; font-size: 4.3px; font-family: "Yu Gothic UI", "Meiryo", sans-serif; }
+  .open path { stroke: #b8860b; stroke-width: .6; stroke-dasharray: 1.4 1; fill: none; }
+  .open circle { fill: #fff3cd; stroke: #b8860b; stroke-width: .4; }
+  .open text { fill: #8a6100; font-size: 5px; font-weight: bold; text-anchor: middle; font-family: sans-serif; }
+  svg.overlay .net path { stroke-width: 2.2; stroke-opacity: .55; }
+  svg.overlay .sym path { stroke: #000; stroke-opacity: .0; }
+  svg.overlay .lbl { opacity: 0; }
+  svg.focus .net { opacity: .12; }
+  svg.focus .net.on { opacity: 1; }
+  svg.focus .net.on path { stroke-width: 1.8; }
+  svg.overlay.focus .net.on path { stroke-width: 2.8; stroke-opacity: .75; }
+  .net.hidden { display: none; }
+  #tags.hidden { display: none; }
+
+  /* right panel */
+  aside { display: flex; flex-direction: column; gap: 14px; }
+  aside section { padding: 12px 14px; }
+  aside h2 { margin: 0 0 6px; font-size: 15px; }
+  .flow { margin: 0; padding-left: 1.2em; }
+  .flow li { margin: 2px 0; }
+  .note { color: var(--sub); font-size: 12.5px; margin: 6px 0 0; }
+  .item { border-top: 1px solid var(--line); padding: 10px 0; }
+  .item:first-of-type { border-top: 0; }
+  .item p { margin: 0 0 6px; }
+  .item .n { display: inline-block; min-width: 1.6em; font-weight: bold; color: var(--accent); }
+  .verdict { display: flex; gap: 6px; }
+  .verdict button { font: inherit; padding: 3px 12px; border-radius: 5px; border: 1px solid var(--line);
+    background: #fff; cursor: pointer; }
+  .verdict button.ok.on { background: var(--ok); color: #fff; border-color: var(--ok); }
+  .verdict button.ng.on { background: var(--ng); color: #fff; border-color: var(--ng); }
+  textarea { width: 100%; margin-top: 6px; min-height: 44px; font: inherit; padding: 6px;
+    border: 1px solid var(--line); border-radius: 5px; resize: vertical; }
+  .actions { display: flex; gap: 8px; align-items: center; }
+  .actions button { font: inherit; padding: 6px 14px; border-radius: 6px; border: 0; background: var(--accent);
+    color: #fff; cursor: pointer; }
+  #copied { color: var(--ok); font-size: 13px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>回路の筋：行き過ぎの表示（Mazak STX510 p.76「AXIS LS」）</h1>
+  <p>線は PDF の線データから機械的に選び出したものです（手で描き直したものではありません）。1L+ と 1M は、この回路に関係する部分だけを表示しています。</p>
+</header>
+<main>
+  <div class="card">
+    <div class="toolbar">
+      <span class="seg" id="mode">
+        <button data-mode="only" class="on">回路の線だけ</button>
+        <button data-mode="overlay">元の図面に重ねる</button>
+      </span>
+      <label class="small">元の図面の濃さ <input type="range" id="fade" min="0" max="100" value="10"></label>
+      <span class="seg" id="zoom">
+        <button data-z="1" class="on">1倍</button><button data-z="2">2倍</button><button data-z="3">3倍</button>
+      </span>
+      <label class="small"><input type="checkbox" id="showTags" checked> 読み取りの注記（緑の札）</label>
+    </div>
+    <div class="legend" id="legend"></div>
+    <div class="stage" id="stage">
+      <svg id="svg" viewBox="55 50 470 590" xmlns="http://www.w3.org/2000/svg">
+        <image id="bg" href="p076_300dpi.png" x="0" y="0" width="595" height="842" opacity="0.1" preserveAspectRatio="none"/>
+        <g class="net" data-net="n_358" style="--c:#d62828"><path d="M126.36,221.16L116.52,221.16 M126.36,221.16L141.90,221.16 M141.90,221.16L141.90,267.78 M126.36,267.78L116.52,267.78 M126.36,267.78L141.90,267.78 M141.90,267.78L141.90,360.96 M250.86,337.68L266.40,337.68 M266.40,337.68L266.40,360.96 M126.36,360.96L116.52,360.96 M126.36,360.96L141.87,360.93 M141.87,360.93L155.52,360.96 M159.42,360.96L245.40,360.96 M250.86,360.96L266.40,360.96 M266.40,360.96L266.40,454.14 M126.36,407.58L116.52,407.58 M126.36,407.58L141.90,407.58 M141.90,360.96L141.90,407.58 M126.36,454.14L116.52,454.14 M126.36,454.14L141.87,454.14 M141.87,454.14L155.52,454.14 M159.42,454.14L245.40,454.14 M250.86,454.14L266.40,454.14 M266.40,454.14L266.40,594.00 M126.36,500.76L116.52,500.76 M126.36,500.76L141.90,500.76 M141.90,454.14L141.90,500.76 M250.86,594.00L266.37,593.94 M266.37,593.94L297.51,593.94 M297.51,593.94L359.76,594.00 M297.54,594.00L297.54,617.28 M370.44,604.56L365.34,604.56 M359.76,594.00L364.92,594.00 M365.34,604.56L365.34,594.30 M370.38,594.00L365.70,594.00 M297.54,617.28L303.36,617.28"/><circle cx="141.87" cy="267.72" r="1.47"/><circle cx="141.87" cy="360.93" r="1.44"/><circle cx="266.37" cy="360.93" r="1.44"/><circle cx="141.87" cy="454.14" r="1.47"/><circle cx="266.37" cy="454.14" r="1.47"/><circle cx="266.37" cy="593.94" r="1.47"/><circle cx="297.51" cy="593.94" r="1.47"/><circle cx="365.28" cy="593.88" r="0.90"/></g>
+<g class="net" data-net="n_1L+" style="--c:#e07000"><path d="M79.62,93.00L79.62,104.61 M79.62,104.61L79.62,151.20 M79.62,151.20L79.62,174.51 M79.62,174.51L79.62,244.41 M79.62,244.41L79.62,291.03 M79.62,291.03L79.62,384.24 M79.62,384.24L79.62,430.83 M79.62,430.83L79.62,477.42 M79.62,477.42L79.62,524.04 M79.62,384.24L95.22,384.24 M95.22,407.58L95.22,430.86 M106.86,407.58L95.22,407.58 M79.62,430.86L95.22,430.86 M95.22,454.14L95.22,477.48 M106.86,454.14L95.22,454.14 M79.62,477.48L95.22,477.48 M95.22,221.16L95.22,244.44 M106.86,221.16L95.22,221.16 M95.22,500.76L95.22,524.04 M106.86,500.76L95.22,500.76 M79.62,244.44L95.22,244.44 M79.62,524.04L95.22,524.04 M95.22,267.78L95.22,291.06 M106.86,267.78L95.22,267.78 M79.62,291.06L95.22,291.06 M95.22,360.96L95.22,384.24 M106.86,360.96L95.22,360.96"/><circle cx="79.62" cy="104.61" r="1.47"/><circle cx="79.62" cy="151.20" r="1.47"/><circle cx="79.62" cy="174.51" r="1.47"/><circle cx="79.62" cy="244.41" r="1.47"/><circle cx="95.19" cy="244.41" r="1.44"/><circle cx="79.62" cy="291.03" r="1.47"/><circle cx="95.19" cy="291.03" r="1.44"/><circle cx="79.62" cy="384.24" r="1.47"/><circle cx="95.19" cy="384.24" r="1.47"/><circle cx="79.62" cy="430.83" r="1.47"/><circle cx="95.19" cy="430.83" r="1.44"/><circle cx="79.62" cy="477.42" r="1.47"/><circle cx="95.19" cy="477.42" r="1.47"/><circle cx="79.62" cy="524.04" r="1.47"/><circle cx="95.19" cy="524.04" r="1.47"/></g>
+<g class="net" data-net="n_R4_HL4" style="--c:#8e44ad"><path d="M328.68,617.28L318.90,617.28 M328.68,617.28L340.32,617.28"/></g>
+<g class="net" data-net="n_1M" style="--c:#1f6fd1"><path d="M383.28,604.56L378.18,604.56 M390.90,594.00L383.22,593.94 M383.22,593.94L378.00,594.00 M383.16,604.56L383.16,593.88 M390.90,594.00L406.50,594.00 M359.76,617.28L406.50,617.28 M350.04,617.28L359.76,617.28 M406.50,582.30L406.44,593.94 M406.44,593.94L406.44,617.25"/><circle cx="383.22" cy="593.94" r="0.90"/><circle cx="406.44" cy="593.94" r="1.47"/><circle cx="406.44" cy="617.25" r="1.47"/></g>
+<g class="sym" data-sym="SQ4 a接点"><path d="M106.86,221.16L116.58,224.04 M106.86,221.16L112.68,226.02 M112.68,226.02L114.60,223.50"/></g>
+<g class="sym" data-sym="SQ5 a接点"><path d="M106.86,267.78L116.58,270.66 M106.86,267.78L112.68,272.58 M112.68,272.58L114.60,270.06"/></g>
+<g class="sym" data-sym="SQ6 a接点"><path d="M106.86,360.96L116.58,363.84 M106.86,360.96L112.68,365.82 M112.68,365.82L114.60,363.30"/></g>
+<g class="sym" data-sym="SQ7 a接点"><path d="M106.86,407.58L116.58,410.46 M106.86,407.58L112.68,412.44 M112.68,412.44L114.60,409.86"/></g>
+<g class="sym" data-sym="SQ8 a接点"><path d="M106.86,454.14L116.58,457.08 M106.86,454.14L112.68,459.00 M112.68,459.00L114.60,456.48"/></g>
+<g class="sym" data-sym="SQ9 a接点"><path d="M106.86,500.76L116.58,503.70 M106.86,500.76L112.68,505.62 M112.68,505.62L114.60,503.10"/></g>
+<g class="sym" data-sym="KA4 コイル"><path d="M370.38,586.98L370.38,600.60 M378.00,600.60L378.00,587.04 M370.32,586.98L377.94,586.98 M370.50,600.54L378.06,600.54"/></g>
+<g class="sym" data-sym="V4"><path d="M378.18,601.68L370.44,604.56 M378.18,607.50L378.18,601.68 M378.18,607.50L370.44,604.56 M370.44,607.50L370.44,601.68"/></g>
+<g class="sym" data-sym="KA4 の接点の位置"><path d="M437.58,605.64L495.96,605.64 M437.58,597.84L437.58,613.38 M466.80,597.84L466.80,613.38 M495.96,597.84L495.96,613.38"/></g>
+<g class="sym" data-sym="R4"><path d="M303.36,613.38L303.36,621.18 M318.90,613.38L318.90,621.18 M303.36,613.38L318.90,613.38 M303.36,621.18L318.90,621.18"/></g>
+<g class="sym" data-sym="HL4"><path d="M340.32,613.38L340.32,621.18L350.04,617.28L340.32,613.38 M350.04,613.38L350.04,621.18 M346.80,610.20L347.76,610.20 M347.76,610.20L347.34,611.10 M347.76,612.12L348.72,612.12 M348.72,612.12L348.24,612.90 M348.72,612.12L346.26,613.62 M347.76,610.20L345.06,611.82"/></g>
+<g class="sym" data-sym="端子・コネクタ"><path d="M246.96,333.78L250.86,337.68L246.96,341.52 M245.40,337.68L241.50,333.78 M245.40,337.68L241.50,341.52 M246.96,357.06L250.86,360.96L246.96,364.86 M245.40,360.96L241.50,357.06 M245.40,360.96L241.50,364.86 M246.96,450.30L250.86,454.14L246.96,458.04 M245.40,454.14L241.50,450.30 M245.40,454.14L241.50,458.04 M246.96,590.10L250.86,594.00L246.96,597.84 M245.40,594.00L241.50,590.10 M245.40,594.00L241.50,597.84"/><circle cx="157.44" cy="360.93" r="1.92"/><circle cx="157.44" cy="454.14" r="1.92"/></g>
+<g class="open"><path d="M245.40,337.68H229.40"/><circle cx="225.90" cy="337.68" r="3.3"/><text x="225.90" y="339.38">?</text></g>
+<g class="open"><path d="M245.40,594.00H229.40"/><circle cx="225.90" cy="594.00" r="3.3"/><text x="225.90" y="595.70">?</text></g><text class="lbl" x="64.08" y="67.59" font-size="8.8">MACHINE</text><text class="lbl" x="103.02" y="67.59" font-size="8.8">SIDE</text><text class="lbl" x="80.64" y="91.64" font-size="7.0">1L+</text><text class="lbl" x="104.94" y="211.58" font-size="7.0">SQ4</text><text class="lbl" x="104.94" y="258.20" font-size="7.0">SQ5</text><text class="lbl" x="104.94" y="351.44" font-size="7.0">SQ6</text><text class="lbl" x="104.94" y="398.00" font-size="7.0">SQ7</text><text class="lbl" x="104.94" y="444.62" font-size="7.0">SQ8</text><text class="lbl" x="104.94" y="491.24" font-size="7.0">SQ9</text><text class="lbl" x="149.70" y="351.32" font-size="7.0">XT31</text><text class="lbl" x="151.62" y="357.50" font-size="7.0">358</text><text class="lbl" x="149.70" y="444.50" font-size="7.0">XT71</text><text class="lbl" x="151.62" y="450.68" font-size="7.0">358</text><text class="lbl" x="237.24" y="330.08" font-size="7.0">X51</text><text class="lbl" x="231.78" y="336.32" font-size="7.0">13</text><text class="lbl" x="237.24" y="353.42" font-size="7.0">X31</text><text class="lbl" x="235.68" y="359.60" font-size="7.0">9</text><text class="lbl" x="237.24" y="446.60" font-size="7.0">X71</text><text class="lbl" x="235.68" y="452.84" font-size="7.0">7</text><text class="lbl" x="237.24" y="586.40" font-size="7.0">X85</text><text class="lbl" x="231.78" y="592.64" font-size="7.0">37</text><text class="lbl" x="250.86" y="79.23" font-size="8.8">TU(A11)</text><text class="lbl" x="368.46" y="583.28" font-size="7.0">KA4</text><text class="lbl" x="363.18" y="590.66" font-size="7.0">1</text><text class="lbl" x="381.72" y="590.24" font-size="7.0">12</text><text class="lbl" x="407.46" y="581.00" font-size="7.0">1M</text><text class="lbl" x="437.58" y="593.79" font-size="8.8">AXIS</text><text class="lbl" x="461.94" y="593.79" font-size="8.8">OVERTRAVEL</text><text class="lbl" x="309.18" y="609.14" font-size="7.0">R4</text><text class="lbl" x="338.40" y="609.14" font-size="7.0">HL4</text><text class="lbl" x="370.26" y="614.42" font-size="7.0">V4</text><text class="lbl" x="438.60" y="611.84" font-size="7.0">0700/23</text><g id="tags"><g class="tag"><rect x="119.5" y="220.1" width="16.8" height="6.2" rx="1.5"/><text x="121.0" y="224.7">a接点</text></g><g class="tag"><rect x="119.5" y="266.7" width="16.8" height="6.2" rx="1.5"/><text x="121.0" y="271.3">a接点</text></g><g class="tag"><rect x="119.5" y="359.9" width="16.8" height="6.2" rx="1.5"/><text x="121.0" y="364.5">a接点</text></g><g class="tag"><rect x="119.5" y="406.5" width="16.8" height="6.2" rx="1.5"/><text x="121.0" y="411.1">a接点</text></g><g class="tag"><rect x="119.5" y="453.0" width="16.8" height="6.2" rx="1.5"/><text x="121.0" y="457.6">a接点</text></g><g class="tag"><rect x="119.5" y="499.7" width="16.8" height="6.2" rx="1.5"/><text x="121.0" y="504.3">a接点</text></g><g class="tag"><rect x="343.5" y="576.9" width="16.8" height="6.2" rx="1.5"/><text x="345.0" y="581.5">コイル</text></g><g class="tag"><rect x="380.0" y="604.9" width="26.0" height="6.2" rx="1.5"/><text x="381.5" y="609.5">ダイオード</text></g><g class="tag"><rect x="304.0" y="622.9" width="12.2" height="6.2" rx="1.5"/><text x="305.5" y="627.5">抵抗</text></g><g class="tag"><rect x="338.0" y="622.9" width="16.8" height="6.2" rx="1.5"/><text x="339.5" y="627.5">表示灯</text></g><g class="tag"><rect x="199.5" y="335.2" width="21.4" height="6.2" rx="1.5"/><text x="201.0" y="339.8">先は不明</text></g><g class="tag"><rect x="199.5" y="591.5" width="21.4" height="6.2" rx="1.5"/><text x="201.0" y="596.1">先は不明</text></g></g>
+      </svg>
+    </div>
+  </div>
+
+  <aside>
+    <section class="card">
+      <h2>この回路の読み（正解データの案）</h2>
+      <ol class="flow">
+        <li><b>1L+</b>（電源の＋側）から、SQ4〜SQ9 の<b>上の接点（a接点）6つ</b>へ。</li>
+        <li>6つの接点の反対側は、すべて<b>358</b>につながる（6つが並列）。</li>
+        <li>358 は TU の中を通って、<b>KA4 のコイル</b>・<b>V4</b>・<b>R4→HL4</b> へ。</li>
+        <li>その先はすべて<b>1M</b>（0V 側）。</li>
+      </ol>
+      <p class="note">働き：どれか1つの軸が行き過ぎてスイッチが押されると、その a接点が閉じて 358 に電気が来る。KA4 が入り、表示灯 HL4 が点く。V4 は KA4 のコイルを切ったときの電圧を逃がすダイオード。</p>
+      <p class="note">「?」の印：この頁では、その先が描かれていない（X51 の 13番、X85 の 37番）。</p>
+    </section>
+
+    <section class="card" id="checks">
+      <h2>確認していただきたいこと</h2>
+      <p class="note" style="margin-top:0">項目にマウスを乗せると、関係する線が強調されます。</p>
+    </section>
+
+    <section class="card">
+      <div class="actions"><button id="copy">結果をコピー</button><span id="copied"></span></div>
+      <p class="note">貼り付けて送ってください。入力内容はこのブラウザに保存されます。</p>
+    </section>
+  </aside>
+</main>
+
+<script>
+const LEGEND = {"n_358": ["358（線番）", "#d62828"], "n_1L+": ["1L+（電源の＋側）", "#e07000"], "n_R4_HL4": ["R4 と HL4 の間", "#8e44ad"], "n_1M": ["1M（0V 側）", "#1f6fd1"]};
+const CHECKS = [
+  { id: 1, nets: ["n_1L+", "n_358"], text: "SQ4〜SQ9 の上の接点（a接点）6つが、1L+ と 358 の間に並列に入っている。" },
+  { id: 2, nets: ["n_358"], text: "SQ4〜SQ7 は XT31 の 358 番端子 → X31 の 9番、SQ8・SQ9 は XT71 の 358 番端子 → X71 の 7番を通り、TU の中で合流している。" },
+  { id: 3, nets: ["n_358"], text: "358 は X51 の 13番と X85 の 37番にも出ていて、この頁ではその先が描かれていない（「?」の印）。" },
+  { id: 4, nets: ["n_358", "n_R4_HL4", "n_1M"], text: "358 と 1M の間に、KA4 のコイル（1番・12番）、V4（ダイオード）、R4→HL4（抵抗と表示灯）の3つが並列に入っている。" },
+  { id: 5, nets: [], text: "KA4 の接点は p.77 の 23行目にある（右端の「0700/23」）。" },
+  { id: 6, nets: Object.keys(LEGEND), text: "線に、余分なもの・足りないものがない（「元の図面に重ねる」で見比べてください）。" },
+];
+const KEY = "kairo-circuit-c6-p076-overtravel";
+let st = {};
+try { st = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { st = {}; }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} };
+
+const svg = document.getElementById("svg");
+const bg = document.getElementById("bg");
+const fade = document.getElementById("fade");
+const nets = [...svg.querySelectorAll(".net")];
+
+function focusNets(list) {
+  if (!list || !list.length) { svg.classList.remove("focus"); nets.forEach(n => n.classList.remove("on")); return; }
+  svg.classList.add("focus");
+  nets.forEach(n => n.classList.toggle("on", list.includes(n.dataset.net)));
+}
+
+// legend
+const lg = document.getElementById("legend");
+for (const [k, [name, color]] of Object.entries(LEGEND)) {
+  const lab = document.createElement("label");
+  lab.innerHTML = `<input type="checkbox" checked><i style="background:${color}"></i>${name}`;
+  lab.querySelector("input").addEventListener("change", e => {
+    svg.querySelector(`.net[data-net="${CSS.escape(k)}"]`).classList.toggle("hidden", !e.target.checked);
+  });
+  lab.addEventListener("mouseenter", () => focusNets([k]));
+  lab.addEventListener("mouseleave", () => focusNets(null));
+  lg.appendChild(lab);
+}
+
+// mode, fade, zoom, tags
+document.getElementById("mode").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  document.querySelectorAll("#mode button").forEach(x => x.classList.toggle("on", x === b));
+  const overlay = b.dataset.mode === "overlay";
+  svg.classList.toggle("overlay", overlay);
+  fade.value = overlay ? 100 : 10; bg.setAttribute("opacity", fade.value / 100);
+});
+fade.addEventListener("input", () => bg.setAttribute("opacity", fade.value / 100));
+document.getElementById("zoom").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  document.querySelectorAll("#zoom button").forEach(x => x.classList.toggle("on", x === b));
+  svg.style.width = (100 * Number(b.dataset.z)) + "%";
+});
+document.getElementById("showTags").addEventListener("change", e => {
+  document.getElementById("tags").classList.toggle("hidden", !e.target.checked);
+});
+
+// checklist
+const box = document.getElementById("checks");
+for (const c of CHECKS) {
+  const s = st[c.id] || (st[c.id] = { verdict: null, note: "" });
+  const div = document.createElement("div");
+  div.className = "item";
+  div.innerHTML = `<p><span class="n">${c.id}.</span>${c.text}</p>
+    <div class="verdict"><button class="ok">正しい</button><button class="ng">違う</button></div>
+    <textarea placeholder="違う点・気づいたこと"></textarea>`;
+  const [ok, ng] = div.querySelectorAll("button");
+  const paint = () => { ok.classList.toggle("on", s.verdict === "ok"); ng.classList.toggle("on", s.verdict === "ng"); };
+  ok.onclick = () => { s.verdict = s.verdict === "ok" ? null : "ok"; paint(); save(); };
+  ng.onclick = () => { s.verdict = s.verdict === "ng" ? null : "ng"; paint(); save(); };
+  const ta = div.querySelector("textarea");
+  ta.value = s.note; ta.oninput = () => { s.note = ta.value; save(); };
+  div.addEventListener("mouseenter", () => focusNets(c.nets));
+  div.addEventListener("mouseleave", () => focusNets(null));
+  paint();
+  box.appendChild(div);
+}
+
+document.getElementById("copy").onclick = async () => {
+  const lines = ["p.76 回路の筋（行き過ぎの表示）確認結果"];
+  for (const c of CHECKS) {
+    const s = st[c.id] || {};
+    const v = s.verdict === "ok" ? "正しい" : s.verdict === "ng" ? "違う" : "未確認";
+    lines.push(`${c.id}. ${v}${s.note ? "：" + s.note.replace(/\n/g, " ") : ""}`);
+  }
+  const text = lines.join("\n");
+  try { await navigator.clipboard.writeText(text); }
+  catch (e) {
+    const t = document.createElement("textarea"); t.value = text; document.body.appendChild(t);
+    t.select(); document.execCommand("copy"); t.remove();
+  }
+  document.getElementById("copied").textContent = "コピーしました";
+  setTimeout(() => document.getElementById("copied").textContent = "", 2000);
+};
+</script>
+</body>
+</html>
