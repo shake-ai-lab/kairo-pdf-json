@@ -1,0 +1,14 @@
+# 採用したサンプルの台帳。原本は samples/raw/<id>/original.pdf（変更禁止）。
+# 項目の決まりは .claude/rules/samples.md を参照。
+samples:
+  - id: c6_mazak_stx510
+    title: ヤマザキマザック Super Turbo-X 510（レーザ加工機）Electrical Diagram
+    source_url: https://www.topperindustrial.com/wp-content/uploads/2026/02/Mazak-Super-Turbo-X-510-Electrical-Diagram.pdf
+    landing_page: https://www.topperindustrial.com/mazaksuperturbox510/
+    retrieved_at: 2026-10-11
+    kind: vector
+    pages: 213
+    layout: 横書き・行番号 01〜30・列記号 A〜M・A4縦
+    language: en
+    terms: 明記なし。図面の著作権はヤマザキマザック、掲載は第三者（Topper Industrial）。手元の検証のみ、再配布しない
+    sha256: 0eafba3bea90da2c5977f02a465d33769da8002ed2244b21bc58916421ab51c9

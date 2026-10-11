@@ -1,0 +1,461 @@
+{
+ "gate_pass": false,
+ "all_match": false,
+ "nets": {
+  "gt": 13,
+  "ai": 11,
+  "exact": 9,
+  "split": [],
+  "merge": [],
+  "misconnected": [],
+  "missing_points": [
+   "HL4:1",
+   "HL4:2",
+   "KA4:1",
+   "KA4:12",
+   "R4:1",
+   "R4:2",
+   "SQ4:a.1",
+   "SQ4:a.2",
+   "SQ5:a.1",
+   "SQ5:a.2",
+   "SQ6:a.1",
+   "SQ6:a.2",
+   "SQ7:a.1",
+   "SQ7:a.2",
+   "SQ8:a.1",
+   "SQ8:a.2",
+   "SQ9:a.1",
+   "SQ9:a.2",
+   "V4:1",
+   "V4:2",
+   "rail:1M"
+  ],
+  "unmapped_ai_ports": []
+ },
+ "port_names": {
+  "total": 92,
+  "wrong": [
+   [
+    "XCS41:7/A4",
+    [
+     "A1:X0.00"
+    ]
+   ],
+   [
+    "XCS41:8/B4",
+    [
+     "A1:X0.01"
+    ]
+   ],
+   [
+    "XCS41:9/A5",
+    [
+     "A1:X0.02"
+    ]
+   ],
+   [
+    "SQ4:a.1",
+    []
+   ],
+   [
+    "SQ4:a.2",
+    []
+   ],
+   [
+    "XCS41:11/A6",
+    [
+     "A1:X0.04"
+    ]
+   ],
+   [
+    "SQ5:a.1",
+    []
+   ],
+   [
+    "SQ5:a.2",
+    []
+   ],
+   [
+    "XCS41:15/A8",
+    [
+     "A1:X0.08"
+    ]
+   ],
+   [
+    "SQ6:a.1",
+    []
+   ],
+   [
+    "SQ6:a.2",
+    []
+   ],
+   [
+    "XCS41:12/B6",
+    [
+     "A1:X0.05"
+    ]
+   ],
+   [
+    "SQ7:a.1",
+    []
+   ],
+   [
+    "SQ7:a.2",
+    []
+   ],
+   [
+    "XCS41:16/B8",
+    [
+     "A1:X0.09"
+    ]
+   ],
+   [
+    "SQ8:a.1",
+    []
+   ],
+   [
+    "SQ8:a.2",
+    []
+   ],
+   [
+    "XCS41:13/A7",
+    [
+     "A1:X0.06"
+    ]
+   ],
+   [
+    "SQ9:a.1",
+    []
+   ],
+   [
+    "SQ9:a.2",
+    []
+   ],
+   [
+    "XCS41:17/A9",
+    [
+     "A1:X0.10"
+    ]
+   ],
+   [
+    "KA4:1",
+    []
+   ],
+   [
+    "KA4:12",
+    []
+   ],
+   [
+    "V4:1",
+    []
+   ],
+   [
+    "V4:2",
+    []
+   ],
+   [
+    "R4:1",
+    []
+   ],
+   [
+    "R4:2",
+    []
+   ],
+   [
+    "HL4:1",
+    []
+   ],
+   [
+    "HL4:2",
+    []
+   ]
+  ],
+  "position_off": [
+   "A1:X0.00",
+   "A1:X0.01",
+   "A1:X0.02",
+   "A1:X0.04",
+   "A1:X0.08",
+   "A1:X0.05",
+   "A1:X0.09",
+   "A1:X0.06",
+   "A1:X0.10"
+  ]
+ },
+ "elements": {
+  "gt": 19,
+  "found": 9,
+  "kind_ok": 9,
+  "contact_total": 15,
+  "contact_ok": 9,
+  "rows": [
+   {
+    "gt": "SQ1.b",
+    "ai": "SQ1.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ2.b",
+    "ai": "SQ2.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ3.b",
+    "ai": "SQ3.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ4.a",
+    "ai": null,
+    "kind_ok": false,
+    "contact_gt": "a",
+    "contact_ai": null
+   },
+   {
+    "gt": "SQ4.b",
+    "ai": "SQ4.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ5.a",
+    "ai": null,
+    "kind_ok": false,
+    "contact_gt": "a",
+    "contact_ai": null
+   },
+   {
+    "gt": "SQ5.b",
+    "ai": "SQ5.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ6.a",
+    "ai": null,
+    "kind_ok": false,
+    "contact_gt": "a",
+    "contact_ai": null
+   },
+   {
+    "gt": "SQ6.b",
+    "ai": "SQ6.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ7.a",
+    "ai": null,
+    "kind_ok": false,
+    "contact_gt": "a",
+    "contact_ai": null
+   },
+   {
+    "gt": "SQ7.b",
+    "ai": "SQ7.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ8.a",
+    "ai": null,
+    "kind_ok": false,
+    "contact_gt": "a",
+    "contact_ai": null
+   },
+   {
+    "gt": "SQ8.b",
+    "ai": "SQ8.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ9.a",
+    "ai": null,
+    "kind_ok": false,
+    "contact_gt": "a",
+    "contact_ai": null
+   },
+   {
+    "gt": "SQ9.b",
+    "ai": "SQ9.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "KA4.coil",
+    "ai": null,
+    "kind_ok": false,
+    "contact_gt": null,
+    "contact_ai": null
+   },
+   {
+    "gt": "V4.body",
+    "ai": null,
+    "kind_ok": false,
+    "contact_gt": null,
+    "contact_ai": null
+   },
+   {
+    "gt": "R4.body",
+    "ai": null,
+    "kind_ok": false,
+    "contact_gt": null,
+    "contact_ai": null
+   },
+   {
+    "gt": "HL4.body",
+    "ai": null,
+    "kind_ok": false,
+    "contact_gt": null,
+    "contact_ai": null
+   }
+  ],
+  "extra": []
+ },
+ "components": {
+  "gt": 23,
+  "ai": 18,
+  "missing": [
+   "HL4",
+   "KA4",
+   "R4",
+   "V4",
+   "XCS41"
+  ],
+  "extra": []
+ },
+ "plc_io": {
+  "total": 9,
+  "port_ok": 9,
+  "device_ok": 0
+ },
+ "circuits": {
+  "gt": 10,
+  "ai": 9,
+  "same": 0,
+  "same_shape": 9,
+  "gt_only": [
+   "1L+ → SQ1 b接点 → [420] → X0.00（PLC 入力）",
+   "1L+ → SQ2 b接点 → [421] → X0.01（PLC 入力）",
+   "1L+ → SQ3 b接点 → [422] → X0.02（PLC 入力）",
+   "1L+ → SQ4 b接点 → [400] → X0.04（PLC 入力）",
+   "1L+ → SQ5 b接点 → [401] → X0.08（PLC 入力）",
+   "1L+ → SQ6 b接点 → [402] → X0.05（PLC 入力）",
+   "1L+ → SQ7 b接点 → [403] → X0.09（PLC 入力）",
+   "1L+ → SQ8 b接点 → [404] → X0.06（PLC 入力）",
+   "1L+ → SQ9 b接点 → [405] → X0.10（PLC 入力）",
+   "1L+ → （SQ4 a接点 ∥ SQ5 a接点 ∥ SQ6 a接点 ∥ SQ7 a接点 ∥ SQ8 a接点 ∥ SQ9 a接点） → [358] → （KA4 コイル ∥ V4 ダイオード ∥ （R4 抵抗 → [R4–HL4] → HL4 表示灯）） → 1M"
+  ],
+  "ai_only": [
+   "1L+ → SQ1 b接点 → [XT31–SQ1–X31–X01–X51–A1] → X0.00（PLC 入力）",
+   "1L+ → SQ2 b接点 → [XT31–SQ2–X31–X01–A1] → X0.01（PLC 入力）",
+   "1L+ → SQ3 b接点 → [XT71–SQ3–X71–X01–A1] → X0.02（PLC 入力）",
+   "1L+ → SQ4 b接点 → [X31–X01–X51–SQ4–XT31–A1] → X0.04（PLC 入力）",
+   "1L+ → SQ5 b接点 → [XT31–SQ5–X31–X01–X51–A1] → X0.08（PLC 入力）",
+   "1L+ → SQ6 b接点 → [SQ6–XT31–X31–X01–A1] → X0.05（PLC 入力）",
+   "1L+ → SQ7 b接点 → [XT31–SQ7–X31–X01–A1] → X0.09（PLC 入力）",
+   "1L+ → SQ8 b接点 → [XT71–SQ8–X71–X01–A1] → X0.06（PLC 入力）",
+   "1L+ → SQ9 b接点 → [SQ9–XT71–X71–X01–A1] → X0.10（PLC 入力）"
+  ]
+ },
+ "open_ends": {
+  "gt": 5,
+  "ai": 0,
+  "same": 0
+ },
+ "sheet_id": {
+  "gt": "0650",
+  "ai": "76"
+ },
+ "purposes": [
+  {
+   "id": "KA4",
+   "gt": "AXIS OVERTRAVEL（軸の行き過ぎ）",
+   "ai": null,
+   "ai_basis": null
+  },
+  {
+   "id": "SQ1",
+   "gt": "X AXIS ZERO RETURN DEC LS（X軸 原点復帰の減速用のリミットスイッチ）",
+   "ai": "X axis zero return deceleration limit switch",
+   "ai_basis": "drawing"
+  },
+  {
+   "id": "SQ2",
+   "gt": "Y AXIS ZERO RETURN DEC LS（Y軸 原点復帰の減速用のリミットスイッチ）",
+   "ai": "Y axis zero return deceleration limit switch",
+   "ai_basis": "drawing"
+  },
+  {
+   "id": "SQ3",
+   "gt": "Z AXIS ZERO RETURN DEC LS（Z軸 原点復帰の減速用のリミットスイッチ）",
+   "ai": "Z axis zero return deceleration limit switch",
+   "ai_basis": "drawing"
+  },
+  {
+   "id": "SQ4",
+   "gt": "+X AXIS OVERTRAVEL LS（+X軸 行き過ぎ検出のリミットスイッチ）",
+   "ai": "+X axis overtravel limit switch",
+   "ai_basis": "drawing"
+  },
+  {
+   "id": "SQ5",
+   "gt": "-X AXIS OVERTRAVEL LS（-X軸 行き過ぎ検出のリミットスイッチ）",
+   "ai": "-X axis overtravel limit switch",
+   "ai_basis": "drawing"
+  },
+  {
+   "id": "SQ6",
+   "gt": "+Y AXIS OVERTRAVEL LS（+Y軸 行き過ぎ検出のリミットスイッチ）",
+   "ai": "+Y axis overtravel limit switch",
+   "ai_basis": "drawing"
+  },
+  {
+   "id": "SQ7",
+   "gt": "-Y AXIS OVERTRAVEL LS（-Y軸 行き過ぎ検出のリミットスイッチ）",
+   "ai": "-Y axis overtravel limit switch",
+   "ai_basis": "drawing"
+  },
+  {
+   "id": "SQ8",
+   "gt": "+Z AXIS OVERTRAVEL LS（+Z軸 行き過ぎ検出のリミットスイッチ）",
+   "ai": "+Z axis overtravel limit switch",
+   "ai_basis": "drawing"
+  },
+  {
+   "id": "SQ9",
+   "gt": "-Z AXIS OVERTRAVEL LS（-Z軸 行き過ぎ検出のリミットスイッチ）",
+   "ai": "-Z axis overtravel limit switch",
+   "ai_basis": "drawing"
+  }
+ ],
+ "needs_review": [
+  {
+   "what": "SQ4–SQ9 mechanically linked contact pairs",
+   "reason": "各スイッチ記号には点線連動した上側接点も見えるが、2つ目の接点の graph 点対応を確実に特定できない。",
+   "ref": "SQ4–SQ9"
+  },
+  {
+   "what": "lower overtravel indicator circuit KA4, HL4, V4",
+   "reason": "下部回路の記号端子を graph の線接続点に確実に対応づけられない。",
+   "ref": "zone G24"
+  }
+ ],
+ "unresolved": [],
+ "assemble_problems": [],
+ "page_schema_errors": []
+}

@@ -1,0 +1,44 @@
+{
+ "sample": "c6_mazak_stx510",
+ "page": 76,
+ "backend": "codex-cli",
+ "model": "gpt-6.1-sol",
+ "effort": "medium",
+ "prompt": "label_v6",
+ "prompt_sha256": "f8e8c1b63fe5270e00a1b8f1b616188291e2e2b54ea405b40bc7aae5ae540320",
+ "label_schema": "kairo-pdf-json/ai-labels/0.1",
+ "input_format": "v3+symbols",
+ "check": true,
+ "tools": "pdf-tools v1",
+ "sandbox_image": null,
+ "check_version": "v4",
+ "isolation": "v2",
+ "started_at": "2026-10-11T23:08:11",
+ "seconds": 323.5,
+ "rounds": [
+  {
+   "round": 1,
+   "seconds": 323.4,
+   "got_answer": true,
+   "problems": []
+  }
+ ],
+ "returncode": 0,
+ "stderr": "Reading additional input from stdin...\n",
+ "num_turns": 1,
+ "usage": {
+  "input_tokens": 1370179,
+  "cached_input_tokens": 1196544,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 13075,
+  "reasoning_output_tokens": 571
+ },
+ "cost_usd_list_price": null,
+ "outside_access": [],
+ "denials": [],
+ "denied_dirs": [],
+ "tool_call_count": 161,
+ "valid": true,
+ "label_schema_errors": [],
+ "view": "C:\\Users\\kouta\\project\\kairo-pdf-json\\samples\\derived\\c6_mazak_stx510\\p076.run-20261011-230809_c6_mazak_stx510_p076_gpt-6.1-sol_view.html"
+}

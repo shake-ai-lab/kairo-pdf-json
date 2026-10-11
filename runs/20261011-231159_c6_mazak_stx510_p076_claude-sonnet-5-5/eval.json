@@ -1,0 +1,280 @@
+{
+ "gate_pass": true,
+ "all_match": true,
+ "nets": {
+  "gt": 13,
+  "ai": 13,
+  "exact": 13,
+  "split": [],
+  "merge": [],
+  "misconnected": [],
+  "missing_points": [],
+  "unmapped_ai_ports": []
+ },
+ "port_names": {
+  "total": 92,
+  "wrong": [],
+  "position_off": [
+   "KA4:1",
+   "KA4:12"
+  ]
+ },
+ "elements": {
+  "gt": 19,
+  "found": 19,
+  "kind_ok": 19,
+  "contact_total": 15,
+  "contact_ok": 15,
+  "rows": [
+   {
+    "gt": "SQ1.b",
+    "ai": "SQ1.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ2.b",
+    "ai": "SQ2.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ3.b",
+    "ai": "SQ3.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ4.a",
+    "ai": "SQ4.a",
+    "kind_ok": true,
+    "contact_gt": "a",
+    "contact_ai": "a"
+   },
+   {
+    "gt": "SQ4.b",
+    "ai": "SQ4.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ5.a",
+    "ai": "SQ5.a",
+    "kind_ok": true,
+    "contact_gt": "a",
+    "contact_ai": "a"
+   },
+   {
+    "gt": "SQ5.b",
+    "ai": "SQ5.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ6.a",
+    "ai": "SQ6.a",
+    "kind_ok": true,
+    "contact_gt": "a",
+    "contact_ai": "a"
+   },
+   {
+    "gt": "SQ6.b",
+    "ai": "SQ6.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ7.a",
+    "ai": "SQ7.a",
+    "kind_ok": true,
+    "contact_gt": "a",
+    "contact_ai": "a"
+   },
+   {
+    "gt": "SQ7.b",
+    "ai": "SQ7.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ8.a",
+    "ai": "SQ8.a",
+    "kind_ok": true,
+    "contact_gt": "a",
+    "contact_ai": "a"
+   },
+   {
+    "gt": "SQ8.b",
+    "ai": "SQ8.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ9.a",
+    "ai": "SQ9.a",
+    "kind_ok": true,
+    "contact_gt": "a",
+    "contact_ai": "a"
+   },
+   {
+    "gt": "SQ9.b",
+    "ai": "SQ9.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "KA4.coil",
+    "ai": "KA4.coil",
+    "kind_ok": true,
+    "contact_gt": null,
+    "contact_ai": null
+   },
+   {
+    "gt": "V4.body",
+    "ai": "V4.body",
+    "kind_ok": true,
+    "contact_gt": null,
+    "contact_ai": null
+   },
+   {
+    "gt": "R4.body",
+    "ai": "R4.body",
+    "kind_ok": true,
+    "contact_gt": null,
+    "contact_ai": null
+   },
+   {
+    "gt": "HL4.body",
+    "ai": "HL4.body",
+    "kind_ok": true,
+    "contact_gt": null,
+    "contact_ai": null
+   }
+  ],
+  "extra": []
+ },
+ "components": {
+  "gt": 23,
+  "ai": 23,
+  "missing": [],
+  "extra": []
+ },
+ "plc_io": {
+  "total": 9,
+  "port_ok": 9,
+  "device_ok": 9
+ },
+ "circuits": {
+  "gt": 10,
+  "ai": 10,
+  "same": 10,
+  "same_shape": 10,
+  "gt_only": [],
+  "ai_only": []
+ },
+ "open_ends": {
+  "gt": 5,
+  "ai": 0,
+  "same": 0
+ },
+ "sheet_id": {
+  "gt": "0650",
+  "ai": null
+ },
+ "purposes": [
+  {
+   "id": "KA4",
+   "gt": "AXIS OVERTRAVEL（軸の行き過ぎ）",
+   "ai": null,
+   "ai_basis": null
+  },
+  {
+   "id": "SQ1",
+   "gt": "X AXIS ZERO RETURN DEC LS（X軸 原点復帰の減速用のリミットスイッチ）",
+   "ai": "X axis zero return DEC LS",
+   "ai_basis": "drawing"
+  },
+  {
+   "id": "SQ2",
+   "gt": "Y AXIS ZERO RETURN DEC LS（Y軸 原点復帰の減速用のリミットスイッチ）",
+   "ai": "Y axis zero return DEC LS",
+   "ai_basis": "drawing"
+  },
+  {
+   "id": "SQ3",
+   "gt": "Z AXIS ZERO RETURN DEC LS（Z軸 原点復帰の減速用のリミットスイッチ）",
+   "ai": "Z axis zero return DEC LS",
+   "ai_basis": "drawing"
+  },
+  {
+   "id": "SQ4",
+   "gt": "+X AXIS OVERTRAVEL LS（+X軸 行き過ぎ検出のリミットスイッチ）",
+   "ai": "+X axis overtravel LS",
+   "ai_basis": "drawing"
+  },
+  {
+   "id": "SQ5",
+   "gt": "-X AXIS OVERTRAVEL LS（-X軸 行き過ぎ検出のリミットスイッチ）",
+   "ai": "-X axis overtravel LS",
+   "ai_basis": "drawing"
+  },
+  {
+   "id": "SQ6",
+   "gt": "+Y AXIS OVERTRAVEL LS（+Y軸 行き過ぎ検出のリミットスイッチ）",
+   "ai": "+Y axis overtravel LS",
+   "ai_basis": "drawing"
+  },
+  {
+   "id": "SQ7",
+   "gt": "-Y AXIS OVERTRAVEL LS（-Y軸 行き過ぎ検出のリミットスイッチ）",
+   "ai": "-Y axis overtravel LS",
+   "ai_basis": "drawing"
+  },
+  {
+   "id": "SQ8",
+   "gt": "+Z AXIS OVERTRAVEL LS（+Z軸 行き過ぎ検出のリミットスイッチ）",
+   "ai": "+Z axis overtravel LS",
+   "ai_basis": "drawing"
+  },
+  {
+   "id": "SQ9",
+   "gt": "-Z AXIS OVERTRAVEL LS（-Z軸 行き過ぎ検出のリミットスイッチ）",
+   "ai": "-Z axis overtravel LS",
+   "ai_basis": "drawing"
+  }
+ ],
+ "needs_review": [
+  {
+   "what": "limit switch contact types a/b",
+   "reason": "inferred from symbol shape (lower hooked blade = b, upper = a)",
+   "ref": "SQ1"
+  },
+  {
+   "what": "PLC input point choice",
+   "reason": "used the connector-side point of the input symbol",
+   "ref": "A1"
+  },
+  {
+   "what": "XCS41 pin naming",
+   "reason": "pin written like 7/A4; used the whole text as the pin name",
+   "ref": "XCS41"
+  },
+  {
+   "what": "X51 pins 16/10/11/13 destinations not drawn on this page",
+   "reason": "only checked p.30 pin list briefly",
+   "ref": "X51"
+  }
+ ],
+ "unresolved": [],
+ "assemble_problems": [],
+ "page_schema_errors": []
+}

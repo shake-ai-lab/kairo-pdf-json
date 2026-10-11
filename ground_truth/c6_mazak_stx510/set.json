@@ -1,0 +1,41 @@
+{
+ "schema_version": "0.1",
+ "sample_id": "c6_mazak_stx510",
+ "title": "Mazak STX510 電気図面",
+ "conventions": [
+  {
+   "id": "terminal_no_is_wire_no",
+   "rule": "端子台の端子番号は線番と同じ",
+   "basis": "other_page",
+   "evidence": [
+    "p.30（TU(A11) のコネクタ表）の LINE NO. 欄に 420・400・358 などが並ぶ",
+    "p.139 で端子台 XT51 の端子番号に線番 444 などがそのまま使われている",
+    "2026-10-11 ユーザー確認"
+   ]
+  },
+  {
+   "id": "rail_polarity_by_name",
+   "rule": "電源線の名前 L+ は＋側、M は 0V 側",
+   "basis": "human",
+   "evidence": [
+    "2026-10-11 ユーザー確認"
+   ]
+  }
+ ],
+ "device_codes": [
+  {
+   "code": "SQ",
+   "meaning": "リミットスイッチ（位置スイッチ）",
+   "evidence": [
+    "p.76 の PLC 入力の名前が「…LS」",
+    "p.12・p.15 の部品配置図",
+    "2026-10-11 ユーザー確認"
+   ]
+  }
+ ],
+ "review": {
+  "status": "reviewed",
+  "reviewed_by": "user",
+  "reviewed_at": "2026-10-11"
+ }
+}

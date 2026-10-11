@@ -1,0 +1,44 @@
+{
+ "sample": "c6_mazak_stx510",
+ "page": 76,
+ "backend": "codex-cli",
+ "model": "gpt-6-astra",
+ "effort": "medium",
+ "prompt": "label_v7",
+ "prompt_sha256": "fc4321bcb632918dd3c0f2dfe1e1f1d48541592232af752eae9d16f123105931",
+ "label_schema": "kairo-pdf-json/ai-labels/0.1",
+ "input_format": "v3+symbols",
+ "check": true,
+ "tools": "pdf-tools v1 + run_python",
+ "sandbox_image": "sha256:5da3a252e81f3a21251b6d6c203ccdd7428c5e4ab933afa4a8ba99d98d7f959c",
+ "check_version": "v4",
+ "isolation": "v2",
+ "started_at": "2026-10-11T23:13:18",
+ "seconds": 276.6,
+ "rounds": [
+  {
+   "round": 1,
+   "seconds": 276.6,
+   "got_answer": true,
+   "problems": []
+  }
+ ],
+ "returncode": 0,
+ "stderr": "Reading additional input from stdin...\n",
+ "num_turns": 1,
+ "usage": {
+  "input_tokens": 978348,
+  "cached_input_tokens": 856832,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 11153,
+  "reasoning_output_tokens": 240
+ },
+ "cost_usd_list_price": null,
+ "outside_access": [],
+ "denials": [],
+ "denied_dirs": [],
+ "tool_call_count": 141,
+ "valid": true,
+ "label_schema_errors": [],
+ "view": "C:\\Users\\kouta\\project\\kairo-pdf-json\\samples\\derived\\c6_mazak_stx510\\p076.run-20261011-231316_c6_mazak_stx510_p076_gpt-6-astra_view.html"
+}

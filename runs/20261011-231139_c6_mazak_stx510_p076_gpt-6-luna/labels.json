@@ -1,0 +1,326 @@
+{
+ "sheet": {
+  "title": "AXIS LS",
+  "sheet_id": null,
+  "layout": {
+   "orientation": "horizontal",
+   "location_system": "zone_grid",
+   "lines": "01–30",
+   "columns": "A–M",
+   "label_placement": "行番号は左側、列記号は上側",
+   "junction_rule": "黒丸は接続を示す。黒丸のない交差は非接続。"
+  }
+ },
+ "regions": [
+  {
+   "id": "machine_side",
+   "label": "MACHINE SIDE",
+   "kind": "area",
+   "meaning": "機械側スイッチ"
+  },
+  {
+   "id": "A11",
+   "label": "TU(A11)",
+   "kind": "unit",
+   "meaning": "端子ユニット"
+  },
+  {
+   "id": "A1",
+   "label": "NC(A1)",
+   "kind": "unit",
+   "meaning": "PLC入力ユニット"
+  }
+ ],
+ "rails": [
+  {
+   "name": "1L+",
+   "polarity": "plus",
+   "polarity_basis": {
+    "value": "図中の1L+表記",
+    "basis": "drawing",
+    "evidence": [
+     "行03、左側電源線の上に「1L+」と記載"
+    ]
+   },
+   "point": "P15"
+  }
+ ],
+ "components": [
+  {
+   "id": "A11",
+   "name": "TU",
+   "kind": "terminal unit",
+   "symbol": "TU(A11)",
+   "region": "A11",
+   "purpose": null,
+   "elements": [],
+   "terminals": [
+    {
+     "name": "XT31:420",
+     "point": "P19"
+    },
+    {
+     "name": "X31:10",
+     "point": "P20"
+    },
+    {
+     "name": "XCS41:7/A4",
+     "point": "P23"
+    },
+    {
+     "name": "X51:16",
+     "point": "P30"
+    },
+    {
+     "name": "XT31:421",
+     "point": "P38"
+    },
+    {
+     "name": "X31:11",
+     "point": "P39"
+    },
+    {
+     "name": "XCS41:8/B4",
+     "point": "P41"
+    },
+    {
+     "name": "XT71:422",
+     "point": "P60"
+    },
+    {
+     "name": "X71:8",
+     "point": "P61"
+    },
+    {
+     "name": "XCS41:9/A5",
+     "point": "P63"
+    },
+    {
+     "name": "XT31:400",
+     "point": "P86"
+    },
+    {
+     "name": "X31:4",
+     "point": "P87"
+    },
+    {
+     "name": "XCS41:11/A6",
+     "point": "P90"
+    },
+    {
+     "name": "X51:10",
+     "point": "P101"
+    },
+    {
+     "name": "XT31:401",
+     "point": "P112"
+    },
+    {
+     "name": "X31:5",
+     "point": "P117"
+    },
+    {
+     "name": "XCS41:15/A8",
+     "point": "P119"
+    },
+    {
+     "name": "X51:11",
+     "point": "P127"
+    },
+    {
+     "name": "X51:13",
+     "point": "P128"
+    },
+    {
+     "name": "XT31:358",
+     "point": "P131"
+    },
+    {
+     "name": "X31:9",
+     "point": "P136"
+    },
+    {
+     "name": "XT31:402",
+     "point": "P149"
+    },
+    {
+     "name": "X31:6",
+     "point": "P154"
+    },
+    {
+     "name": "XCS41:12/B6",
+     "point": "P156"
+    },
+    {
+     "name": "XT31:403",
+     "point": "P174"
+    },
+    {
+     "name": "X31:8",
+     "point": "P178"
+    },
+    {
+     "name": "XCS41:16/B8",
+     "point": "P180"
+    },
+    {
+     "name": "XT71:358",
+     "point": "P191"
+    },
+    {
+     "name": "X71:7",
+     "point": "P193"
+    },
+    {
+     "name": "XT71:404",
+     "point": "P203"
+    },
+    {
+     "name": "X71:4",
+     "point": "P204"
+    },
+    {
+     "name": "XCS41:13/A7",
+     "point": "P206"
+    },
+    {
+     "name": "XT71:405",
+     "point": "P234"
+    },
+    {
+     "name": "X71:5",
+     "point": "P239"
+    },
+    {
+     "name": "XCS41:17/A9",
+     "point": "P241"
+    },
+    {
+     "name": "X85:37",
+     "point": "P259"
+    }
+   ]
+  },
+  {
+   "id": "A1",
+   "name": "NC",
+   "kind": "PLC input unit",
+   "symbol": "NC(A1)",
+   "region": "A1",
+   "purpose": {
+    "value": "PLC入力",
+    "basis": "drawing",
+    "evidence": [
+     "NC(A1)枠内にX0.xxの入力アドレスとコメントが記載"
+    ]
+   },
+   "elements": [],
+   "terminals": []
+  }
+ ],
+ "plc_io": [
+  {
+   "address": "X0.00",
+   "direction": "input",
+   "port": "A1:X0.00",
+   "point": "P22",
+   "device": "SQ1",
+   "comment": "X AXIS ZERO RETURN DEC LS"
+  },
+  {
+   "address": "X0.01",
+   "direction": "input",
+   "port": "A1:X0.01",
+   "point": "P40",
+   "device": "SQ2",
+   "comment": "Y AXIS ZERO RETURN DEC LS"
+  },
+  {
+   "address": "X0.02",
+   "direction": "input",
+   "port": "A1:X0.02",
+   "point": "P62",
+   "device": "SQ3",
+   "comment": "Z AXIS ZERO RETURN DEC LS"
+  },
+  {
+   "address": "X0.04",
+   "direction": "input",
+   "port": "A1:X0.04",
+   "point": "P89",
+   "device": "SQ4",
+   "comment": "+X AXIS OVERTRAVEL LS"
+  },
+  {
+   "address": "X0.08",
+   "direction": "input",
+   "port": "A1:X0.08",
+   "point": "P118",
+   "device": "SQ5",
+   "comment": "−X AXIS OVERTRAVEL LS"
+  },
+  {
+   "address": "X0.05",
+   "direction": "input",
+   "port": "A1:X0.05",
+   "point": "P155",
+   "device": "SQ6",
+   "comment": "+Y AXIS OVERTRAVEL LS"
+  },
+  {
+   "address": "X0.09",
+   "direction": "input",
+   "port": "A1:X0.09",
+   "point": "P179",
+   "device": "SQ7",
+   "comment": "−Y AXIS OVERTRAVEL LS"
+  },
+  {
+   "address": "X0.06",
+   "direction": "input",
+   "port": "A1:X0.06",
+   "point": "P205",
+   "device": "SQ8",
+   "comment": "+Z AXIS OVERTRAVEL LS"
+  },
+  {
+   "address": "X0.10",
+   "direction": "input",
+   "port": "A1:X0.10",
+   "point": "P240",
+   "device": "SQ9",
+   "comment": "−Z AXIS OVERTRAVEL LS"
+  }
+ ],
+ "open_ends": [],
+ "conventions": [],
+ "cross_references": [
+  {
+   "text": "0700/23",
+   "kind": "continuation",
+   "component": null,
+   "target_sheet": "0700",
+   "target_line": 23,
+   "target_page": null
+  }
+ ],
+ "tables": [],
+ "unresolved": [
+  {
+   "what": "図面集内でのこのシートの頁番号",
+   "reason": "図面集の文字資料から「AXIS LS」と頁番号の対応を確定できなかった。"
+  }
+ ],
+ "needs_review": [
+  {
+   "what": "SQ1–SQ9の接点要素と端点対応",
+   "reason": "再点検後も、記号要素の両端を回路要素としてモデル化できず、checkで「回路の筋が1本もできない」と指摘された。previewでもネットは確認できたが、回路は生成されなかった。接点の点割り当てを要確認。",
+   "ref": "SQ1–SQ9 / A1"
+  },
+  {
+   "what": "1L+電源線と回路の連続性",
+   "reason": "1L+の表記点P15は確認できるが、要素接点を含む回路の筋をcheckで確立できなかった。",
+   "ref": "P15"
+  }
+ ]
+}

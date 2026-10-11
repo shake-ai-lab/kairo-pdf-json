@@ -1,0 +1,854 @@
+[
+ {
+  "round": 1,
+  "tool": "command",
+  "input": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content graph.json -Raw; Get-Content words.json -Raw; Get-Content pages.txt -Raw'"
+ },
+ {
+  "round": 1,
+  "tool": "command",
+  "input": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -NoProfile -Command \"Get-Content pages.txt | Select-String -Pattern '=== p.76 ===' -Context 0,80\""
+ },
+ {
+  "round": 1,
+  "tool": "command",
+  "input": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -NoProfile -Command \"Get-Content pages.txt | Select-String -Pattern '=== p.76 ===' -Context 0,230\""
+ },
+ {
+  "round": 1,
+  "tool": "command",
+  "input": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -NoProfile -Command ''"
+ },
+ {
+  "round": 1,
+  "tool": "command",
+  "input": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -NoProfile -Command 'Get-Content graph.json -Raw | ConvertFrom-Json | Select-Object -ExpandProperty points | Where-Object {$_.y -gt 95 -and $_.y -lt 530 -and ($_.kind -eq '\"'symbol_touch' -or \"'$_.y -in 104.64,151.26,174.54,244.44,291.06,384.24,430.86,477.48,524.04)} | ConvertTo-Json -Compress'"
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.check",
+  "input": {
+   "labels": {
+    "sheet": {
+     "title": "AXIS LS",
+     "sheet_id": {
+      "value": "76",
+      "basis": "other_page",
+      "evidence": [
+       "pages.txt p.76 の該当見出し。図面集PDF 76頁"
+      ]
+     },
+     "layout": {
+      "orientation": "horizontal",
+      "location_system": "zone_grid",
+      "lines": "01–30",
+      "columns": "A–M",
+      "label_placement": "機器名・端子番号は線の近傍、機能コメントは右側",
+      "junction_rule": "黒丸で接続、黒丸のない交差は非接続"
+     }
+    },
+    "regions": [
+     {
+      "id": "MACHINE SIDE",
+      "label": "MACHINE SIDE",
+      "kind": "area",
+      "meaning": "機械側のリミットスイッチと端子 XT31/XT71"
+     },
+     {
+      "id": "TU(A11)",
+      "label": "TU(A11)",
+      "kind": "unit",
+      "meaning": "PLC 入力ユニット"
+     },
+     {
+      "id": "NC(A1)",
+      "label": "NC(A1)",
+      "kind": "unit",
+      "meaning": "PLC入力表示枠"
+     },
+     {
+      "id": "AXIS OVERTRAVEL",
+      "label": "AXIS OVERTRAVEL",
+      "kind": "area",
+      "meaning": "オーバートラベル警報回路"
+     }
+    ],
+    "rails": [
+     {
+      "name": "1L+",
+      "polarity": "plus",
+      "polarity_basis": {
+       "value": "1L+",
+       "basis": "drawing",
+       "evidence": [
+        "左上、点 P15 に接続"
+       ]
+      },
+      "point": "P15"
+     },
+     {
+      "name": "1M",
+      "polarity": "zero",
+      "polarity_basis": {
+       "value": "1M",
+       "basis": "drawing",
+       "evidence": [
+        "KA4/HL4回路右側"
+       ]
+      },
+      "point": "P258"
+     }
+    ],
+    "components": [
+     {
+      "id": "SQ1",
+      "name": "X axis zero return dec LS",
+      "kind": "limit switch",
+      "symbol": "SQ1",
+      "region": "MACHINE SIDE",
+      "purpose": {
+       "value": "X軸原点減速リミットスイッチ",
+       "basis": "drawing",
+       "evidence": [
+        "X AXIS ZERO RETURN DEC LS"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ1_b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "S1",
+        "ports": [
+         {
+          "name": "SQ1:b.1",
+          "point": "P16"
+         },
+         {
+          "name": "SQ1:b.2",
+          "point": "P17"
+         }
+        ],
+        "bbox": [
+         98,
+         100,
+         115,
+         108
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ2",
+      "name": "Y axis zero return dec LS",
+      "kind": "limit switch",
+      "symbol": "SQ2",
+      "region": "MACHINE SIDE",
+      "purpose": {
+       "value": "Y軸原点減速リミットスイッチ",
+       "basis": "drawing",
+       "evidence": [
+        "Y AXIS ZERO RETURN DEC LS"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ2_b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "S1",
+        "ports": [
+         {
+          "name": "SQ2:b.1",
+          "point": "P42"
+         },
+         {
+          "name": "SQ2:b.2",
+          "point": "P43"
+         }
+        ],
+        "bbox": [
+         98,
+         148,
+         115,
+         155
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ3",
+      "name": "Z axis zero return dec LS",
+      "kind": "limit switch",
+      "symbol": "SQ3",
+      "region": "MACHINE SIDE",
+      "purpose": {
+       "value": "Z軸原点減速リミットスイッチ",
+       "basis": "drawing",
+       "evidence": [
+        "Z AXIS ZERO RETURN DEC LS"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ3_b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "S1",
+        "ports": [
+         {
+          "name": "SQ3:b.1",
+          "point": "P57"
+         },
+         {
+          "name": "SQ3:b.2",
+          "point": "P58"
+         }
+        ],
+        "bbox": [
+         98,
+         171,
+         115,
+         178
+        ]
+       }
+      ],
+      "terminals": []
+     }
+    ],
+    "plc_io": [],
+    "open_ends": [],
+    "conventions": [],
+    "cross_references": [
+     {
+      "text": "XCS41 7/A4, 8/B4, 9/A5, 11/A6, 15/A8, 12/B6, 16/B8, 13/A7, 17/A9",
+      "kind": "continuation",
+      "component": "XCS41",
+      "target_sheet": null,
+      "target_line": null,
+      "target_page": null
+     },
+     {
+      "text": "0700/23",
+      "kind": "other",
+      "component": null,
+      "target_sheet": "0700",
+      "target_line": 23,
+      "target_page": null
+     }
+    ],
+    "tables": [
+     {
+      "title": "STD / CE",
+      "rows": [
+       [
+        "STD",
+        "48",
+        "510",
+        "612"
+       ],
+       [
+        "CE",
+        "1.5Kw",
+        "2.5Kw",
+        "4Kw"
+       ]
+      ],
+      "note": null
+     }
+    ],
+    "unresolved": [
+     {
+      "what": "機器回路の全接点・配線端子点の完全な graph 点対応",
+      "reason": "図示画像と graph.json の位置IDを個々に対応させる際に一部端子点が曖昧"
+     }
+    ],
+    "needs_review": [
+     {
+      "what": "ページ識別番号および続き先表記 0700/23",
+      "reason": "図中に表記はあるが対象頁との対応関係を特定できない",
+      "ref": "AXIS OVERTRAVEL"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.preview",
+  "input": {
+   "labels": {
+    "sheet": {
+     "title": "AXIS LS",
+     "sheet_id": {
+      "value": "76",
+      "basis": "other_page",
+      "evidence": [
+       "pages.txt p.76 の該当見出し。図面集PDF 76頁"
+      ]
+     },
+     "layout": {
+      "orientation": "horizontal",
+      "location_system": "zone_grid",
+      "lines": "01–30",
+      "columns": "A–M",
+      "label_placement": "機器名・端子番号は線の近傍、機能コメントは右側",
+      "junction_rule": "黒丸で接続、黒丸のない交差は非接続"
+     }
+    },
+    "regions": [
+     {
+      "id": "MACHINE SIDE",
+      "label": "MACHINE SIDE",
+      "kind": "area",
+      "meaning": "機械側のリミットスイッチと端子 XT31/XT71"
+     },
+     {
+      "id": "TU(A11)",
+      "label": "TU(A11)",
+      "kind": "unit",
+      "meaning": "PLC 入力ユニット"
+     },
+     {
+      "id": "NC(A1)",
+      "label": "NC(A1)",
+      "kind": "unit",
+      "meaning": "PLC入力表示枠"
+     },
+     {
+      "id": "AXIS OVERTRAVEL",
+      "label": "AXIS OVERTRAVEL",
+      "kind": "area",
+      "meaning": "オーバートラベル警報回路"
+     }
+    ],
+    "rails": [
+     {
+      "name": "1L+",
+      "polarity": "plus",
+      "polarity_basis": {
+       "value": "1L+",
+       "basis": "drawing",
+       "evidence": [
+        "左上、点 P15 に接続"
+       ]
+      },
+      "point": "P15"
+     },
+     {
+      "name": "1M",
+      "polarity": "zero",
+      "polarity_basis": {
+       "value": "1M",
+       "basis": "drawing",
+       "evidence": [
+        "KA4/HL4回路右側"
+       ]
+      },
+      "point": "P258"
+     }
+    ],
+    "components": [
+     {
+      "id": "SQ1",
+      "name": "X axis zero return dec LS",
+      "kind": "limit switch",
+      "symbol": "SQ1",
+      "region": "MACHINE SIDE",
+      "purpose": {
+       "value": "X軸原点減速リミットスイッチ",
+       "basis": "drawing",
+       "evidence": [
+        "X AXIS ZERO RETURN DEC LS"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ1_b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "S1",
+        "ports": [
+         {
+          "name": "SQ1:b.1",
+          "point": "P16"
+         },
+         {
+          "name": "SQ1:b.2",
+          "point": "P17"
+         }
+        ],
+        "bbox": [
+         98,
+         100,
+         115,
+         108
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ2",
+      "name": "Y axis zero return dec LS",
+      "kind": "limit switch",
+      "symbol": "SQ2",
+      "region": "MACHINE SIDE",
+      "purpose": {
+       "value": "Y軸原点減速リミットスイッチ",
+       "basis": "drawing",
+       "evidence": [
+        "Y AXIS ZERO RETURN DEC LS"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ2_b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "S1",
+        "ports": [
+         {
+          "name": "SQ2:b.1",
+          "point": "P42"
+         },
+         {
+          "name": "SQ2:b.2",
+          "point": "P43"
+         }
+        ],
+        "bbox": [
+         98,
+         148,
+         115,
+         155
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ3",
+      "name": "Z axis zero return dec LS",
+      "kind": "limit switch",
+      "symbol": "SQ3",
+      "region": "MACHINE SIDE",
+      "purpose": {
+       "value": "Z軸原点減速リミットスイッチ",
+       "basis": "drawing",
+       "evidence": [
+        "Z AXIS ZERO RETURN DEC LS"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ3_b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "S1",
+        "ports": [
+         {
+          "name": "SQ3:b.1",
+          "point": "P57"
+         },
+         {
+          "name": "SQ3:b.2",
+          "point": "P58"
+         }
+        ],
+        "bbox": [
+         98,
+         171,
+         115,
+         178
+        ]
+       }
+      ],
+      "terminals": []
+     }
+    ],
+    "plc_io": [],
+    "open_ends": [],
+    "conventions": [],
+    "cross_references": [
+     {
+      "text": "XCS41 7/A4, 8/B4, 9/A5, 11/A6, 15/A8, 12/B6, 16/B8, 13/A7, 17/A9",
+      "kind": "continuation",
+      "component": "XCS41",
+      "target_sheet": null,
+      "target_line": null,
+      "target_page": null
+     },
+     {
+      "text": "0700/23",
+      "kind": "other",
+      "component": null,
+      "target_sheet": "0700",
+      "target_line": 23,
+      "target_page": null
+     }
+    ],
+    "tables": [
+     {
+      "title": "STD / CE",
+      "rows": [
+       [
+        "STD",
+        "48",
+        "510",
+        "612"
+       ],
+       [
+        "CE",
+        "1.5Kw",
+        "2.5Kw",
+        "4Kw"
+       ]
+      ],
+      "note": null
+     }
+    ],
+    "unresolved": [
+     {
+      "what": "機器回路の全接点・配線端子点の完全な graph 点対応",
+      "reason": "図示画像と graph.json の位置IDを個々に対応させる際に一部端子点が曖昧"
+     }
+    ],
+    "needs_review": [
+     {
+      "what": "ページ識別番号および続き先表記 0700/23",
+      "reason": "図中に表記はあるが対象頁との対応関係を特定できない",
+      "ref": "AXIS OVERTRAVEL"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "round": 2,
+  "tool": "command",
+  "input": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-ChildItem -Name'"
+ },
+ {
+  "round": 2,
+  "tool": "command",
+  "input": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content previous_labels.json; Get-Content graph.json -TotalCount 30'"
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P16"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P17"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P42"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P43"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P70"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P71"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P83"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P84"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P98"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P99"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P114"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P115"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P133"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P134"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P146"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P147"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P161"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P162"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P175"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P176"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P190"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P191"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P218"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P219"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P231"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P232"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P267"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P268"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P275"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P276"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P279"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P280"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P290"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P291"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P22"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P40"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P62"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P89"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P118"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P128"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P155"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P179"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P205"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P240"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P259"
+  }
+ }
+]

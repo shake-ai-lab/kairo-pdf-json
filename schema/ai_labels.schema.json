@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kairo-pdf-json/ai-labels/0.1",
+  "title": "AI が返す読み取り結果（工程3・4）",
+  "description": "線の追跡結果の点（P…）に名前を付けた結果。プログラムがこれと線の追跡結果から頁JSON（schema/page.schema.json）を組み立てる（SPEC §7.4）。どのモデルの構造化出力でも使えるよう、すべての項目を必須にし、無いものは null か空の配列にする。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sheet", "regions", "rails", "components", "plc_io", "open_ends", "conventions", "cross_references", "tables", "unresolved", "needs_review"],
+  "properties": {
+    "sheet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "sheet_id", "layout"],
+      "properties": {
+        "title": {"type": "string"},
+        "sheet_id": {"anyOf": [{"$ref": "#/$defs/sourced"}, {"type": "null"}]},
+        "layout": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["orientation", "location_system", "lines", "columns", "label_placement", "junction_rule"],
+          "properties": {
+            "orientation": {"enum": ["horizontal", "vertical", "mixed", "table", "other"]},
+            "location_system": {"enum": ["line_number", "zone_grid", "column_number", "none"]},
+            "lines": {"type": "string"},
+            "columns": {"type": "string"},
+            "label_placement": {"type": "string"},
+            "junction_rule": {"type": "string"}
+          }
+        }
+      }
+    },
+    "regions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label", "kind", "meaning"],
+        "properties": {
+          "id": {"type": "string"},
+          "label": {"type": "string"},
+          "kind": {"enum": ["area", "unit", "other"]},
+          "meaning": {"type": "string"}
+        }
+      }
+    },
+    "rails": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "polarity", "polarity_basis", "point"],
+        "properties": {
+          "name": {"type": "string"},
+          "polarity": {"enum": ["plus", "zero", "ac", "ground", "unknown"]},
+          "polarity_basis": {"$ref": "#/$defs/sourced"},
+          "point": {"type": "string", "description": "電源線の名前が書かれた端の点（P…）"}
+        }
+      }
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "kind", "symbol", "region", "purpose", "elements", "terminals"],
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": ["string", "null"]},
+          "kind": {"type": "string"},
+          "symbol": {"type": ["string", "null"]},
+          "region": {"type": ["string", "null"]},
+          "purpose": {"anyOf": [{"$ref": "#/$defs/sourced"}, {"type": "null"}]},
+          "elements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["id", "kind", "contact", "symbol", "ports", "bbox"],
+              "properties": {
+                "id": {"type": "string"},
+                "kind": {"enum": ["contact", "coil", "resistor", "diode", "lamp", "other"]},
+                "contact": {"enum": ["a", "b", "c", "unknown", null]},
+                "symbol": {"type": ["string", "null"]},
+                "ports": {"type": "array", "items": {"$ref": "#/$defs/named_point"}, "description": "2つ（左または上の端子が先）"},
+                "bbox": {"type": "array", "items": {"type": "number"}, "description": "記号の範囲 [x0, y0, x1, y1]（pt）"}
+              }
+            }
+          },
+          "terminals": {"type": "array", "items": {"$ref": "#/$defs/named_point"}, "description": "端子台・コネクタ・ユニットの端子"}
+        }
+      }
+    },
+    "plc_io": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["address", "direction", "port", "point", "device", "comment"],
+        "properties": {
+          "address": {"type": "string"},
+          "direction": {"enum": ["input", "output"]},
+          "port": {"type": "string"},
+          "point": {"type": "string"},
+          "device": {"type": ["string", "null"]},
+          "comment": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "open_ends": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["port", "note", "evidence"],
+        "properties": {"port": {"type": "string"}, "note": {"type": "string"}, "evidence": {"type": "array", "items": {"type": "string"}}}
+      }
+    },
+    "conventions": {
+      "type": "array",
+      "description": "図面集全体の決まり。端子番号を線番とみなすなら id を terminal_no_is_wire_no にする",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "rule", "basis", "evidence"],
+        "properties": {
+          "id": {"type": "string"},
+          "rule": {"type": "string"},
+          "basis": {"enum": ["drawing", "other_page", "inferred", "human"]},
+          "evidence": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "cross_references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text", "kind", "component", "target_sheet", "target_line", "target_page"],
+        "properties": {
+          "text": {"type": "string"},
+          "kind": {"enum": ["contact_location", "coil_location", "continuation", "other"]},
+          "component": {"type": ["string", "null"]},
+          "target_sheet": {"type": ["string", "null"]},
+          "target_line": {"type": ["integer", "null"]},
+          "target_page": {"type": ["integer", "null"]}
+        }
+      }
+    },
+    "tables": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "rows", "note"],
+        "properties": {
+          "title": {"type": ["string", "null"]},
+          "rows": {"type": "array", "items": {"type": "array", "items": {"type": "string"}}},
+          "note": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "unresolved": {
+      "type": "array",
+      "items": {"type": "object", "additionalProperties": false, "required": ["what", "reason"], "properties": {"what": {"type": "string"}, "reason": {"type": "string"}}}
+    },
+    "needs_review": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["what", "reason", "ref"],
+        "properties": {"what": {"type": "string"}, "reason": {"type": "string"}, "ref": {"type": ["string", "null"]}}
+      }
+    }
+  },
+  "$defs": {
+    "sourced": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "basis", "evidence"],
+      "properties": {
+        "value": {"type": "string"},
+        "basis": {"enum": ["drawing", "other_page", "inferred", "human"]},
+        "evidence": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "named_point": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "point"],
+      "properties": {
+        "name": {"type": "string", "description": "ポート名（機器ID:端子名）"},
+        "point": {"type": "string", "description": "線の追跡結果の点（P…）"}
+      }
+    }
+  }
+}

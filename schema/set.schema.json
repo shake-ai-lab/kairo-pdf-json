@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kairo-pdf-json/set/0.1",
+  "title": "図面集全体の決まり",
+  "description": "頁をまたいで分かった決まり（例：端子番号＝線番）を図面集ごとに1回だけ記録する。各頁の値はここから埋める（SPEC §6.3）。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "sample_id", "conventions"],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "sample_id": {"type": "string"},
+    "title": {"type": ["string", "null"]},
+    "conventions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "rule", "basis"],
+        "properties": {
+          "id": {"type": "string", "description": "プログラムから参照する名前（例 terminal_no_is_wire_no）"},
+          "rule": {"type": "string"},
+          "basis": {"enum": ["drawing", "other_page", "inferred", "human"]},
+          "evidence": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "device_codes": {
+      "type": "array",
+      "description": "機器記号の読み方（記号辞書へ移すまでの置き場。人が確認したものだけ）",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["code", "meaning"],
+        "properties": {"code": {"type": "string"}, "meaning": {"type": "string"}, "evidence": {"type": "array", "items": {"type": "string"}}}
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": {"enum": ["draft", "reviewed"]},
+        "reviewed_by": {"type": ["string", "null"]},
+        "reviewed_at": {"type": ["string", "null"]}
+      }
+    }
+  }
+}

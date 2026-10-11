@@ -1,0 +1,764 @@
+{
+ "sheet": {
+  "title": "AXIS LS",
+  "sheet_id": {
+   "value": "76",
+   "basis": "other_page",
+   "evidence": [
+    "図面集 p.4 の一覧に No.76、AXIS LS、図番 676 001 4070 と記載"
+   ]
+  },
+  "layout": {
+   "orientation": "horizontal",
+   "location_system": "zone_grid",
+   "lines": "01–30",
+   "columns": "A–M",
+   "label_placement": "機器・端子番号は配線の近傍。PLC アドレスと信号名は NC(A1) 枠の右側。",
+   "junction_rule": "黒丸は接続。黒丸のない交差は非接続。"
+  }
+ },
+ "regions": [
+  {
+   "id": "MACHINE SIDE",
+   "label": "MACHINE SIDE",
+   "kind": "area",
+   "meaning": "機械側リミットスイッチと端子台"
+  },
+  {
+   "id": "TU(A11)",
+   "label": "TU(A11)",
+   "kind": "unit",
+   "meaning": "TU ユニット"
+  },
+  {
+   "id": "NC(A1)",
+   "label": "NC(A1)",
+   "kind": "unit",
+   "meaning": "NC 入力ユニット"
+  }
+ ],
+ "rails": [
+  {
+   "name": "1L+",
+   "polarity": "plus",
+   "polarity_basis": {
+    "value": "plus",
+    "basis": "drawing",
+    "evidence": [
+     "図中の電源線表記 1L+"
+    ]
+   },
+   "point": "P9"
+  }
+ ],
+ "components": [
+  {
+   "id": "SQ1",
+   "name": null,
+   "kind": "limit switch",
+   "symbol": "SQ1",
+   "region": "MACHINE SIDE",
+   "purpose": {
+    "value": "X axis zero return deceleration limit switch",
+    "basis": "drawing",
+    "evidence": [
+     "図中に X AXIS ZERO RETURN DEC LS と記載"
+    ]
+   },
+   "elements": [
+    {
+     "id": "b",
+     "kind": "contact",
+     "contact": "b",
+     "symbol": "b contact",
+     "ports": [
+      {
+       "name": "SQ1:b.1",
+       "point": "P16"
+      },
+      {
+       "name": "SQ1:b.2",
+       "point": "P18"
+      }
+     ],
+     "bbox": [
+      106.86,
+      100.32,
+      115.74,
+      104.64
+     ]
+    }
+   ],
+   "terminals": []
+  },
+  {
+   "id": "SQ2",
+   "name": null,
+   "kind": "limit switch",
+   "symbol": "SQ2",
+   "region": "MACHINE SIDE",
+   "purpose": {
+    "value": "Y axis zero return deceleration limit switch",
+    "basis": "drawing",
+    "evidence": [
+     "図中に Y AXIS ZERO RETURN DEC LS と記載"
+    ]
+   },
+   "elements": [
+    {
+     "id": "b",
+     "kind": "contact",
+     "contact": "b",
+     "symbol": "b contact",
+     "ports": [
+      {
+       "name": "SQ2:b.1",
+       "point": "P42"
+      },
+      {
+       "name": "SQ2:b.2",
+       "point": "P44"
+      }
+     ],
+     "bbox": [
+      106.86,
+      146.88,
+      115.74,
+      151.26
+     ]
+    }
+   ],
+   "terminals": []
+  },
+  {
+   "id": "SQ3",
+   "name": null,
+   "kind": "limit switch",
+   "symbol": "SQ3",
+   "region": "MACHINE SIDE",
+   "purpose": {
+    "value": "Z axis zero return deceleration limit switch",
+    "basis": "drawing",
+    "evidence": [
+     "図中に Z AXIS ZERO RETURN DEC LS と記載"
+    ]
+   },
+   "elements": [
+    {
+     "id": "b",
+     "kind": "contact",
+     "contact": "b",
+     "symbol": "b contact",
+     "ports": [
+      {
+       "name": "SQ3:b.1",
+       "point": "P57"
+      },
+      {
+       "name": "SQ3:b.2",
+       "point": "P59"
+      }
+     ],
+     "bbox": [
+      106.86,
+      170.22,
+      115.74,
+      174.54
+     ]
+    }
+   ],
+   "terminals": []
+  },
+  {
+   "id": "SQ4",
+   "name": null,
+   "kind": "limit switch",
+   "symbol": "SQ4",
+   "region": "MACHINE SIDE",
+   "purpose": {
+    "value": "+X axis overtravel limit switch",
+    "basis": "drawing",
+    "evidence": [
+     "図中に +X AXIS OVERTRAVEL LS と記載"
+    ]
+   },
+   "elements": [
+    {
+     "id": "b",
+     "kind": "contact",
+     "contact": "b",
+     "symbol": "b contact",
+     "ports": [
+      {
+       "name": "SQ4:b.1",
+       "point": "P83"
+      },
+      {
+       "name": "SQ4:b.2",
+       "point": "P85"
+      }
+     ],
+     "bbox": [
+      106.86,
+      240.12,
+      115.74,
+      244.44
+     ]
+    }
+   ],
+   "terminals": []
+  },
+  {
+   "id": "SQ5",
+   "name": null,
+   "kind": "limit switch",
+   "symbol": "SQ5",
+   "region": "MACHINE SIDE",
+   "purpose": {
+    "value": "-X axis overtravel limit switch",
+    "basis": "drawing",
+    "evidence": [
+     "図中に -X AXIS OVERTRAVEL LS と記載"
+    ]
+   },
+   "elements": [
+    {
+     "id": "b",
+     "kind": "contact",
+     "contact": "b",
+     "symbol": "b contact",
+     "ports": [
+      {
+       "name": "SQ5:b.1",
+       "point": "P114"
+      },
+      {
+       "name": "SQ5:b.2",
+       "point": "P116"
+      }
+     ],
+     "bbox": [
+      106.86,
+      287.76,
+      115.74,
+      291.06
+     ]
+    }
+   ],
+   "terminals": []
+  },
+  {
+   "id": "SQ6",
+   "name": null,
+   "kind": "limit switch",
+   "symbol": "SQ6",
+   "region": "MACHINE SIDE",
+   "purpose": {
+    "value": "+Y axis overtravel limit switch",
+    "basis": "drawing",
+    "evidence": [
+     "図中に +Y AXIS OVERTRAVEL LS と記載"
+    ]
+   },
+   "elements": [
+    {
+     "id": "b",
+     "kind": "contact",
+     "contact": "b",
+     "symbol": "b contact",
+     "ports": [
+      {
+       "name": "SQ6:b.1",
+       "point": "P146"
+      },
+      {
+       "name": "SQ6:b.2",
+       "point": "P148"
+      }
+     ],
+     "bbox": [
+      106.86,
+      380.94,
+      115.74,
+      384.24
+     ]
+    }
+   ],
+   "terminals": []
+  },
+  {
+   "id": "SQ7",
+   "name": null,
+   "kind": "limit switch",
+   "symbol": "SQ7",
+   "region": "MACHINE SIDE",
+   "purpose": {
+    "value": "-Y axis overtravel limit switch",
+    "basis": "drawing",
+    "evidence": [
+     "図中に -Y AXIS OVERTRAVEL LS と記載"
+    ]
+   },
+   "elements": [
+    {
+     "id": "b",
+     "kind": "contact",
+     "contact": "b",
+     "symbol": "b contact",
+     "ports": [
+      {
+       "name": "SQ7:b.1",
+       "point": "P175"
+      },
+      {
+       "name": "SQ7:b.2",
+       "point": "P177"
+      }
+     ],
+     "bbox": [
+      106.86,
+      427.56,
+      115.74,
+      430.86
+     ]
+    }
+   ],
+   "terminals": []
+  },
+  {
+   "id": "SQ8",
+   "name": null,
+   "kind": "limit switch",
+   "symbol": "SQ8",
+   "region": "MACHINE SIDE",
+   "purpose": {
+    "value": "+Z axis overtravel limit switch",
+    "basis": "drawing",
+    "evidence": [
+     "図中に +Z AXIS OVERTRAVEL LS と記載"
+    ]
+   },
+   "elements": [
+    {
+     "id": "b",
+     "kind": "contact",
+     "contact": "b",
+     "symbol": "b contact",
+     "ports": [
+      {
+       "name": "SQ8:b.1",
+       "point": "P207"
+      },
+      {
+       "name": "SQ8:b.2",
+       "point": "P209"
+      }
+     ],
+     "bbox": [
+      106.86,
+      474.18,
+      115.74,
+      477.48
+     ]
+    }
+   ],
+   "terminals": []
+  },
+  {
+   "id": "SQ9",
+   "name": null,
+   "kind": "limit switch",
+   "symbol": "SQ9",
+   "region": "MACHINE SIDE",
+   "purpose": {
+    "value": "-Z axis overtravel limit switch",
+    "basis": "drawing",
+    "evidence": [
+     "図中に -Z AXIS OVERTRAVEL LS と記載"
+    ]
+   },
+   "elements": [
+    {
+     "id": "b",
+     "kind": "contact",
+     "contact": "b",
+     "symbol": "b contact",
+     "ports": [
+      {
+       "name": "SQ9:b.1",
+       "point": "P231"
+      },
+      {
+       "name": "SQ9:b.2",
+       "point": "P233"
+      }
+     ],
+     "bbox": [
+      106.86,
+      520.74,
+      115.74,
+      524.04
+     ]
+    }
+   ],
+   "terminals": []
+  },
+  {
+   "id": "A11",
+   "name": "TU",
+   "kind": "unit",
+   "symbol": "TU(A11)",
+   "region": "TU(A11)",
+   "purpose": null,
+   "elements": [],
+   "terminals": [
+    {
+     "name": "X31:10",
+     "point": "P20"
+    },
+    {
+     "name": "X51:16",
+     "point": "P30"
+    },
+    {
+     "name": "X31:11",
+     "point": "P39"
+    },
+    {
+     "name": "X71:8",
+     "point": "P61"
+    },
+    {
+     "name": "X31:4",
+     "point": "P87"
+    },
+    {
+     "name": "X51:10",
+     "point": "P101"
+    },
+    {
+     "name": "X31:5",
+     "point": "P117"
+    },
+    {
+     "name": "X51:11",
+     "point": "P127"
+    },
+    {
+     "name": "X51:13",
+     "point": "P128"
+    },
+    {
+     "name": "X31:9",
+     "point": "P136"
+    },
+    {
+     "name": "X31:6",
+     "point": "P154"
+    },
+    {
+     "name": "X31:8",
+     "point": "P178"
+    },
+    {
+     "name": "X71:7",
+     "point": "P193"
+    },
+    {
+     "name": "X71:4",
+     "point": "P204"
+    },
+    {
+     "name": "X71:5",
+     "point": "P239"
+    },
+    {
+     "name": "X85:37",
+     "point": "P259"
+    },
+    {
+     "name": "XT31:420",
+     "point": "P19"
+    },
+    {
+     "name": "XT31:421",
+     "point": "P38"
+    },
+    {
+     "name": "XT71:422",
+     "point": "P60"
+    },
+    {
+     "name": "XT31:400",
+     "point": "P86"
+    },
+    {
+     "name": "XT31:401",
+     "point": "P112"
+    },
+    {
+     "name": "XT31:358",
+     "point": "P131"
+    },
+    {
+     "name": "XT31:402",
+     "point": "P149"
+    },
+    {
+     "name": "XT31:403",
+     "point": "P174"
+    },
+    {
+     "name": "XT71:358",
+     "point": "P191"
+    },
+    {
+     "name": "XT71:404",
+     "point": "P203"
+    },
+    {
+     "name": "XT71:405",
+     "point": "P234"
+    }
+   ]
+  },
+  {
+   "id": "A1",
+   "name": "NC",
+   "kind": "PLC input unit",
+   "symbol": "NC(A1)",
+   "region": "NC(A1)",
+   "purpose": null,
+   "elements": [],
+   "terminals": [
+    {
+     "name": "X01:12",
+     "point": "P22"
+    },
+    {
+     "name": "X01:28",
+     "point": "P40"
+    },
+    {
+     "name": "X01:44",
+     "point": "P62"
+    },
+    {
+     "name": "X01:3",
+     "point": "P89"
+    },
+    {
+     "name": "X01:20",
+     "point": "P118"
+    },
+    {
+     "name": "X01:35",
+     "point": "P155"
+    },
+    {
+     "name": "X01:2",
+     "point": "P179"
+    },
+    {
+     "name": "X01:19",
+     "point": "P205"
+    },
+    {
+     "name": "X01:34",
+     "point": "P240"
+    }
+   ]
+  }
+ ],
+ "plc_io": [
+  {
+   "address": "X0.00",
+   "direction": "input",
+   "port": "A1:X0.00",
+   "point": "P23",
+   "device": null,
+   "comment": "X axis zero return dec LS"
+  },
+  {
+   "address": "X0.01",
+   "direction": "input",
+   "port": "A1:X0.01",
+   "point": "P41",
+   "device": null,
+   "comment": "Y axis zero return dec LS"
+  },
+  {
+   "address": "X0.02",
+   "direction": "input",
+   "port": "A1:X0.02",
+   "point": "P63",
+   "device": null,
+   "comment": "Z axis zero return dec LS"
+  },
+  {
+   "address": "X0.04",
+   "direction": "input",
+   "port": "A1:X0.04",
+   "point": "P90",
+   "device": null,
+   "comment": "+X axis overtravel LS"
+  },
+  {
+   "address": "X0.08",
+   "direction": "input",
+   "port": "A1:X0.08",
+   "point": "P119",
+   "device": null,
+   "comment": "-X axis overtravel LS"
+  },
+  {
+   "address": "X0.05",
+   "direction": "input",
+   "port": "A1:X0.05",
+   "point": "P156",
+   "device": null,
+   "comment": "+Y axis overtravel LS"
+  },
+  {
+   "address": "X0.09",
+   "direction": "input",
+   "port": "A1:X0.09",
+   "point": "P180",
+   "device": null,
+   "comment": "-Y axis overtravel LS"
+  },
+  {
+   "address": "X0.06",
+   "direction": "input",
+   "port": "A1:X0.06",
+   "point": "P206",
+   "device": null,
+   "comment": "+Z axis overtravel LS"
+  },
+  {
+   "address": "X0.10",
+   "direction": "input",
+   "port": "A1:X0.10",
+   "point": "P241",
+   "device": null,
+   "comment": "-Z axis overtravel LS"
+  }
+ ],
+ "open_ends": [],
+ "conventions": [],
+ "cross_references": [
+  {
+   "text": "7/A4",
+   "kind": "contact_location",
+   "component": null,
+   "target_sheet": null,
+   "target_line": null,
+   "target_page": null
+  },
+  {
+   "text": "8/B4",
+   "kind": "contact_location",
+   "component": null,
+   "target_sheet": null,
+   "target_line": null,
+   "target_page": null
+  },
+  {
+   "text": "9/A5",
+   "kind": "contact_location",
+   "component": null,
+   "target_sheet": null,
+   "target_line": null,
+   "target_page": null
+  },
+  {
+   "text": "11/A6",
+   "kind": "contact_location",
+   "component": null,
+   "target_sheet": null,
+   "target_line": null,
+   "target_page": null
+  },
+  {
+   "text": "15/A8",
+   "kind": "contact_location",
+   "component": null,
+   "target_sheet": null,
+   "target_line": null,
+   "target_page": null
+  },
+  {
+   "text": "12/B6",
+   "kind": "contact_location",
+   "component": null,
+   "target_sheet": null,
+   "target_line": null,
+   "target_page": null
+  },
+  {
+   "text": "16/B8",
+   "kind": "contact_location",
+   "component": null,
+   "target_sheet": null,
+   "target_line": null,
+   "target_page": null
+  },
+  {
+   "text": "13/A7",
+   "kind": "contact_location",
+   "component": null,
+   "target_sheet": null,
+   "target_line": null,
+   "target_page": null
+  },
+  {
+   "text": "17/A9",
+   "kind": "contact_location",
+   "component": null,
+   "target_sheet": null,
+   "target_line": null,
+   "target_page": null
+  },
+  {
+   "text": "0700/23",
+   "kind": "continuation",
+   "component": "KA4",
+   "target_sheet": "0700",
+   "target_line": 23,
+   "target_page": 77
+  }
+ ],
+ "tables": [
+  {
+   "title": "",
+   "rows": [
+    [
+     "STD",
+     "48",
+     "510",
+     "612"
+    ],
+    [
+     "CE",
+     "1.5Kw",
+     "2.5Kw",
+     "4Kw"
+    ]
+   ],
+   "note": null
+  }
+ ],
+ "unresolved": [],
+ "needs_review": [
+  {
+   "what": "SQ4–SQ9 mechanically linked contact pairs",
+   "reason": "各スイッチ記号には点線連動した上側接点も見えるが、2つ目の接点の graph 点対応を確実に特定できない。",
+   "ref": "SQ4–SQ9"
+  },
+  {
+   "what": "lower overtravel indicator circuit KA4, HL4, V4",
+   "reason": "下部回路の記号端子を graph の線接続点に確実に対応づけられない。",
+   "ref": "zone G24"
+  }
+ ]
+}

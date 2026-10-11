@@ -1,0 +1,471 @@
+[
+ {
+  "round": 1,
+  "tool": "command",
+  "input": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-ChildItem -Force | Select-Object Name,Length'"
+ },
+ {
+  "round": 1,
+  "tool": "command",
+  "input": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -NoProfile -Command 'Get-Content graph.json; Get-Content symbols.json; Get-Content words.json'"
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P19"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P20"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P22"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P23"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P30"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P39"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P41"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P61"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P62"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P63"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P87"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P89"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P90"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P101"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P117"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P118"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P119"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P127"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P128"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P136"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P154"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P155"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P156"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P178"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P179"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P180"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P193"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P204"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P205"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P206"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P239"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P240"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P241"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P259"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.check",
+  "input": {
+   "labels": {
+    "sheet": {
+     "title": "AXIS LS",
+     "sheet_id": {
+      "value": "0700/23",
+      "basis": "drawing",
+      "evidence": [
+       "図中参照 0700/23"
+      ]
+     },
+     "layout": {
+      "orientation": "horizontal",
+      "location_system": "zone_grid",
+      "lines": "01–30",
+      "columns": "A–M",
+      "label_placement": "線・機器名は近傍。PLCアドレスと説明は右側",
+      "junction_rule": "黒丸で接続、黒丸なし交差は非接続"
+     }
+    },
+    "regions": [
+     {
+      "id": "MACHINE SIDE",
+      "label": "MACHINE SIDE",
+      "kind": "area",
+      "meaning": "機械側リミットスイッチ群"
+     },
+     {
+      "id": "TU(A11)",
+      "label": "TU(A11)",
+      "kind": "unit",
+      "meaning": "端子ユニット"
+     },
+     {
+      "id": "NC(A1)",
+      "label": "NC(A1)",
+      "kind": "unit",
+      "meaning": "PLC入力ユニット"
+     }
+    ],
+    "rails": [
+     {
+      "name": "1L+",
+      "polarity": "plus",
+      "polarity_basis": {
+       "value": "名称1L+",
+       "basis": "drawing",
+       "evidence": [
+        "1L+"
+       ]
+      },
+      "point": "P15"
+     }
+    ],
+    "components": [],
+    "plc_io": [],
+    "open_ends": [],
+    "conventions": [],
+    "cross_references": [],
+    "tables": [],
+    "unresolved": [],
+    "needs_review": []
+   }
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.preview",
+  "input": {
+   "labels": {
+    "sheet": {
+     "title": "AXIS LS",
+     "sheet_id": {
+      "value": "0700/23",
+      "basis": "drawing",
+      "evidence": [
+       "図中参照 0700/23"
+      ]
+     },
+     "layout": {
+      "orientation": "horizontal",
+      "location_system": "zone_grid",
+      "lines": "01–30",
+      "columns": "A–M",
+      "label_placement": "線・機器名は近傍。PLCアドレスと説明は右側",
+      "junction_rule": "黒丸で接続、黒丸なし交差は非接続"
+     }
+    },
+    "regions": [
+     {
+      "id": "MACHINE SIDE",
+      "label": "MACHINE SIDE",
+      "kind": "area",
+      "meaning": "機械側リミットスイッチ群"
+     },
+     {
+      "id": "TU(A11)",
+      "label": "TU(A11)",
+      "kind": "unit",
+      "meaning": "端子ユニット"
+     },
+     {
+      "id": "NC(A1)",
+      "label": "NC(A1)",
+      "kind": "unit",
+      "meaning": "PLC入力ユニット"
+     }
+    ],
+    "rails": [
+     {
+      "name": "1L+",
+      "polarity": "plus",
+      "polarity_basis": {
+       "value": "名称1L+",
+       "basis": "drawing",
+       "evidence": [
+        "1L+"
+       ]
+      },
+      "point": "P15"
+     }
+    ],
+    "components": [],
+    "plc_io": [],
+    "open_ends": [],
+    "conventions": [],
+    "cross_references": [],
+    "tables": [],
+    "unresolved": [],
+    "needs_review": []
+   }
+  }
+ },
+ {
+  "round": 2,
+  "tool": "command",
+  "input": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-ChildItem -Force | Select-Object Name,Length'"
+ },
+ {
+  "round": 2,
+  "tool": "command",
+  "input": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content previous_labels.json -Raw'"
+ },
+ {
+  "round": 2,
+  "tool": "command",
+  "input": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"python -c \\\"import json;g=json.load(open('graph.json'));print(type(g),g.keys());print(json.dumps(g['points'][:35],ensure_ascii=False,indent=2))\\\"\""
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P23"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P24"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P25"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P26"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P27"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P16"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P17"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P261"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P270"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P260"
+  }
+ }
+]

@@ -1,0 +1,63 @@
+{
+ "sample": "c6_mazak_stx510",
+ "page": 76,
+ "backend": "codex-cli",
+ "model": "gpt-6-luna",
+ "effort": "medium",
+ "prompt": "label_v7",
+ "prompt_sha256": "fc4321bcb632918dd3c0f2dfe1e1f1d48541592232af752eae9d16f123105931",
+ "label_schema": "kairo-pdf-json/ai-labels/0.1",
+ "input_format": "v3+symbols",
+ "check": true,
+ "tools": "pdf-tools v1 + run_python",
+ "sandbox_image": "sha256:5da3a252e81f3a21251b6d6c203ccdd7428c5e4ab933afa4a8ba99d98d7f959c",
+ "check_version": "v4",
+ "isolation": "v2",
+ "started_at": "2026-10-11T23:11:41",
+ "seconds": 107.3,
+ "rounds": [
+  {
+   "round": 1,
+   "seconds": 51.6,
+   "got_answer": true,
+   "problems": [
+    "点 P22 に2つの名前があります（X01:12 と A1:X0.00）",
+    "点 P40 に2つの名前があります（X01:28 と A1:X0.01）",
+    "点 P62 に2つの名前があります（X01:44 と A1:X0.02）",
+    "点 P89 に2つの名前があります（X01:3 と A1:X0.04）",
+    "点 P118 に2つの名前があります（X01:20 と A1:X0.08）",
+    "点 P155 に2つの名前があります（X01:35 と A1:X0.05）",
+    "点 P179 に2つの名前があります（X01:2 と A1:X0.09）",
+    "点 P205 に2つの名前があります（X01:19 と A1:X0.06）",
+    "点 P240 に2つの名前があります（X01:34 と A1:X0.10）",
+    "回路の筋が1本もできない。電源線の極性と点、PLC 入力の点を確かめる"
+   ]
+  },
+  {
+   "round": 2,
+   "seconds": 55.7,
+   "got_answer": true,
+   "problems": [
+    "回路の筋が1本もできない。電源線の極性と点、PLC 入力の点を確かめる"
+   ]
+  }
+ ],
+ "returncode": 0,
+ "stderr": "Reading additional input from stdin...\n",
+ "num_turns": 1,
+ "usage": {
+  "input_tokens": 876622,
+  "cached_input_tokens": 745216,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 8337,
+  "reasoning_output_tokens": 1064
+ },
+ "cost_usd_list_price": null,
+ "outside_access": [],
+ "denials": [],
+ "denied_dirs": [],
+ "tool_call_count": 65,
+ "valid": true,
+ "label_schema_errors": [],
+ "view": "C:\\Users\\kouta\\project\\kairo-pdf-json\\samples\\derived\\c6_mazak_stx510\\p076.run-20261011-231139_c6_mazak_stx510_p076_gpt-6-luna_view.html"
+}

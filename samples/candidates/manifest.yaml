@@ -1,0 +1,66 @@
+# サンプル候補（未承認）。承認後に samples/raw/ へ移し、samples/manifest.yaml に登録する。
+retrieved_at: 2026-10-11
+candidates:
+  - id: c1_nexco_r8
+    title: 西日本高速道路 機械電気通信設備標準設計図 受配電設備 製作仕様図面（令和8年7月版）
+    source_url: https://corp.w-nexco.co.jp/procurement/guideline/facility_equipment/pdfs/1-06.pdf
+    landing_page: https://corp.w-nexco.co.jp/procurement/guideline/facility_equipment/
+    kind: vector
+    pages: 186
+    terms: All rights reserved（手元の検証のみ。再配布しない）
+    sha256: 2e743fff275b2826948eaabcfb88e44d5fa083c94e0f399e8f40cb30bafdfb38
+  - id: c2_nexco_r7
+    title: 同 令和7年7月版
+    source_url: https://corp.w-nexco.co.jp/procurement/guideline/facility_equipment/pdfs/1-27.pdf
+    kind: vector
+    pages: 186
+    terms: All rights reserved（手元の検証のみ。再配布しない）
+    sha256: e91f1d54cc70082d2b9dd946fd06d247a60d7d35505a6763cbcc37fc233feb79
+  - id: c3_mizu_h15
+    title: 水資源開発公団 機側操作設備設計指針【ゲート設備編】図面編（平成15年版）
+    source_url: https://www.water.go.jp/honsya/honsya/keiyaku/techinfo/pdf/kikai-kisoku2.pdf
+    landing_page: https://www.water.go.jp/honsya/honsya/keiyaku/techinfo/kijyun.html
+    kind: raster
+    pages: 177
+    terms: 政府標準利用規約 第2.0版（CC BY 4.0 互換。出典明記）
+    sha256: 0974bf1d4ad768585b1d1de7e06a320b2d0f89f2cef117ccdb9bc42e776205ab
+  - id: c4_mizu_r6
+    title: 水資源機構 機側操作設備設計指針【ゲート設備編】図面編（令和6年4月版）
+    source_url: https://www.water.go.jp/honsya/honsya/keiyaku/techinfo/pdf/kikai-kisoku_zumen_2_0604.pdf
+    kind: vector_outlined_text
+    pages: 165
+    terms: 政府標準利用規約 第2.0版（CC BY 4.0 互換。出典明記）
+    sha256: 20dd69a352b3dea1c7e2d1090ae6e1371320a28c6a614c14f043d6d1090ae757
+  - id: c5_javada62
+    title: 中央職業能力開発協会 第62回技能五輪全国大会「工場電気設備」競技課題
+    source_url: https://www.javada.or.jp/jigyou/gino/zenkoku/n_62/kadai/17/17_01kyougikadai_20240904_89tbn0.pdf
+    landing_page: https://www.javada.or.jp/jigyou/gino/zenkoku/n_62/kadai/17.html
+    kind: vector
+    pages: 54
+    terms: All rights reserved（手元の検証のみ。再配布しない）
+    sha256: a67575629f590ce4f76e337bd97b12cde1b350092763f64cb7ab274d13bcf807
+  # 追加調査（横書き・行番号あり）2026-10-11
+  - id: c6_mazak_stx510
+    title: ヤマザキマザック Super Turbo-X 510（レーザ加工機）Electrical Diagram
+    source_url: https://www.topperindustrial.com/wp-content/uploads/2026/02/Mazak-Super-Turbo-X-510-Electrical-Diagram.pdf
+    landing_page: https://www.topperindustrial.com/mazaksuperturbox510/
+    kind: vector
+    pages: 213
+    terms: 明記なし。図面の著作権はヤマザキマザック、掲載は第三者（Topper Industrial）。手元の検証のみ、再配布しない
+    sha256: 0eafba3bea90da2c5977f02a465d33769da8002ed2244b21bc58916421ab51c9
+  - id: c7_mazak_qt15n
+    title: ヤマザキマザック QT-15N/QT-18N（Mazatrol T32B）Electrical Circuit Diagrams
+    source_url: https://archive.org/download/mazak-electrical-circuit-diagrams-for-qt-15-n-and-qt-18-n-mazatrol-t-32-b/Mazak%20-%20Electrical%20Circuit%20Diagrams%20for%20QT-15N%20and%20QT-18N%20%28Mazatrol%20T32B%29.pdf
+    landing_page: https://archive.org/details/mazak-electrical-circuit-diagrams-for-qt-15-n-and-qt-18-n-mazatrol-t-32-b
+    kind: raster
+    pages: 73
+    terms: 明記なし（Internet Archive への個人アップロード）。手元の検証のみ、再配布しない
+    sha256: c885da2ca22cf15ccb8142ce656d568846e6522b1437bd7e643c6f64eec1299e
+  - id: c8_elecontsu
+    title: エレコンツ設計事務所 参考例 P1_0001A
+    source_url: https://elecontsu.com/wp-content/uploads/2020/05/P1_0001A.pdf
+    landing_page: https://elecontsu.com/ctrl/gijutujouhou9/
+    kind: vector
+    pages: 6
+    terms: Copyright エレコンツ設計事務所 All Rights Reserved。手元の検証のみ、再配布しない
+    sha256: bd8fc5737695826f4373f3c35ab25eb95d58398bb26b8cf18e6addd1fac11c08

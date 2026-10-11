@@ -1,0 +1,1860 @@
+[
+ {
+  "round": 1,
+  "tool": "mcp:pdf.run_python",
+  "input": {
+   "code": "import json,os\nfor f in ['graph.json','words.json','symbols.json','tiles.json']:\n d=json.load(open('/work/'+f)); print('\\n',f, type(d), (list(d) if isinstance(d,dict) else len(d)))\n if f=='graph.json': print(json.dumps(d,ensure_ascii=False)[:2500])\n if f=='symbols.json': print(json.dumps(d,ensure_ascii=False)[:5000])\n"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.run_python",
+  "input": {
+   "code": "import json\ng=json.load(open('/work/graph.json')); w=json.load(open('/work/words.json'))\nfor p in g['points']:\n if p['kind'] in ('terminal_circle','connector_pin','junction_dot','end','symbol_touch') and 95<p['y']<620:\n  print(p['id'],p['kind'],round(p['x'],1),round(p['y'],1))\nprint('WORDS')\nfor a in w:\n t=a.get('text','')\n if any(z in t for z in ['SQ','XT','X31','X51','X71','X01','XCS41','X0.','1L+','TU','NC','AXIS','MACHINE','KA4','HL4','R4','0700']):\n  print(t,a.get('x'),a.get('y'))\n"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P19"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P20"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P22"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P23"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P38"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P39"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P40"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P41"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P60"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P61"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P62"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P63"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P86"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P87"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P89"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P90"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P112"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P117"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P118"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P119"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P131"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P136"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P149"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P154"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P155"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P156"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P174"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P178"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P179"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P180"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P191"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P193"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P204"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P205"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P206"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P234"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P239"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P240"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P241"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P259"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.check",
+  "input": {
+   "labels": {
+    "sheet": {
+     "title": "AXIS LS",
+     "sheet_id": {
+      "value": "76",
+      "basis": "other_page",
+      "evidence": [
+       "User identifies PDF page 76; drawing title block says AXIS LS"
+      ]
+     },
+     "layout": {
+      "orientation": "horizontal",
+      "location_system": "zone_grid",
+      "lines": "01-30",
+      "columns": "A-M",
+      "label_placement": "行は左側、列は上側",
+      "junction_rule": "黒丸は接続、黒丸のない交差は非接続"
+     }
+    },
+    "regions": [
+     {
+      "id": "MACHINE SIDE",
+      "label": "MACHINE SIDE",
+      "kind": "area",
+      "meaning": "現場側スイッチ群"
+     },
+     {
+      "id": "TU(A11)",
+      "label": "TU(A11)",
+      "kind": "unit",
+      "meaning": "ターミナルユニット"
+     },
+     {
+      "id": "NC(A1)",
+      "label": "NC(A1)",
+      "kind": "unit",
+      "meaning": "NCユニット"
+     }
+    ],
+    "rails": [
+     {
+      "name": "1L+",
+      "polarity": "plus",
+      "polarity_basis": {
+       "value": "1L+",
+       "basis": "drawing",
+       "evidence": [
+        "1L+の表記"
+       ]
+      },
+      "point": "P15"
+     }
+    ],
+    "components": [],
+    "plc_io": [],
+    "open_ends": [],
+    "conventions": [],
+    "cross_references": [],
+    "tables": [],
+    "unresolved": [],
+    "needs_review": []
+   }
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.check",
+  "input": {
+   "labels": {
+    "sheet": {
+     "title": "AXIS LS",
+     "sheet_id": null,
+     "layout": {
+      "orientation": "horizontal",
+      "location_system": "zone_grid",
+      "lines": "01-30",
+      "columns": "A-M",
+      "label_placement": "行番号は左、列記号は上",
+      "junction_rule": "黒丸で接続、黒丸のない交差は非接続"
+     }
+    },
+    "regions": [
+     {
+      "id": "machine",
+      "label": "MACHINE SIDE",
+      "kind": "area",
+      "meaning": "機械側スイッチ"
+     },
+     {
+      "id": "A11",
+      "label": "TU(A11)",
+      "kind": "unit",
+      "meaning": "端子ユニット"
+     },
+     {
+      "id": "A1",
+      "label": "NC(A1)",
+      "kind": "unit",
+      "meaning": "PLC入力ユニット"
+     }
+    ],
+    "rails": [
+     {
+      "name": "1L+",
+      "polarity": "plus",
+      "polarity_basis": {
+       "value": "1L+表記",
+       "basis": "drawing",
+       "evidence": [
+        "行03左側の電源線に1L+"
+       ]
+      },
+      "point": "P15"
+     }
+    ],
+    "components": [
+     {
+      "id": "A11",
+      "name": "TU",
+      "kind": "terminal unit",
+      "symbol": "TU(A11)",
+      "region": "A11",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "XT31:420",
+        "point": "P19"
+       },
+       {
+        "name": "X31:10",
+        "point": "P20"
+       },
+       {
+        "name": "X01:12",
+        "point": "P22"
+       },
+       {
+        "name": "XCS41:7/A4",
+        "point": "P23"
+       },
+       {
+        "name": "X51:16",
+        "point": "P30"
+       },
+       {
+        "name": "XT31:421",
+        "point": "P38"
+       },
+       {
+        "name": "X31:11",
+        "point": "P39"
+       },
+       {
+        "name": "X01:28",
+        "point": "P40"
+       },
+       {
+        "name": "XCS41:8/B4",
+        "point": "P41"
+       },
+       {
+        "name": "XT71:422",
+        "point": "P60"
+       },
+       {
+        "name": "X71:8",
+        "point": "P61"
+       },
+       {
+        "name": "X01:44",
+        "point": "P62"
+       },
+       {
+        "name": "XCS41:9/A5",
+        "point": "P63"
+       },
+       {
+        "name": "XT31:400",
+        "point": "P86"
+       },
+       {
+        "name": "X31:4",
+        "point": "P87"
+       },
+       {
+        "name": "X01:3",
+        "point": "P89"
+       },
+       {
+        "name": "XCS41:11/A6",
+        "point": "P90"
+       },
+       {
+        "name": "X51:10",
+        "point": "P101"
+       },
+       {
+        "name": "XT31:401",
+        "point": "P112"
+       },
+       {
+        "name": "X31:5",
+        "point": "P117"
+       },
+       {
+        "name": "X01:20",
+        "point": "P118"
+       },
+       {
+        "name": "XCS41:15/A8",
+        "point": "P119"
+       },
+       {
+        "name": "X51:11",
+        "point": "P127"
+       },
+       {
+        "name": "XT31:358",
+        "point": "P131"
+       },
+       {
+        "name": "X31:9",
+        "point": "P136"
+       },
+       {
+        "name": "X51:13",
+        "point": "P128"
+       },
+       {
+        "name": "XT31:402",
+        "point": "P149"
+       },
+       {
+        "name": "X31:6",
+        "point": "P154"
+       },
+       {
+        "name": "X01:35",
+        "point": "P155"
+       },
+       {
+        "name": "XCS41:12/B6",
+        "point": "P156"
+       },
+       {
+        "name": "XT31:403",
+        "point": "P174"
+       },
+       {
+        "name": "X31:8",
+        "point": "P178"
+       },
+       {
+        "name": "X01:2",
+        "point": "P179"
+       },
+       {
+        "name": "XCS41:16/B8",
+        "point": "P180"
+       },
+       {
+        "name": "XT71:358",
+        "point": "P191"
+       },
+       {
+        "name": "X71:7",
+        "point": "P193"
+       },
+       {
+        "name": "XT71:404",
+        "point": "P203"
+       },
+       {
+        "name": "X71:4",
+        "point": "P204"
+       },
+       {
+        "name": "X01:19",
+        "point": "P205"
+       },
+       {
+        "name": "XCS41:13/A7",
+        "point": "P206"
+       },
+       {
+        "name": "XT71:405",
+        "point": "P234"
+       },
+       {
+        "name": "X71:5",
+        "point": "P239"
+       },
+       {
+        "name": "X01:34",
+        "point": "P240"
+       },
+       {
+        "name": "XCS41:17/A9",
+        "point": "P241"
+       },
+       {
+        "name": "X85:37",
+        "point": "P259"
+       }
+      ]
+     },
+     {
+      "id": "A1",
+      "name": "NC",
+      "kind": "PLC input unit",
+      "symbol": "NC(A1)",
+      "region": "A1",
+      "purpose": {
+       "value": "PLC入力",
+       "basis": "inferred",
+       "evidence": [
+        "X0.xxアドレスと入力コメント"
+       ]
+      },
+      "elements": [],
+      "terminals": []
+     }
+    ],
+    "plc_io": [
+     {
+      "address": "X0.00",
+      "direction": "input",
+      "port": "A1:X0.00",
+      "point": "P22",
+      "device": null,
+      "comment": "X axis zero return dec LS"
+     },
+     {
+      "address": "X0.01",
+      "direction": "input",
+      "port": "A1:X0.01",
+      "point": "P40",
+      "device": null,
+      "comment": "Y axis zero return dec LS"
+     },
+     {
+      "address": "X0.02",
+      "direction": "input",
+      "port": "A1:X0.02",
+      "point": "P62",
+      "device": null,
+      "comment": "Z axis zero return dec LS"
+     },
+     {
+      "address": "X0.04",
+      "direction": "input",
+      "port": "A1:X0.04",
+      "point": "P89",
+      "device": null,
+      "comment": "+X axis overtravel LS"
+     },
+     {
+      "address": "X0.08",
+      "direction": "input",
+      "port": "A1:X0.08",
+      "point": "P118",
+      "device": null,
+      "comment": "-X axis overtravel LS"
+     },
+     {
+      "address": "X0.05",
+      "direction": "input",
+      "port": "A1:X0.05",
+      "point": "P155",
+      "device": null,
+      "comment": "+Y axis overtravel LS"
+     },
+     {
+      "address": "X0.09",
+      "direction": "input",
+      "port": "A1:X0.09",
+      "point": "P179",
+      "device": null,
+      "comment": "-Y axis overtravel LS"
+     },
+     {
+      "address": "X0.06",
+      "direction": "input",
+      "port": "A1:X0.06",
+      "point": "P205",
+      "device": null,
+      "comment": "+Z axis overtravel LS"
+     },
+     {
+      "address": "X0.10",
+      "direction": "input",
+      "port": "A1:X0.10",
+      "point": "P240",
+      "device": null,
+      "comment": "-Z axis overtravel LS"
+     }
+    ],
+    "open_ends": [],
+    "conventions": [],
+    "cross_references": [
+     {
+      "text": "0700/23",
+      "kind": "continuation",
+      "component": null,
+      "target_sheet": "0700",
+      "target_line": 23,
+      "target_page": null
+     }
+    ],
+    "tables": [],
+    "unresolved": [],
+    "needs_review": [
+     {
+      "what": "接点記号の通常状態とSQ4-SQ9の連動接点構成",
+      "reason": "各スイッチ記号の端点関係を確定する必要がある",
+      "ref": "SQ4-SQ9"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.preview",
+  "input": {
+   "labels": {
+    "sheet": {
+     "title": "AXIS LS",
+     "sheet_id": null,
+     "layout": {
+      "orientation": "horizontal",
+      "location_system": "zone_grid",
+      "lines": "01-30",
+      "columns": "A-M",
+      "label_placement": "行番号は左、列記号は上",
+      "junction_rule": "黒丸で接続、黒丸のない交差は非接続"
+     }
+    },
+    "regions": [
+     {
+      "id": "machine",
+      "label": "MACHINE SIDE",
+      "kind": "area",
+      "meaning": "機械側スイッチ"
+     },
+     {
+      "id": "A11",
+      "label": "TU(A11)",
+      "kind": "unit",
+      "meaning": "端子ユニット"
+     },
+     {
+      "id": "A1",
+      "label": "NC(A1)",
+      "kind": "unit",
+      "meaning": "PLC入力ユニット"
+     }
+    ],
+    "rails": [
+     {
+      "name": "1L+",
+      "polarity": "plus",
+      "polarity_basis": {
+       "value": "1L+表記",
+       "basis": "drawing",
+       "evidence": [
+        "行03左側の電源線に1L+"
+       ]
+      },
+      "point": "P15"
+     }
+    ],
+    "components": [
+     {
+      "id": "A11",
+      "name": "TU",
+      "kind": "terminal unit",
+      "symbol": "TU(A11)",
+      "region": "A11",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "XT31:420",
+        "point": "P19"
+       },
+       {
+        "name": "X31:10",
+        "point": "P20"
+       },
+       {
+        "name": "X01:12",
+        "point": "P22"
+       },
+       {
+        "name": "XCS41:7/A4",
+        "point": "P23"
+       },
+       {
+        "name": "X51:16",
+        "point": "P30"
+       },
+       {
+        "name": "XT31:421",
+        "point": "P38"
+       },
+       {
+        "name": "X31:11",
+        "point": "P39"
+       },
+       {
+        "name": "X01:28",
+        "point": "P40"
+       },
+       {
+        "name": "XCS41:8/B4",
+        "point": "P41"
+       },
+       {
+        "name": "XT71:422",
+        "point": "P60"
+       },
+       {
+        "name": "X71:8",
+        "point": "P61"
+       },
+       {
+        "name": "X01:44",
+        "point": "P62"
+       },
+       {
+        "name": "XCS41:9/A5",
+        "point": "P63"
+       },
+       {
+        "name": "XT31:400",
+        "point": "P86"
+       },
+       {
+        "name": "X31:4",
+        "point": "P87"
+       },
+       {
+        "name": "X01:3",
+        "point": "P89"
+       },
+       {
+        "name": "XCS41:11/A6",
+        "point": "P90"
+       },
+       {
+        "name": "X51:10",
+        "point": "P101"
+       },
+       {
+        "name": "XT31:401",
+        "point": "P112"
+       },
+       {
+        "name": "X31:5",
+        "point": "P117"
+       },
+       {
+        "name": "X01:20",
+        "point": "P118"
+       },
+       {
+        "name": "XCS41:15/A8",
+        "point": "P119"
+       },
+       {
+        "name": "X51:11",
+        "point": "P127"
+       },
+       {
+        "name": "XT31:358",
+        "point": "P131"
+       },
+       {
+        "name": "X31:9",
+        "point": "P136"
+       },
+       {
+        "name": "X51:13",
+        "point": "P128"
+       },
+       {
+        "name": "XT31:402",
+        "point": "P149"
+       },
+       {
+        "name": "X31:6",
+        "point": "P154"
+       },
+       {
+        "name": "X01:35",
+        "point": "P155"
+       },
+       {
+        "name": "XCS41:12/B6",
+        "point": "P156"
+       },
+       {
+        "name": "XT31:403",
+        "point": "P174"
+       },
+       {
+        "name": "X31:8",
+        "point": "P178"
+       },
+       {
+        "name": "X01:2",
+        "point": "P179"
+       },
+       {
+        "name": "XCS41:16/B8",
+        "point": "P180"
+       },
+       {
+        "name": "XT71:358",
+        "point": "P191"
+       },
+       {
+        "name": "X71:7",
+        "point": "P193"
+       },
+       {
+        "name": "XT71:404",
+        "point": "P203"
+       },
+       {
+        "name": "X71:4",
+        "point": "P204"
+       },
+       {
+        "name": "X01:19",
+        "point": "P205"
+       },
+       {
+        "name": "XCS41:13/A7",
+        "point": "P206"
+       },
+       {
+        "name": "XT71:405",
+        "point": "P234"
+       },
+       {
+        "name": "X71:5",
+        "point": "P239"
+       },
+       {
+        "name": "X01:34",
+        "point": "P240"
+       },
+       {
+        "name": "XCS41:17/A9",
+        "point": "P241"
+       },
+       {
+        "name": "X85:37",
+        "point": "P259"
+       }
+      ]
+     },
+     {
+      "id": "A1",
+      "name": "NC",
+      "kind": "PLC input unit",
+      "symbol": "NC(A1)",
+      "region": "A1",
+      "purpose": {
+       "value": "PLC入力",
+       "basis": "inferred",
+       "evidence": [
+        "X0.xxアドレスと入力コメント"
+       ]
+      },
+      "elements": [],
+      "terminals": []
+     }
+    ],
+    "plc_io": [
+     {
+      "address": "X0.00",
+      "direction": "input",
+      "port": "A1:X0.00",
+      "point": "P22",
+      "device": null,
+      "comment": "X axis zero return dec LS"
+     },
+     {
+      "address": "X0.01",
+      "direction": "input",
+      "port": "A1:X0.01",
+      "point": "P40",
+      "device": null,
+      "comment": "Y axis zero return dec LS"
+     },
+     {
+      "address": "X0.02",
+      "direction": "input",
+      "port": "A1:X0.02",
+      "point": "P62",
+      "device": null,
+      "comment": "Z axis zero return dec LS"
+     },
+     {
+      "address": "X0.04",
+      "direction": "input",
+      "port": "A1:X0.04",
+      "point": "P89",
+      "device": null,
+      "comment": "+X axis overtravel LS"
+     },
+     {
+      "address": "X0.08",
+      "direction": "input",
+      "port": "A1:X0.08",
+      "point": "P118",
+      "device": null,
+      "comment": "-X axis overtravel LS"
+     },
+     {
+      "address": "X0.05",
+      "direction": "input",
+      "port": "A1:X0.05",
+      "point": "P155",
+      "device": null,
+      "comment": "+Y axis overtravel LS"
+     },
+     {
+      "address": "X0.09",
+      "direction": "input",
+      "port": "A1:X0.09",
+      "point": "P179",
+      "device": null,
+      "comment": "-Y axis overtravel LS"
+     },
+     {
+      "address": "X0.06",
+      "direction": "input",
+      "port": "A1:X0.06",
+      "point": "P205",
+      "device": null,
+      "comment": "+Z axis overtravel LS"
+     },
+     {
+      "address": "X0.10",
+      "direction": "input",
+      "port": "A1:X0.10",
+      "point": "P240",
+      "device": null,
+      "comment": "-Z axis overtravel LS"
+     }
+    ],
+    "open_ends": [],
+    "conventions": [],
+    "cross_references": [
+     {
+      "text": "0700/23",
+      "kind": "continuation",
+      "component": null,
+      "target_sheet": "0700",
+      "target_line": 23,
+      "target_page": null
+     }
+    ],
+    "tables": [],
+    "unresolved": [],
+    "needs_review": [
+     {
+      "what": "接点記号の通常状態とSQ4-SQ9の連動接点構成",
+      "reason": "各スイッチ記号の端点関係を確定する必要がある",
+      "ref": "SQ4-SQ9"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.run_python",
+  "input": {
+   "code": "import json,os\nprint(os.listdir('/work'))\nfor f in ['previous_labels.json','graph.json','words.json','pages.txt']:\n p='/work/'+f\n print('\\n',f,os.path.exists(p))\n if os.path.exists(p):\n  s=open(p,encoding='utf-8').read(); print(s[:3000])"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.run_python",
+  "input": {
+   "code": "import json\nx=json.load(open('/work/previous_labels.json'))\nfor k,v in x.items():\n if k=='components':\n  for c in v: print(json.dumps(c,ensure_ascii=False))\n else: print(k,json.dumps(v,ensure_ascii=False))"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P15"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P16"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P17"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P18"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P19"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P21"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P22"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P37"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P42"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P86"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P89"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P259"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.run_python",
+  "input": {
+   "code": "import json\nx=json.load(open('/work/previous_labels.json'))\n# remove duplicate connector aliases X01, which represent PLC-side pins already labeled by PLC I/O\nc=x['components'][0]; c['terminals']=[t for t in c['terminals'] if not t['name'].startswith('X01:')]\n# update PLC device association by switch labels from comments\nfor io in x['plc_io']:\n io['device']={'X0.00':'SQ1','X0.01':'SQ2','X0.02':'SQ3','X0.04':'SQ4','X0.08':'SQ5','X0.05':'SQ6','X0.09':'SQ7','X0.06':'SQ8','X0.10':'SQ9'}[io['address']]\n# adjust outdated review reason\nx['needs_review']=[{'what':'SQ4–SQ9の連動接点と通常状態','reason':'図の接点記号は同一スイッチの機械連動を示す。a/b判定と対応点の特定に不確実性が残る。','ref':'SQ4–SQ9'}]\nprint(json.dumps(x,ensure_ascii=False))"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.run_python",
+  "input": {
+   "code": "import json\nx=json.load(open('/work/previous_labels.json')); x['components'][0]['terminals']=[t for t in x['components'][0]['terminals'] if not t['name'].startswith('X01:')]\nfor io in x['plc_io']: io['device']={'X0.00':'SQ1','X0.01':'SQ2','X0.02':'SQ3','X0.04':'SQ4','X0.08':'SQ5','X0.05':'SQ6','X0.09':'SQ7','X0.06':'SQ8','X0.10':'SQ9'}[io['address']]\nx['needs_review']=[{'what':'現場接点の接点形式と端点対応','reason':'接点記号の開閉状態と機械連動要素の線追跡を一意に割り当てられない。','ref':'SQ1–SQ9'}]\nprint(json.dumps(x,ensure_ascii=False))"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.run_python",
+  "input": {
+   "code": "import json\nx=json.load(open('/work/previous_labels.json')); x['components'][0]['terminals']=[t for t in x['components'][0]['terminals'] if not t['name'].startswith('X01:')]\nfor io in x['plc_io']: io['device']={'X0.00':'SQ1','X0.01':'SQ2','X0.02':'SQ3','X0.04':'SQ4','X0.08':'SQ5','X0.05':'SQ6','X0.09':'SQ7','X0.06':'SQ8','X0.10':'SQ9'}[io['address']]\nx['needs_review']=[{'what':'現場接点の接点形式と端点対応','reason':'接点記号の開閉状態と機械連動要素の線追跡を一意に割り当てられない。','ref':'SQ1–SQ9'}]\nprint('LABELS:'+json.dumps(x,ensure_ascii=False))"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.run_python",
+  "input": {
+   "code": "import json\nx=json.load(open('/work/previous_labels.json')); x['components'][0]['terminals']=[t for t in x['components'][0]['terminals'] if not t['name'].startswith('X01:')]\nfor io in x['plc_io']: io['device']={'X0.00':'SQ1','X0.01':'SQ2','X0.02':'SQ3','X0.04':'SQ4','X0.08':'SQ5','X0.05':'SQ6','X0.09':'SQ7','X0.06':'SQ8','X0.10':'SQ9'}[io['address']]\nx['needs_review']=[{'what':'現場接点の接点形式と端点対応','reason':'接点記号の開閉状態と機械連動要素の線追跡を一意に割り当てられない。','ref':'SQ1–SQ9'}]\nprint('LABELS:'+json.dumps(x,ensure_ascii=False))"
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.check",
+  "input": {
+   "labels": {
+    "sheet": {
+     "title": "AXIS LS",
+     "sheet_id": null,
+     "layout": {
+      "orientation": "horizontal",
+      "location_system": "zone_grid",
+      "lines": "01–30",
+      "columns": "A–M",
+      "label_placement": "行番号は左側、列記号は上側",
+      "junction_rule": "黒丸は接続を示す。黒丸のない交差は非接続。"
+     }
+    },
+    "regions": [
+     {
+      "id": "machine_side",
+      "label": "MACHINE SIDE",
+      "kind": "area",
+      "meaning": "機械側スイッチ"
+     },
+     {
+      "id": "A11",
+      "label": "TU(A11)",
+      "kind": "unit",
+      "meaning": "端子ユニット"
+     },
+     {
+      "id": "A1",
+      "label": "NC(A1)",
+      "kind": "unit",
+      "meaning": "PLC入力ユニット"
+     }
+    ],
+    "rails": [
+     {
+      "name": "1L+",
+      "polarity": "plus",
+      "polarity_basis": {
+       "value": "図中の1L+表記",
+       "basis": "drawing",
+       "evidence": [
+        "行03、左側電源線の上に「1L+」と記載"
+       ]
+      },
+      "point": "P15"
+     }
+    ],
+    "components": [
+     {
+      "id": "A11",
+      "name": "TU",
+      "kind": "terminal unit",
+      "symbol": "TU(A11)",
+      "region": "A11",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "XT31:420",
+        "point": "P19"
+       },
+       {
+        "name": "X31:10",
+        "point": "P20"
+       },
+       {
+        "name": "XCS41:7/A4",
+        "point": "P23"
+       },
+       {
+        "name": "X51:16",
+        "point": "P30"
+       },
+       {
+        "name": "XT31:421",
+        "point": "P38"
+       },
+       {
+        "name": "X31:11",
+        "point": "P39"
+       },
+       {
+        "name": "XCS41:8/B4",
+        "point": "P41"
+       },
+       {
+        "name": "XT71:422",
+        "point": "P60"
+       },
+       {
+        "name": "X71:8",
+        "point": "P61"
+       },
+       {
+        "name": "XCS41:9/A5",
+        "point": "P63"
+       },
+       {
+        "name": "XT31:400",
+        "point": "P86"
+       },
+       {
+        "name": "X31:4",
+        "point": "P87"
+       },
+       {
+        "name": "XCS41:11/A6",
+        "point": "P90"
+       },
+       {
+        "name": "X51:10",
+        "point": "P101"
+       },
+       {
+        "name": "XT31:401",
+        "point": "P112"
+       },
+       {
+        "name": "X31:5",
+        "point": "P117"
+       },
+       {
+        "name": "XCS41:15/A8",
+        "point": "P119"
+       },
+       {
+        "name": "X51:11",
+        "point": "P127"
+       },
+       {
+        "name": "XT31:358",
+        "point": "P131"
+       },
+       {
+        "name": "X31:9",
+        "point": "P136"
+       },
+       {
+        "name": "X51:13",
+        "point": "P128"
+       },
+       {
+        "name": "XT31:402",
+        "point": "P149"
+       },
+       {
+        "name": "X31:6",
+        "point": "P154"
+       },
+       {
+        "name": "XCS41:12/B6",
+        "point": "P156"
+       },
+       {
+        "name": "XT31:403",
+        "point": "P174"
+       },
+       {
+        "name": "X31:8",
+        "point": "P178"
+       },
+       {
+        "name": "XCS41:16/B8",
+        "point": "P180"
+       },
+       {
+        "name": "XT71:358",
+        "point": "P191"
+       },
+       {
+        "name": "X71:7",
+        "point": "P193"
+       },
+       {
+        "name": "XT71:404",
+        "point": "P203"
+       },
+       {
+        "name": "X71:4",
+        "point": "P204"
+       },
+       {
+        "name": "XCS41:13/A7",
+        "point": "P206"
+       },
+       {
+        "name": "XT71:405",
+        "point": "P234"
+       },
+       {
+        "name": "X71:5",
+        "point": "P239"
+       },
+       {
+        "name": "XCS41:17/A9",
+        "point": "P241"
+       },
+       {
+        "name": "X85:37",
+        "point": "P259"
+       }
+      ]
+     },
+     {
+      "id": "A1",
+      "name": "NC",
+      "kind": "PLC input unit",
+      "symbol": "NC(A1)",
+      "region": "A1",
+      "purpose": {
+       "value": "PLC入力",
+       "basis": "inferred",
+       "evidence": [
+        "X0.xxのアドレスと各入力コメントが記載されている"
+       ]
+      },
+      "elements": [],
+      "terminals": []
+     }
+    ],
+    "plc_io": [
+     {
+      "address": "X0.00",
+      "direction": "input",
+      "port": "A1:X0.00",
+      "point": "P22",
+      "device": "SQ1",
+      "comment": "X AXIS ZERO RETURN DEC LS"
+     },
+     {
+      "address": "X0.01",
+      "direction": "input",
+      "port": "A1:X0.01",
+      "point": "P40",
+      "device": "SQ2",
+      "comment": "Y AXIS ZERO RETURN DEC LS"
+     },
+     {
+      "address": "X0.02",
+      "direction": "input",
+      "port": "A1:X0.02",
+      "point": "P62",
+      "device": "SQ3",
+      "comment": "Z AXIS ZERO RETURN DEC LS"
+     },
+     {
+      "address": "X0.04",
+      "direction": "input",
+      "port": "A1:X0.04",
+      "point": "P89",
+      "device": "SQ4",
+      "comment": "+X AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.08",
+      "direction": "input",
+      "port": "A1:X0.08",
+      "point": "P118",
+      "device": "SQ5",
+      "comment": "−X AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.05",
+      "direction": "input",
+      "port": "A1:X0.05",
+      "point": "P155",
+      "device": "SQ6",
+      "comment": "+Y AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.09",
+      "direction": "input",
+      "port": "A1:X0.09",
+      "point": "P179",
+      "device": "SQ7",
+      "comment": "−Y AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.06",
+      "direction": "input",
+      "port": "A1:X0.06",
+      "point": "P205",
+      "device": "SQ8",
+      "comment": "+Z AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.10",
+      "direction": "input",
+      "port": "A1:X0.10",
+      "point": "P240",
+      "device": "SQ9",
+      "comment": "−Z AXIS OVERTRAVEL LS"
+     }
+    ],
+    "open_ends": [],
+    "conventions": [],
+    "cross_references": [
+     {
+      "text": "0700/23",
+      "kind": "continuation",
+      "component": null,
+      "target_sheet": "0700",
+      "target_line": 23,
+      "target_page": null
+     }
+    ],
+    "tables": [],
+    "unresolved": [
+     {
+      "what": "図面集で参照される頁番号と頁名の対応",
+      "reason": "この頁のタイトル欄はAXIS LSを示すが、図面集全体の頁番号対応を確定できなかった。"
+     }
+    ],
+    "needs_review": [
+     {
+      "what": "現場接点の接点形式と端点対応",
+      "reason": "接点記号の開閉状態と機械連動要素の線追跡を一意に割り当てられない。",
+      "ref": "SQ1–SQ9"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "round": 2,
+  "tool": "mcp:pdf.preview",
+  "input": {
+   "labels": {
+    "sheet": {
+     "title": "AXIS LS",
+     "sheet_id": null,
+     "layout": {
+      "orientation": "horizontal",
+      "location_system": "zone_grid",
+      "lines": "01–30",
+      "columns": "A–M",
+      "label_placement": "行番号は左側、列記号は上側",
+      "junction_rule": "黒丸は接続を示す。黒丸のない交差は非接続。"
+     }
+    },
+    "regions": [
+     {
+      "id": "machine_side",
+      "label": "MACHINE SIDE",
+      "kind": "area",
+      "meaning": "機械側スイッチ"
+     },
+     {
+      "id": "A11",
+      "label": "TU(A11)",
+      "kind": "unit",
+      "meaning": "端子ユニット"
+     },
+     {
+      "id": "A1",
+      "label": "NC(A1)",
+      "kind": "unit",
+      "meaning": "PLC入力ユニット"
+     }
+    ],
+    "rails": [
+     {
+      "name": "1L+",
+      "polarity": "plus",
+      "polarity_basis": {
+       "value": "図中の1L+表記",
+       "basis": "drawing",
+       "evidence": [
+        "行03、左側電源線の上に「1L+」と記載"
+       ]
+      },
+      "point": "P15"
+     }
+    ],
+    "components": [
+     {
+      "id": "A11",
+      "name": "TU",
+      "kind": "terminal unit",
+      "symbol": "TU(A11)",
+      "region": "A11",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "XT31:420",
+        "point": "P19"
+       },
+       {
+        "name": "X31:10",
+        "point": "P20"
+       },
+       {
+        "name": "XCS41:7/A4",
+        "point": "P23"
+       },
+       {
+        "name": "X51:16",
+        "point": "P30"
+       },
+       {
+        "name": "XT31:421",
+        "point": "P38"
+       },
+       {
+        "name": "X31:11",
+        "point": "P39"
+       },
+       {
+        "name": "XCS41:8/B4",
+        "point": "P41"
+       },
+       {
+        "name": "XT71:422",
+        "point": "P60"
+       },
+       {
+        "name": "X71:8",
+        "point": "P61"
+       },
+       {
+        "name": "XCS41:9/A5",
+        "point": "P63"
+       },
+       {
+        "name": "XT31:400",
+        "point": "P86"
+       },
+       {
+        "name": "X31:4",
+        "point": "P87"
+       },
+       {
+        "name": "XCS41:11/A6",
+        "point": "P90"
+       },
+       {
+        "name": "X51:10",
+        "point": "P101"
+       },
+       {
+        "name": "XT31:401",
+        "point": "P112"
+       },
+       {
+        "name": "X31:5",
+        "point": "P117"
+       },
+       {
+        "name": "XCS41:15/A8",
+        "point": "P119"
+       },
+       {
+        "name": "X51:11",
+        "point": "P127"
+       },
+       {
+        "name": "XT31:358",
+        "point": "P131"
+       },
+       {
+        "name": "X31:9",
+        "point": "P136"
+       },
+       {
+        "name": "X51:13",
+        "point": "P128"
+       },
+       {
+        "name": "XT31:402",
+        "point": "P149"
+       },
+       {
+        "name": "X31:6",
+        "point": "P154"
+       },
+       {
+        "name": "XCS41:12/B6",
+        "point": "P156"
+       },
+       {
+        "name": "XT31:403",
+        "point": "P174"
+       },
+       {
+        "name": "X31:8",
+        "point": "P178"
+       },
+       {
+        "name": "XCS41:16/B8",
+        "point": "P180"
+       },
+       {
+        "name": "XT71:358",
+        "point": "P191"
+       },
+       {
+        "name": "X71:7",
+        "point": "P193"
+       },
+       {
+        "name": "XT71:404",
+        "point": "P203"
+       },
+       {
+        "name": "X71:4",
+        "point": "P204"
+       },
+       {
+        "name": "XCS41:13/A7",
+        "point": "P206"
+       },
+       {
+        "name": "XT71:405",
+        "point": "P234"
+       },
+       {
+        "name": "X71:5",
+        "point": "P239"
+       },
+       {
+        "name": "XCS41:17/A9",
+        "point": "P241"
+       },
+       {
+        "name": "X85:37",
+        "point": "P259"
+       }
+      ]
+     },
+     {
+      "id": "A1",
+      "name": "NC",
+      "kind": "PLC input unit",
+      "symbol": "NC(A1)",
+      "region": "A1",
+      "purpose": {
+       "value": "PLC入力",
+       "basis": "inferred",
+       "evidence": [
+        "X0.xxのアドレスと各入力コメントが記載されている"
+       ]
+      },
+      "elements": [],
+      "terminals": []
+     }
+    ],
+    "plc_io": [
+     {
+      "address": "X0.00",
+      "direction": "input",
+      "port": "A1:X0.00",
+      "point": "P22",
+      "device": "SQ1",
+      "comment": "X AXIS ZERO RETURN DEC LS"
+     },
+     {
+      "address": "X0.01",
+      "direction": "input",
+      "port": "A1:X0.01",
+      "point": "P40",
+      "device": "SQ2",
+      "comment": "Y AXIS ZERO RETURN DEC LS"
+     },
+     {
+      "address": "X0.02",
+      "direction": "input",
+      "port": "A1:X0.02",
+      "point": "P62",
+      "device": "SQ3",
+      "comment": "Z AXIS ZERO RETURN DEC LS"
+     },
+     {
+      "address": "X0.04",
+      "direction": "input",
+      "port": "A1:X0.04",
+      "point": "P89",
+      "device": "SQ4",
+      "comment": "+X AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.08",
+      "direction": "input",
+      "port": "A1:X0.08",
+      "point": "P118",
+      "device": "SQ5",
+      "comment": "−X AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.05",
+      "direction": "input",
+      "port": "A1:X0.05",
+      "point": "P155",
+      "device": "SQ6",
+      "comment": "+Y AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.09",
+      "direction": "input",
+      "port": "A1:X0.09",
+      "point": "P179",
+      "device": "SQ7",
+      "comment": "−Y AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.06",
+      "direction": "input",
+      "port": "A1:X0.06",
+      "point": "P205",
+      "device": "SQ8",
+      "comment": "+Z AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.10",
+      "direction": "input",
+      "port": "A1:X0.10",
+      "point": "P240",
+      "device": "SQ9",
+      "comment": "−Z AXIS OVERTRAVEL LS"
+     }
+    ],
+    "open_ends": [],
+    "conventions": [],
+    "cross_references": [
+     {
+      "text": "0700/23",
+      "kind": "continuation",
+      "component": null,
+      "target_sheet": "0700",
+      "target_line": 23,
+      "target_page": null
+     }
+    ],
+    "tables": [],
+    "unresolved": [
+     {
+      "what": "図面集で参照される頁番号と頁名の対応",
+      "reason": "この頁のタイトル欄はAXIS LSを示すが、図面集全体の頁番号対応を確定できなかった。"
+     }
+    ],
+    "needs_review": [
+     {
+      "what": "現場接点の接点形式と端点対応",
+      "reason": "接点記号の開閉状態と機械連動要素の線追跡を一意に割り当てられない。",
+      "ref": "SQ1–SQ9"
+     }
+    ]
+   }
+  }
+ }
+]

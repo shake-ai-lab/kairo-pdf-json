@@ -1,0 +1,543 @@
+{
+ "gate_pass": false,
+ "all_match": false,
+ "nets": {
+  "gt": 13,
+  "ai": 12,
+  "exact": 0,
+  "split": [
+   [
+    "A1:X0.00",
+    "SQ1:b.2",
+    "X01:12",
+    "X31:10",
+    "X51:16",
+    "XCS41:7/A4",
+    "XT31:420"
+   ],
+   [
+    "SQ1:b.1",
+    "SQ2:b.1",
+    "SQ3:b.1",
+    "SQ4:a.1",
+    "SQ4:b.1",
+    "SQ5:a.1",
+    "SQ5:b.1",
+    "SQ6:a.1",
+    "SQ6:b.1",
+    "SQ7:a.1",
+    "SQ7:b.1",
+    "SQ8:a.1",
+    "SQ8:b.1",
+    "SQ9:a.1",
+    "SQ9:b.1",
+    "rail:1L+"
+   ],
+   [
+    "A1:X0.01",
+    "SQ2:b.2",
+    "X01:28",
+    "X31:11",
+    "XCS41:8/B4",
+    "XT31:421"
+   ],
+   [
+    "A1:X0.02",
+    "SQ3:b.2",
+    "X01:44",
+    "X71:8",
+    "XCS41:9/A5",
+    "XT71:422"
+   ],
+   [
+    "A1:X0.09",
+    "SQ7:b.2",
+    "X01:2",
+    "X31:8",
+    "XCS41:16/B8",
+    "XT31:403"
+   ]
+  ],
+  "merge": [
+   [
+    "SQ1:b.1",
+    "X01:12",
+    "X31:10",
+    "X51:16",
+    "XCS41:7/A4",
+    "XT31:420"
+   ],
+   [
+    "SQ1:b.2",
+    "SQ2:b.2",
+    "SQ3:b.2",
+    "SQ4:a.1",
+    "SQ4:b.1",
+    "SQ5:a.1",
+    "SQ5:b.1",
+    "SQ6:a.1",
+    "SQ6:b.1",
+    "SQ7:a.1",
+    "SQ7:b.1",
+    "SQ8:a.1",
+    "SQ8:b.1",
+    "SQ9:a.1",
+    "SQ9:b.1",
+    "rail:1L+"
+   ],
+   [
+    "SQ2:b.1",
+    "X01:28",
+    "X31:11",
+    "XCS41:8/B4",
+    "XT31:421"
+   ],
+   [
+    "SQ3:b.1",
+    "X01:44",
+    "X71:8",
+    "XCS41:9/A5",
+    "XT71:422"
+   ],
+   [
+    "KA4:1",
+    "R4:1",
+    "SQ4:a.2",
+    "SQ5:a.2",
+    "SQ6:a.2",
+    "SQ7:a.2",
+    "SQ7:b.2",
+    "SQ8:a.2",
+    "SQ9:a.2",
+    "X31:9",
+    "X51:13",
+    "X71:7",
+    "X85:37",
+    "XT31:358",
+    "XT71:358"
+   ]
+  ],
+  "misconnected": [
+   "SQ1:b.1",
+   "SQ1:b.2",
+   "SQ2:b.1",
+   "SQ2:b.2",
+   "SQ3:b.1",
+   "SQ3:b.2",
+   "SQ7:b.2"
+  ],
+  "missing_points": [
+   "A1:X0.00",
+   "A1:X0.01",
+   "A1:X0.02",
+   "A1:X0.04",
+   "A1:X0.05",
+   "A1:X0.06",
+   "A1:X0.08",
+   "A1:X0.09",
+   "A1:X0.10",
+   "HL4:1",
+   "R4:2",
+   "V4:1",
+   "V4:2",
+   "rail:1M"
+  ],
+  "unmapped_ai_ports": [
+   "A1:X0.00",
+   "A1:X0.01",
+   "A1:X0.02",
+   "A1:X0.04",
+   "A1:X0.05",
+   "A1:X0.06",
+   "A1:X0.08",
+   "A1:X0.09",
+   "A1:X0.10"
+  ]
+ },
+ "port_names": {
+  "total": 92,
+  "wrong": [
+   [
+    "SQ1:b.1",
+    [
+     "SQ1:b.2"
+    ]
+   ],
+   [
+    "SQ1:b.2",
+    [
+     "SQ1:b.1"
+    ]
+   ],
+   [
+    "A1:X0.00",
+    []
+   ],
+   [
+    "SQ2:b.1",
+    [
+     "SQ2:b.2"
+    ]
+   ],
+   [
+    "SQ2:b.2",
+    [
+     "SQ2:b.1"
+    ]
+   ],
+   [
+    "A1:X0.01",
+    []
+   ],
+   [
+    "SQ3:b.1",
+    [
+     "SQ3:b.2"
+    ]
+   ],
+   [
+    "SQ3:b.2",
+    [
+     "SQ3:b.1"
+    ]
+   ],
+   [
+    "A1:X0.02",
+    []
+   ],
+   [
+    "A1:X0.04",
+    []
+   ],
+   [
+    "A1:X0.08",
+    []
+   ],
+   [
+    "A1:X0.05",
+    []
+   ],
+   [
+    "SQ7:a.1",
+    [
+     "SQ7:b.1"
+    ]
+   ],
+   [
+    "SQ7:a.2",
+    [
+     "SQ7:b.2"
+    ]
+   ],
+   [
+    "SQ7:b.2",
+    []
+   ],
+   [
+    "A1:X0.09",
+    []
+   ],
+   [
+    "A1:X0.06",
+    []
+   ],
+   [
+    "A1:X0.10",
+    []
+   ],
+   [
+    "V4:1",
+    []
+   ],
+   [
+    "V4:2",
+    []
+   ],
+   [
+    "R4:2",
+    []
+   ]
+  ],
+  "position_off": [
+   "SQ7:b.1",
+   "KA4:1",
+   "KA4:12"
+  ]
+ },
+ "elements": {
+  "gt": 19,
+  "found": 15,
+  "kind_ok": 15,
+  "contact_total": 15,
+  "contact_ok": 13,
+  "rows": [
+   {
+    "gt": "SQ1.b",
+    "ai": "SQ1.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ2.b",
+    "ai": "SQ2.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ3.b",
+    "ai": "SQ3.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ4.a",
+    "ai": "SQ4.a",
+    "kind_ok": true,
+    "contact_gt": "a",
+    "contact_ai": "a"
+   },
+   {
+    "gt": "SQ4.b",
+    "ai": "SQ4.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ5.a",
+    "ai": "SQ5.a",
+    "kind_ok": true,
+    "contact_gt": "a",
+    "contact_ai": "a"
+   },
+   {
+    "gt": "SQ5.b",
+    "ai": "SQ5.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ6.a",
+    "ai": "SQ6.a",
+    "kind_ok": true,
+    "contact_gt": "a",
+    "contact_ai": "a"
+   },
+   {
+    "gt": "SQ6.b",
+    "ai": "SQ6.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ7.a",
+    "ai": "SQ7.b",
+    "kind_ok": true,
+    "contact_gt": "a",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ7.b",
+    "ai": null,
+    "kind_ok": false,
+    "contact_gt": "b",
+    "contact_ai": null
+   },
+   {
+    "gt": "SQ8.a",
+    "ai": "SQ8.a",
+    "kind_ok": true,
+    "contact_gt": "a",
+    "contact_ai": "a"
+   },
+   {
+    "gt": "SQ8.b",
+    "ai": "SQ8.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "SQ9.a",
+    "ai": "SQ9.a",
+    "kind_ok": true,
+    "contact_gt": "a",
+    "contact_ai": "a"
+   },
+   {
+    "gt": "SQ9.b",
+    "ai": "SQ9.b",
+    "kind_ok": true,
+    "contact_gt": "b",
+    "contact_ai": "b"
+   },
+   {
+    "gt": "KA4.coil",
+    "ai": "KA4.coil",
+    "kind_ok": true,
+    "contact_gt": null,
+    "contact_ai": null
+   },
+   {
+    "gt": "V4.body",
+    "ai": null,
+    "kind_ok": false,
+    "contact_gt": null,
+    "contact_ai": null
+   },
+   {
+    "gt": "R4.body",
+    "ai": null,
+    "kind_ok": false,
+    "contact_gt": null,
+    "contact_ai": null
+   },
+   {
+    "gt": "HL4.body",
+    "ai": null,
+    "kind_ok": false,
+    "contact_gt": null,
+    "contact_ai": null
+   }
+  ],
+  "extra": [
+   "R4.body",
+   "HL4.body"
+  ]
+ },
+ "components": {
+  "gt": 23,
+  "ai": 22,
+  "missing": [
+   "V4"
+  ],
+  "extra": []
+ },
+ "plc_io": {
+  "total": 9,
+  "port_ok": 0,
+  "device_ok": 9
+ },
+ "circuits": {
+  "gt": 10,
+  "ai": 0,
+  "same": 0,
+  "same_shape": 0,
+  "gt_only": [
+   "1L+ → SQ1 b接点 → [420] → X0.00（PLC 入力）",
+   "1L+ → SQ2 b接点 → [421] → X0.01（PLC 入力）",
+   "1L+ → SQ3 b接点 → [422] → X0.02（PLC 入力）",
+   "1L+ → SQ4 b接点 → [400] → X0.04（PLC 入力）",
+   "1L+ → SQ5 b接点 → [401] → X0.08（PLC 入力）",
+   "1L+ → SQ6 b接点 → [402] → X0.05（PLC 入力）",
+   "1L+ → SQ7 b接点 → [403] → X0.09（PLC 入力）",
+   "1L+ → SQ8 b接点 → [404] → X0.06（PLC 入力）",
+   "1L+ → SQ9 b接点 → [405] → X0.10（PLC 入力）",
+   "1L+ → （SQ4 a接点 ∥ SQ5 a接点 ∥ SQ6 a接点 ∥ SQ7 a接点 ∥ SQ8 a接点 ∥ SQ9 a接点） → [358] → （KA4 コイル ∥ V4 ダイオード ∥ （R4 抵抗 → [R4–HL4] → HL4 表示灯）） → 1M"
+  ],
+  "ai_only": []
+ },
+ "open_ends": {
+  "gt": 5,
+  "ai": 0,
+  "same": 0
+ },
+ "sheet_id": {
+  "gt": "0650",
+  "ai": "676 001 4070 1,0"
+ },
+ "purposes": [
+  {
+   "id": "KA4",
+   "gt": "AXIS OVERTRAVEL（軸の行き過ぎ）",
+   "ai": null,
+   "ai_basis": null
+  },
+  {
+   "id": "SQ1",
+   "gt": "X AXIS ZERO RETURN DEC LS（X軸 原点復帰の減速用のリミットスイッチ）",
+   "ai": null,
+   "ai_basis": null
+  },
+  {
+   "id": "SQ2",
+   "gt": "Y AXIS ZERO RETURN DEC LS（Y軸 原点復帰の減速用のリミットスイッチ）",
+   "ai": null,
+   "ai_basis": null
+  },
+  {
+   "id": "SQ3",
+   "gt": "Z AXIS ZERO RETURN DEC LS（Z軸 原点復帰の減速用のリミットスイッチ）",
+   "ai": null,
+   "ai_basis": null
+  },
+  {
+   "id": "SQ4",
+   "gt": "+X AXIS OVERTRAVEL LS（+X軸 行き過ぎ検出のリミットスイッチ）",
+   "ai": null,
+   "ai_basis": null
+  },
+  {
+   "id": "SQ5",
+   "gt": "-X AXIS OVERTRAVEL LS（-X軸 行き過ぎ検出のリミットスイッチ）",
+   "ai": null,
+   "ai_basis": null
+  },
+  {
+   "id": "SQ6",
+   "gt": "+Y AXIS OVERTRAVEL LS（+Y軸 行き過ぎ検出のリミットスイッチ）",
+   "ai": null,
+   "ai_basis": null
+  },
+  {
+   "id": "SQ7",
+   "gt": "-Y AXIS OVERTRAVEL LS（-Y軸 行き過ぎ検出のリミットスイッチ）",
+   "ai": null,
+   "ai_basis": null
+  },
+  {
+   "id": "SQ8",
+   "gt": "+Z AXIS OVERTRAVEL LS（+Z軸 行き過ぎ検出のリミットスイッチ）",
+   "ai": null,
+   "ai_basis": null
+  },
+  {
+   "id": "SQ9",
+   "gt": "-Z AXIS OVERTRAVEL LS（-Z軸 行き過ぎ検出のリミットスイッチ）",
+   "ai": null,
+   "ai_basis": null
+  }
+ ],
+ "needs_review": [
+  {
+   "what": "PLC internal address symbol endpoint points.",
+   "reason": "The selected points are at the internal address symbols; automated tracing reports no further connected ports for these selections.",
+   "ref": "A1:X0.00–X0.10"
+  },
+  {
+   "what": "Contact endpoint assignments for mechanically linked switches SQ4–SQ9.",
+   "reason": "The net preview combines contact terminals across linked switch branches; endpoint classification needs visual confirmation.",
+   "ref": "SQ4–SQ9"
+  },
+  {
+   "what": "Lower relay, resistor, lamp and diode circuit.",
+   "reason": "The R4 endpoints are unresolved, and the selected HL4 endpoint does not trace to another port; preview did not build a circuit path.",
+   "ref": "Rows 23–25"
+  }
+ ],
+ "unresolved": [
+  {
+   "what": "PLC input symbol endpoint mapping and lower R4/HL4 branch terminal mapping.",
+   "reason": "Automated graph checking did not find connected PLC input points for the listed endpoint selections, and the R4 symbol port points could not be assigned to two distinct reachable points."
+  }
+ ],
+ "assemble_problems": [
+  "点 P286 に2つの名前があります（R4:1 と R4:2）"
+ ],
+ "page_schema_errors": []
+}

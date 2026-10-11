@@ -1,0 +1,55 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ruff_cache/
+.pytest_cache/
+
+# Claude Code（個人設定）
+.claude/settings.local.json
+
+# 社外秘（実在の会社の図面の写真）— 絶対に登録しない
+docs/reference/
+
+# 再配布できない・利用条件が不明なサンプルと、そこから作った画像やデータ
+samples/**/*.pdf
+samples/**/*.jpg
+samples/**/*.png
+# 図面から作ったデータ・確認ページ・候補の図面のページは入れない（kairo fetch / extract で作り直せる）
+samples/derived/
+samples/candidates/*
+!samples/candidates/manifest.yaml
+docs/vector-pdf/
+
+# 実行記録：最新の実験（2026-10-11、Python の道具ありと Codex の道具ありのやり直し）の
+# 答え・採点・AI が書いた Python だけを入れる。入力一式（ページ画像など）と AI とのやり取りの全記録は入れない
+runs/*
+!runs/20261011-225820_c6_mazak_stx510_p076_gpt-6-luna/
+!runs/20261011-230232_c6_mazak_stx510_p076_claude-sonnet-5-5/
+!runs/20261011-230232_c6_mazak_stx510_p076_gpt-6.1-sol/
+!runs/20261011-230744_c6_mazak_stx510_p076_claude-opus-5-5/
+!runs/20261011-230748_c6_mazak_stx510_p076_claude-sonnet-5-5/
+!runs/20261011-230750_c6_mazak_stx510_p076_gpt-6-astra/
+!runs/20261011-230753_c6_mazak_stx510_p076_gpt-6.1-sol/
+!runs/20261011-230756_c6_mazak_stx510_p076_gpt-6-luna/
+!runs/20261011-230807_c6_mazak_stx510_p076_gpt-6-astra/
+!runs/20261011-230809_c6_mazak_stx510_p076_gpt-6.1-sol/
+!runs/20261011-230813_c6_mazak_stx510_p076_gpt-6-luna/
+!runs/20261011-230922_c6_mazak_stx510_p076_gpt-6-luna/
+!runs/20261011-231014_c6_mazak_stx510_p076_claude-sonnet-5-5/
+!runs/20261011-231107_c6_mazak_stx510_p076_gpt-6-luna/
+!runs/20261011-231114_c6_mazak_stx510_p076_claude-opus-5-5/
+!runs/20261011-231139_c6_mazak_stx510_p076_gpt-6-luna/
+!runs/20261011-231159_c6_mazak_stx510_p076_claude-sonnet-5-5/
+!runs/20261011-231316_c6_mazak_stx510_p076_gpt-6-astra/
+!runs/20261011-231323_c6_mazak_stx510_p076_gpt-6-astra/
+!runs/20261011-231333_c6_mazak_stx510_p076_gpt-6.1-sol/
+!runs/20261011-231337_c6_mazak_stx510_p076_gpt-6.1-sol/
+!runs/20261011-231409_c6_mazak_stx510_p076_claude-opus-5-5/
+!runs/20261011-231415_c6_mazak_stx510_p076_gpt-6-luna/
+!runs/20261011-231757_c6_mazak_stx510_p076_gpt-6-astra/
+!runs/20261011-231800_c6_mazak_stx510_p076_gpt-6-astra/
+!runs/20261011-231921_c6_mazak_stx510_p076_gpt-6.1-sol/
+!runs/20261011-231945_c6_mazak_stx510_p076_gpt-6.1-sol/
+runs/*/input/
+runs/*/transcript.jsonl

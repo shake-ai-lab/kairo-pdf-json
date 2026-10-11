@@ -1,0 +1,582 @@
+<title>組立設備の回路図イメージ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&family=BIZ+UDPGothic:wght@400;700&display=swap">
+<style>
+/* Layout: header → sheet index rail + drawing viewer → reading notes beside JSON excerpt → comparison checklist */
+:root{
+  --bg:#eef1f3; --surface:#ffffff; --fg:#161b21; --muted:#56616d; --line:#cdd5dc;
+  --accent:#0b6a86; --accent-soft:#dcedf3;
+  --mark:#c4410f; --on-mark:#ffffff;
+  --paper:#ffffff; --ink:#15191e; --ink-soft:#2f6580; --grid:#8e9ba6;
+  --code-bg:#f6f8f9;
+  --font-ui:"BIZ UDPGothic","Yu Gothic UI","Meiryo",system-ui,sans-serif;
+  --font-cad:"BIZ UDGothic","MS Gothic","Osaka-Mono",monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1215; --surface:#151b20; --fg:#e4e9ed; --muted:#97a3ae; --line:#2a333b;
+    --accent:#5cc5e0; --accent-soft:#16333f;
+    --mark:#ff8a4c; --on-mark:#1a0d05;
+    --paper:#05080a; --ink:#e6eef2; --ink-soft:#7fd0e3; --grid:#566470;
+    --code-bg:#0f1418; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1215; --surface:#151b20; --fg:#e4e9ed; --muted:#97a3ae; --line:#2a333b;
+  --accent:#5cc5e0; --accent-soft:#16333f;
+  --mark:#ff8a4c; --on-mark:#1a0d05;
+  --paper:#05080a; --ink:#e6eef2; --ink-soft:#7fd0e3; --grid:#566470;
+  --code-bg:#0f1418; color-scheme:dark;
+}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-ui);font-size:15px;line-height:1.75}
+.wrap{max-width:1360px;margin:0 auto;padding-inline:16px;padding-block:32px 64px;display:grid;gap:28px}
+h1,h2{text-wrap:balance;margin:0;line-height:1.35}
+h1{font-size:clamp(24px,3.2vw,32px);font-weight:700;letter-spacing:.01em}
+h2{font-size:17px;font-weight:700}
+p{margin:0}
+.eyebrow{font-family:var(--font-cad);font-size:12px;letter-spacing:.08em;color:var(--accent)}
+.head{display:grid;gap:12px;max-width:72ch}
+.lead{color:var(--fg)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:4px 0 0;list-style:none}
+.chips li{font-size:13px;padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--muted)}
+.chips li b{color:var(--fg);font-weight:700}
+
+.viewer{display:grid;grid-template-columns:230px minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:960px){.viewer{grid-template-columns:minmax(0,1fr)}}
+.index{display:grid;gap:10px}
+.index ol{list-style:none;margin:0;padding:0;display:grid;gap:2px;border-top:1px solid var(--line)}
+.index li{display:flex;align-items:baseline;gap:10px;padding:6px 8px;font-size:14px;border-bottom:1px solid var(--line);color:var(--muted)}
+.index li .no{font-family:var(--font-cad);font-size:12px;width:2.2em;text-align:right;font-variant-numeric:tabular-nums}
+.index li .na{margin-left:auto;font-size:11px;color:var(--muted);opacity:.75}
+.index li.has{padding:0}
+.index button{all:unset;cursor:pointer;display:flex;align-items:baseline;gap:10px;width:100%;padding:6px 8px;color:var(--fg);font-size:14px;border-radius:4px}
+.index button:hover{background:var(--accent-soft)}
+.index button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.index button[aria-current="true"]{background:var(--accent);color:var(--surface);font-weight:700}
+.index button[aria-current="true"] .no{color:inherit}
+.index .hint{font-size:12px;color:var(--muted)}
+@media (max-width:960px){
+  .index ol{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));border-top:none;gap:4px}
+  .index li{border:1px solid var(--line);border-radius:4px}
+}
+
+.sheetbox{background:var(--surface);border:1px solid var(--line);border-radius:6px;min-width:0;overflow:hidden}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)}
+.toolbar .name{font-weight:700;margin-right:auto}
+.toolbar .name small{font-family:var(--font-cad);font-weight:400;color:var(--muted);margin-right:8px}
+.toolbar label{display:inline-flex;gap:6px;align-items:center;font-size:13px;color:var(--muted);cursor:pointer}
+.toolbar input{accent-color:var(--accent)}
+.scroll{overflow-x:auto;background:var(--paper)}
+.sheet{display:block;width:100%;height:auto;background:var(--paper)}
+.zoom .sheet{width:1700px;max-width:none}
+
+.sheet text{font-family:var(--font-cad);fill:var(--ink)}
+.sheet .w{stroke:var(--ink);stroke-width:1.5;fill:none;stroke-linejoin:round}
+.sheet .w1{stroke:var(--ink);stroke-width:1;fill:none}
+.sheet .wb{stroke:var(--ink);stroke-width:2.4;fill:none}
+.sheet .dash{stroke-dasharray:5 4}
+.sheet .w.fi{fill:var(--ink)}
+.sheet .tm{fill:var(--paper);stroke:var(--ink);stroke-width:1.3}
+.sheet .dot{fill:var(--ink)}
+.sheet .t{font-size:12px}
+.sheet .ts{font-size:10px}
+.sheet .tc{font-size:10.5px}
+.sheet .tb{font-size:13px;font-weight:700}
+.sheet .tbs{font-size:11px;font-weight:700}
+.sheet .tp{font-size:11px;font-weight:700}
+.sheet .tw{font-size:10px;fill:var(--ink-soft)}
+.sheet .tx{font-size:10.5px;font-weight:700;fill:var(--ink-soft)}
+.sheet .th{font-size:17px;font-weight:700}
+.sheet .tr{font-size:8.5px;font-weight:700}
+.sheet .tz{font-size:10px;fill:var(--grid)}
+.sheet .mk circle{fill:var(--mark);stroke:var(--paper);stroke-width:2}
+.sheet .mk text{fill:var(--on-mark);font-family:var(--font-ui);font-size:12px;font-weight:700}
+.hide-marks .mk{display:none}
+
+.detail{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:960px){.detail{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px;display:grid;gap:12px;min-width:0}
+.panel .sub{font-size:13px;color:var(--muted)}
+.notes{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.notes li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:10px;align-items:start}
+.badge{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--mark);color:var(--on-mark);font-size:12px;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums}
+pre.json{margin:0;font-family:var(--font-cad);font-size:12.5px;line-height:1.6;background:var(--code-bg);border:1px solid var(--line);border-radius:6px;padding:14px 16px;overflow:auto;max-height:560px;color:var(--fg)}
+pre.json .k{color:var(--accent)}
+
+.check ol{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px 24px}
+.check li{display:grid;gap:2px;padding-top:10px;border-top:1px solid var(--line)}
+.check li b{font-size:14px}
+.check li span{font-size:14px;color:var(--muted)}
+footer{font-size:12px;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.index button{transition:background .15s}}
+</style>
+
+<div class="wrap">
+  <header class="head">
+    <p class="eyebrow">kairo-pdf-json ・ サンプル選定の前提確認</p>
+    <h1>組立設備の回路図イメージ</h1>
+    <p class="lead">制御盤の電気図面を想定して描いた、説明用の架空の図面です。非常停止とライトカーテンを含む安全回路、PLCの入力と出力、I/O割付表を描きました。実図面と比べて、似ている点と違う点を教えてください。それがそのままサンプル選びの基準になります。</p>
+    <ul class="chips">
+      <li><b>制御盤</b>の電気図面</li>
+      <li><b>JIS</b>系の記号・日本語</li>
+      <li>三菱 <b>MELSEC iQ-R</b></li>
+      <li><b>A3横</b>・列番号 1〜8</li>
+    </ul>
+  </header>
+
+  <section class="viewer">
+    <nav class="index" aria-label="図面目録">
+      <h2>図面目録（想定 12頁）</h2>
+      <ol id="idx"></ol>
+      <p class="hint">太字の頁だけイメージを描いています。それ以外の頁は、一般的な図面一式の構成として載せています。</p>
+    </nav>
+    <div class="sheetbox">
+      <div class="toolbar">
+        <span class="name" id="sheetName"></span>
+        <label for="optMarks"><input type="checkbox" id="optMarks" checked> 注釈番号を表示</label>
+        <label for="optZoom"><input type="checkbox" id="optZoom"> 拡大（横スクロール）</label>
+      </div>
+      <div class="scroll" id="scroll"><div id="svgHost"></div></div>
+    </div>
+  </section>
+
+  <section class="detail">
+    <div class="panel">
+      <h2>この頁で読み取るところ</h2>
+      <ol class="notes" id="notes"></ol>
+    </div>
+    <div class="panel">
+      <h2>JSONにするとこうなる（抜粋）</h2>
+      <p class="sub" id="jsonCap"></p>
+      <pre class="json" id="json"></pre>
+      <p class="sub">項目名は仮のものです。スキーマは Phase 2 で確定します。</p>
+    </div>
+  </section>
+
+  <section class="panel check">
+    <h2>実図面と比べてほしいところ</h2>
+    <p class="sub">分かる範囲で構いません。違いがあれば、その点を重視してサンプルを選びます。</p>
+    <ol>
+      <li><b>1. 図面の枠</b><span>上の列番号（1〜8）や、右下の表題欄はありますか？</span></li>
+      <li><b>2. 回路の向き</b><span>電源線が上下にあって回路が縦に流れる形（このイメージ）ですか？ それとも左右にあって横に流れる形ですか？</span></li>
+      <li><b>3. 他の頁への参照</b><span>「4/5」「4-5」「4.5」など、どう書かれていますか？</span></li>
+      <li><b>4. 線番</b><span>連番（211…）ですか？ PLCのアドレス（X00）ですか？ それ以外ですか？</span></li>
+      <li><b>5. 安全回路</b><span>安全リレーユニットですか？ 安全PLC（三菱のセーフティシーケンサなど）ですか？</span></li>
+      <li><b>6. PLCの描き方</b><span>ユニットが横長の箱で端子が並ぶ形ですか？ I/O割付表の頁はありますか？</span></li>
+      <li><b>7. 頁数と用紙</b><span>1セットで何頁くらいですか？ 用紙はA3横ですか？</span></li>
+      <li><b>8. 作図ツール</b><span>分かれば教えてください（ACAD-DENKI、EPLAN、AutoCAD Electrical など）。</span></li>
+    </ol>
+  </section>
+
+  <footer>記号は JIS C 0617 系を簡略化したものです。ユニットの型式は三菱 MELSEC iQ-R の例です。図面番号・設備名・日付はすべて架空です。</footer>
+</div>
+
+<script>
+(function(){
+const n=v=>Math.round(v*10)/10;
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const colOf=x=>Math.floor((x-30)/150)+1;
+const L=(x1,y1,x2,y2,c='w')=>`<line class="${c}" x1="${n(x1)}" y1="${n(y1)}" x2="${n(x2)}" y2="${n(y2)}"/>`;
+const P=(d,c='w')=>`<path class="${c}" d="${d}"/>`;
+const R=(x,y,w,h,c='w')=>`<rect class="${c}" x="${n(x)}" y="${n(y)}" width="${n(w)}" height="${n(h)}"/>`;
+const C=(x,y,r,c='w')=>`<circle class="${c}" cx="${n(x)}" cy="${n(y)}" r="${r}"/>`;
+const T=(x,y,s,c='t',a='start')=>`<text class="${c}" x="${n(x)}" y="${n(y)}" text-anchor="${a}">${esc(s)}</text>`;
+const TM=(x,y,s,c='t')=>T(x,y,s,c,'middle');
+const dot=(x,y)=>C(x,y,3,'dot');
+const term=(x,y)=>C(x,y,3.5,'tm');
+const mk=(k,x,y)=>`<g class="mk"><circle cx="${x}" cy="${y}" r="11"/><text x="${x}" y="${y+4}" text-anchor="middle">${k}</text></g>`;
+
+/* Symbols are defined horizontally (circuit from 0,0 to 50,0; actuator above).
+   'v' places them on a vertical circuit (top to bottom; actuator on the left). */
+function place(d,x,y,o,c='w'){
+  const tf=o==='v'?`matrix(0 1 1 0 ${x} ${y})`:`translate(${x} ${y})`;
+  return `<path class="${c}" d="${d}" transform="${tf}"/>`;
+}
+const SY={
+  no:'M0 0H17M17 0L34 -10M33 0H50',
+  nc:'M0 0H17M17 0L36 -10M33 0V-12M33 0H50',
+  coil:'M0 0H15M35 0H50M15 -8H35V8H15Z',
+  sv:'M0 0H15M35 0H50M15 -8H35V8H15ZM15 8L35 -8',
+  lamp:'M0 0H16M34 0H50M16 0A9 9 0 1 0 34 0A9 9 0 1 0 16 0M18.6 -6.4L31.4 6.4M18.6 6.4L31.4 -6.4'
+};
+function contact(x,y,o,opt={}){
+  const nc=!!opt.nc, m=nc?26:25;
+  let s=place(nc?SY.nc:SY.no,x,y,o);
+  if(opt.act==='push') s+=place(`M${m} -5V-18`,x,y,o,'w dash')+place(`M${m-6} -18V-22H${m+6}V-18`,x,y,o);
+  if(opt.act==='mush') s+=place(`M${m} -5V-16`,x,y,o,'w dash')+place(`M${m-8} -16A8 8 0 0 1 ${m+8} -16Z`,x,y,o,'w fi');
+  if(opt.act==='ls')   s+=place('M22 -11H28L25 -5Z',x,y,o);
+  if(opt.act==='sel')  s+=place(`M${m} -5V-18`,x,y,o,'w dash')+place(`M${m-6} -18H${m}V-24H${m+6}`,x,y,o);
+  return s;
+}
+function xout(x,y,ref,sub){return P(`M${x-6} ${y}H${x+6}L${x} ${y+10}Z`)+TM(x,y+25,ref,'tx')+(sub?TM(x,y+39,sub,'ts'):'');}
+function xin(x,y,ref,sub){return P(`M${x-6} ${y}H${x+6}L${x} ${y+10}Z`)+TM(x,y-6,ref,'tx')+(sub?TM(x,y-20,sub,'ts'):'');}
+function revTri(x,y){return P(`M${x-12} ${y+10}L${x} ${y-11}L${x+12} ${y+10}Z`,'w1')+TM(x,y+6,'B','tbs');}
+function revSmall(x,y){return P(`M${x-8} ${y+8}L${x} ${y-7}L${x+8} ${y+8}Z`,'w1')+TM(x,y+6,'B','tr');}
+
+function frame(no,title){
+  let s=R(10,10,1240,871,'w1')+R(30,30,1200,831,'wb')+L(30,46,1230,46,'w1');
+  for(let i=1;i<=8;i++){ if(i<8) s+=L(30+150*i,30,30+150*i,46,'w1'); s+=TM(30+150*i-75,42,String(i),'tz'); }
+  // 改訂履歴
+  s+=R(30,801,440,60,'w1')+L(30,817,470,817,'w1')+L(30,839,470,839,'w1');
+  for(const x of [70,160,420]) s+=L(x,801,x,861,'w1');
+  s+=TM(50,813,'改訂','ts')+TM(115,813,'日付','ts')+TM(290,813,'内容','ts')+TM(445,813,'担当','ts');
+  s+=TM(50,833,'A','ts')+TM(115,833,'2026-04-12','ts')+T(168,833,'初版','ts')+TM(445,833,'—','ts');
+  s+=revSmall(50,851)+TM(115,855,'2026-07-03','ts')+T(168,855,'ライトカーテン LC1 追加（4・7・9頁）','ts')+TM(445,855,'—','ts');
+  // 表題欄
+  s+=R(760,771,470,90,'wb')+L(760,801,1110,801,'w1')+L(760,831,1230,831,'w1')+L(840,771,840,861,'w1')+L(1110,771,1110,831,'w1');
+  s+=L(1150,771,1150,831,'w1')+L(1190,771,1190,831,'w1')+L(1110,787,1230,787,'w1');
+  for(const x of [990,1040,1080,1130]) s+=L(x,831,x,861,'w1');
+  s+=T(768,790,'設備名','ts')+T(848,791,'組立設備（架空）','t');
+  s+=T(768,820,'図面名','ts')+T(848,823,title,'th');
+  s+=T(768,850,'図番','ts')+T(848,851,'E-2026-0412','t');
+  s+=T(998,850,'改訂','ts')+TM(1060,852,'B','tb')+T(1088,850,'頁','ts')+TM(1180,852,`${no} / 12`,'tb');
+  s+=TM(1130,783,'作成','ts')+TM(1170,783,'検図','ts')+TM(1210,783,'承認','ts');
+  s+=TM(1130,813,'07/03','ts')+TM(1170,813,'07/05','ts')+TM(1210,813,'07/08','ts');
+  s+=T(36,792,'説明用の架空図面（実在の設備・会社とは関係ありません）','tz');
+  return s;
+}
+
+const xIn=i=>100+68*i;
+
+/* ---------- 4頁 安全回路 ---------- */
+function sheet4(){
+  let s='';
+  const LX=80;
+  [[230,262,'11','12',['211','212','213']],[300,332,'21','22',['221','222','223']]].forEach(([yA,yB,t1,t2,w],k)=>{
+    const act=k===0?'mush':null;
+    s+=L(430,yA,360,yA)+contact(310,yA,'h',{nc:true,act})+L(310,yA,220,yA)+contact(170,yA,'h',{nc:true,act})
+      +L(170,yA,LX,yA)+L(LX,yA,LX,yB)+L(LX,yB,430,yB);
+    for(const cx of [170,310]) s+=TM(cx+12,yA+14,t1,'ts')+TM(cx+40,yA+14,t2,'ts');
+    s+=TM(395,yA-6,w[0],'tw')+TM(265,yA-6,w[1],'tw')+TM(125,yA-6,w[2],'tw');
+  });
+  s+=L(196,225,196,295,'w dash')+L(336,225,336,295,'w dash');
+  s+=TM(196,182,'操作盤','ts')+TM(196,196,'EMS1','tbs')+TM(336,182,'ライン側','ts')+TM(336,196,'EMS2','tbs');
+  // リセット＋フィードバック（EDM）
+  s+=L(430,380,370,380)+contact(320,380,'h',{nc:true})+L(320,380,270,380)+contact(220,380,'h',{nc:true})
+    +L(220,380,160,380)+contact(110,380,'h',{act:'push'})+L(110,380,LX,380)+L(LX,380,LX,412)+L(LX,412,430,412);
+  s+=TM(346,360,`KM1 (4/${colOf(705)})`,'ts')+TM(246,360,`KM2 (4/${colOf(855)})`,'ts')+TM(135,402,'RST リセット','ts');
+  s+=TM(400,374,'231','tw')+TM(295,374,'232','tw')+TM(190,374,'233','tw')+TM(300,406,'234','tw');
+  // SRU1
+  s+=R(430,150,170,280);
+  for(const [y,lb] of [[230,'S11'],[262,'S12'],[300,'S21'],[332,'S22'],[380,'S33'],[412,'S34']]) s+=term(430,y)+T(440,y+4,lb,'ts');
+  s+=L(515,150,515,124)+term(515,150)+TM(515,118,'P24','tp')+T(521,166,'A1','ts');
+  s+=L(515,430,515,452)+term(515,430)+TM(515,466,'N24','tp')+T(521,424,'A2','ts');
+  s+=TM(515,192,'SRU1','tb')+TM(515,207,'安全リレーユニット','ts')+TM(515,220,'（非常停止用）','ts');
+  s+=T(505,284,'接点の位置','ts')+L(505,289,592,289,'w1')
+    +T(505,304,`13-14  4/${colOf(705)}`,'ts')+T(505,320,`23-24  4/${colOf(855)}`,'ts')+T(505,336,`41-42  4/${colOf(960)}`,'ts');
+  // 右側：出力回路（縦）
+  s+=T(634,94,'P24','tp')+L(660,90,1210,90,'wb')+T(634,704,'N24','tp')+L(660,700,1210,700,'wb');
+  const vcol=(x,a,b,cn,cs,w1,w2,tbl)=>{
+    let r=dot(x,90)+L(x,90,x,140)+contact(x,140,'v')+T(x+15,160,a[0],'tbs')+T(x+15,174,a[1],'ts')
+      +L(x,190,x,250)+T(x+7,224,w1,'tw')
+      +contact(x,250,'v')+T(x+15,270,b[0],'tbs')+T(x+15,284,b[1],'ts')
+      +L(x,300,x,380)+T(x+7,344,w2,'tw')
+      +place(SY.coil,x,380,'v')+T(x+17,402,cn,'tb')+T(x+17,417,cs,'ts')
+      +L(x,430,x,700)+dot(x,700);
+    tbl.forEach((t,i)=>{r+=T(x+9,470+16*i,t,'ts');});
+    return r;
+  };
+  s+=vcol(705,['SRU1','13-14'],['SRU2','13-14'],'KM1','安全コンタクタ','251','252',[`a 13-14  4/${colOf(1155)}`,`b 21-22  4/${colOf(345)}`]);
+  s+=vcol(855,['SRU1','23-24'],['SRU2','23-24'],'KM2','安全コンタクタ','253','254',[`a 13-14  4/${colOf(1155)}`,`b 21-22  4/${colOf(245)}`]);
+  const aux=(x,dev,w,ref,sub)=>dot(x,90)+L(x,90,x,140)+contact(x,140,'v',{nc:true})+T(x+15,160,dev,'tbs')+T(x+15,174,'41-42','ts')
+    +L(x,190,x,290)+T(x+7,244,w,'tw')+xout(x,290,ref,sub);
+  s+=aux(960,'SRU1','261',`7/${colOf(xIn(3))}`,'X03');
+  s+=aux(1050,'SRU2','262',`7/${colOf(xIn(4))}`,'X04');
+  s+=dot(1155,90)+L(1155,90,1155,140)+contact(1155,140,'v')+T(1170,160,'KM1','tbs')+T(1170,174,'13-14','ts')
+    +L(1155,190,1155,250)+T(1162,224,'271','tw')+contact(1155,250,'v')+T(1170,270,'KM2','tbs')+T(1170,284,'13-14','ts')
+    +L(1155,300,1155,390)+T(1162,344,'P24S','tp')+xout(1155,390,`8/${colOf(1150)}`,'安全24V');
+  s+=T(650,745,'※ 非常停止・ライトカーテン遮光で KM1・KM2 が開き、P24S（PLC出力・電磁弁の電源）が切れる','ts');
+  // 左下：ライトカーテン＋SRU2
+  s+=TM(170,490,'安全ライトカーテン','ts')+TM(170,505,'LC1','tb')+revTri(312,496);
+  s+=R(70,520,44,140)+R(226,520,44,140)+TM(92,537,'投光器','ts')+TM(248,537,'受光器','ts');
+  for(const yy of [556,584,612,640]) s+=L(114,yy,220,yy,'w dash')+P(`M218 ${yy-4}L226 ${yy}L218 ${yy+4}`);
+  s+=L(78,660,78,700)+TM(78,714,'P24','tp')+L(106,660,106,700)+TM(106,714,'N24','tp');
+  s+=L(270,550,298,550)+T(302,554,'P24','tp')+TM(284,545,'茶','ts');
+  s+=L(270,580,430,580)+T(300,574,'黒 OSSD1','ts')+TM(405,574,'241','tw');
+  s+=L(270,610,430,610)+T(300,604,'白 OSSD2','ts')+TM(405,604,'242','tw');
+  s+=L(270,640,298,640)+T(302,644,'N24','tp')+TM(284,635,'青','ts');
+  s+=L(430,660,380,660)+contact(330,660,'h',{act:'push'})+L(330,660,300,660)+L(300,660,300,690)+L(300,690,430,690)
+    +TM(355,712,'RST2 遮光リセット','ts')+TM(405,654,'243','tw')+TM(405,684,'244','tw');
+  s+=R(430,520,170,200);
+  for(const [y,lb] of [[580,'T12'],[610,'T22'],[660,'S33'],[690,'S34']]) s+=term(430,y)+T(440,y+4,lb,'ts');
+  s+=L(515,520,515,500)+term(515,520)+TM(515,494,'P24','tp')+T(521,536,'A1','ts');
+  s+=L(515,720,515,740)+term(515,720)+TM(515,754,'N24','tp')+T(521,714,'A2','ts');
+  s+=TM(515,556,'SRU2','tb')+TM(515,570,'安全リレー（LC1用）','ts');
+  s+=T(505,596,'接点の位置','ts')+L(505,601,592,601,'w1')
+    +T(505,616,`13-14  4/${colOf(705)}`,'ts')+T(505,632,`23-24  4/${colOf(855)}`,'ts')+T(505,648,`41-42  4/${colOf(1050)}`,'ts');
+  s+=mk(1,150,200)+mk(2,614,300)+mk(3,414,204)+mk(4,990,305)+mk(5,128,500)+mk(6,488,830)+mk(7,745,816);
+  return s;
+}
+
+/* ---------- 7頁 PLC入力 ---------- */
+const IN=[
+  {a:'X00',d:'PB1',k:'push',sub:'緑',c:['運転準備'],name:'運転準備 押しボタン'},
+  {a:'X01',d:'PB2',k:'push',sub:'緑',c:['自動起動'],name:'自動起動 押しボタン'},
+  {a:'X02',d:'PB3',k:'pushNC',sub:'赤',c:['停止'],name:'停止 押しボタン'},
+  {a:'X03',d:'SRU1',k:'xref',from:'4/7',ct:'41-42',c:['非常停止中'],name:'非常停止中（SRU1 41-42）'},
+  {a:'X04',d:'SRU2',k:'xref',from:'4/7',ct:'41-42',c:['カーテン','遮光中'],name:'ライトカーテン遮光中（SRU2 41-42）',rev:true},
+  {a:'X05',d:'SS1',k:'sel',sub:'切替',c:['自動','選択'],name:'自動／手動 切替'},
+  {a:'X06',d:'PH1',k:'photo',c:['ワーク','有'],name:'ワーク有無 光電センサ'},
+  {a:'X07',d:'SQ1',k:'ls',c:['クランプ','前進端'],name:'クランプ前進端'},
+  {a:'X08',d:'SQ2',k:'ls',c:['クランプ','後退端'],name:'クランプ後退端'},
+  {a:'X09',d:'PX1',k:'prox',c:['リフト','上昇端'],name:'リフト上昇端'},
+  {a:'X0A',d:'PX2',k:'prox',c:['リフト','下降端'],name:'リフト下降端'},
+  {a:'X0B',d:'PS1',k:'no',sub:'圧力SW',c:['エア圧','正常'],name:'エア圧低下'},
+  {a:'X0C',k:'spare',c:['予備']},{a:'X0D',k:'spare',c:['予備']},{a:'X0E',k:'spare',c:['予備']},{a:'X0F',k:'spare',c:['予備']}
+];
+function sheet7(){
+  let s=T(36,104,'P24','tp')+L(70,100,880,100,'wb')+T(36,424,'TB1','tp');
+  let tb=1;
+  IN.forEach((d,i)=>{
+    const x=xIn(i);
+    if(d.k==='spare'){ s+=L(x,470,x,448); return; }
+    if(d.k==='xref'){ s+=xin(x,150,d.from,`${d.d} ${d.ct}`)+L(x,160,x,470)+T(x+5,330,d.a,'tw'); return; }
+    s+=dot(x,100);
+    if(d.k==='photo'||d.k==='prox'){
+      s+=L(x,100,x,190)+R(x-16,190,32,44)+TM(x,205,d.k==='photo'?'光電':'近接','ts')+P(`M${x} 213l6 7l-6 7l-6 -7Z`,'w1')
+        +L(x+16,226,x+26,226)+L(x+26,226,x+26,262)+TM(x+26,276,'N24','tp')
+        +T(x-5,160,'茶','ts','end')+T(x-5,262,'黒','ts','end')+T(x+30,248,'青','ts')
+        +T(x+20,200,d.d,'tbs')+L(x,234,x,470);
+    }else{
+      const act={push:'push',pushNC:'push',ls:'ls',sel:'sel'}[d.k]||null;
+      s+=L(x,100,x,190)+contact(x,190,'v',{nc:d.k==='pushNC',act})+L(x,240,x,470)
+        +T(x+10,212,d.d,'tbs')+(d.sub?T(x+10,226,d.sub,'ts'):'');
+    }
+    s+=term(x,420)+T(x+6,414,String(tb++),'ts')+T(x+5,330,d.a,'tw');
+  });
+  s+=revTri(410,165);
+  s+=R(70,470,1140,90,'wb');
+  IN.forEach((d,i)=>{const x=xIn(i);
+    s+=term(x,470)+TM(x,488,String(i+1),'ts')+TM(x,506,d.a,'tbs');
+    d.c.forEach((t,j)=>{s+=TM(x,584+14*j,t,'tc');});
+  });
+  s+=L(1180,470,1180,432)+term(1180,470)+TM(1180,488,'17','ts')+TM(1180,506,'COM','tbs')+TM(1180,424,'N24','tp');
+  s+=T(80,546,'PLC1   スロット0   RX40C7   DC24V 入力 16点（X00〜X0F）','t');
+  s+=mk(1,52,515)+mk(2,56,590)+mk(3,552,160)+mk(4,304,80)+mk(5,134,445)+mk(6,1018,430)+mk(7,438,150);
+  return s;
+}
+
+/* ---------- 8頁 PLC出力 ---------- */
+const OUT=[
+  {a:'Y10',d:'SV1-a',k:'sv',c:['クランプ','前進'],name:'クランプ前進 電磁弁'},
+  {a:'Y11',d:'SV1-b',k:'sv',c:['クランプ','後退'],name:'クランプ後退 電磁弁'},
+  {a:'Y12',d:'SV2-a',k:'sv',c:['リフト','上昇'],name:'リフト上昇 電磁弁'},
+  {a:'Y13',d:'SV2-b',k:'sv',c:['リフト','下降'],name:'リフト下降 電磁弁'},
+  {a:'Y14',d:'SV3',k:'sv',c:['位置決め','ピン'],name:'位置決めピン 電磁弁'},
+  {a:'Y15',d:'PL1',k:'lamp',sub:'緑',c:['運転中'],name:'運転中表示灯（緑）'},
+  {a:'Y16',d:'PL2',k:'lamp',sub:'白',c:['自動','運転'],name:'自動運転表示灯（白）'},
+  {a:'Y17',d:'PL3',k:'lamp',sub:'白',c:['原点','位置'],name:'原点位置表示灯（白）'},
+  {a:'Y18',k:'spare',c:['予備']},{a:'Y19',k:'spare',c:['予備']},{a:'Y1A',k:'spare',c:['予備']},{a:'Y1B',k:'spare',c:['予備']},
+  {a:'Y1C',k:'spare',c:['予備']},{a:'Y1D',k:'spare',c:['予備']},{a:'Y1E',k:'spare',c:['予備']},{a:'Y1F',k:'spare',c:['予備']}
+];
+function sheet8(){
+  let s=R(70,110,1140,90,'wb')+T(80,132,'PLC1   スロット1   RY40PT5P   トランジスタ出力（ソース）16点（Y10〜Y1F）','t');
+  s+=T(36,704,'N24','tp')+L(70,700,1210,700,'wb')+T(36,274,'TB2','tp');
+  let tb=1;
+  OUT.forEach((d,i)=>{const x=xIn(i);
+    if(d.k==='spare'){ s+=L(x,200,x,224); }
+    else{
+      s+=L(x,200,x,400)+place(d.k==='sv'?SY.sv:SY.lamp,x,400,'v')+L(x,450,x,700)+dot(x,700)
+        +term(x,270)+T(x+6,264,String(tb++),'ts')+T(x+5,340,d.a,'tw')
+        +T(x+12,422,d.d,'tbs')+(d.sub?T(x+12,436,d.sub,'ts'):'');
+    }
+    s+=term(x,200)+TM(x,168,d.a,'tbs')+TM(x,190,String(i+1),'ts');
+    d.c.forEach((t,j)=>{s+=TM(x,726+14*j,t,'tc');});
+  });
+  s+=L(1150,82,1150,110)+term(1150,110)+P('M1144 72H1156L1150 82Z')+T(1138,80,'P24S','tp','end')+T(1162,80,`4/${colOf(1155)}`,'tx')
+    +TM(1150,168,'+V','tbs')+TM(1150,190,'17','ts');
+  s+=L(1190,200,1190,700)+dot(1190,700)+term(1190,200)+TM(1190,168,'0V','tbs')+TM(1190,190,'18','ts');
+  s+=T(650,600,'※ 出力ユニットの電源は P24S（安全24V）。非常停止・遮光中は全出力 OFF','ts');
+  s+=mk(1,52,165)+mk(2,134,480)+mk(3,1090,78)+mk(4,626,430)+mk(5,636,596);
+  return s;
+}
+
+/* ---------- 9頁 I/O割付表 ---------- */
+function table(x0,y0,cap,cols,rows){
+  const W=cols.reduce((a,c)=>a+c.w,0), hh=28, rh=30, H=hh+rh*rows.length;
+  let s=T(x0,y0-12,cap,'tb')+R(x0,y0,W,H)+L(x0,y0+hh,x0+W,y0+hh);
+  for(let r=1;r<rows.length;r++) s+=L(x0,y0+hh+rh*r,x0+W,y0+hh+rh*r,'w1');
+  let cx=x0;
+  cols.forEach((c,i)=>{ if(i>0) s+=L(cx,y0,cx,y0+H,'w1'); s+=TM(cx+c.w/2,y0+19,c.label,'tbs'); cx+=c.w; });
+  rows.forEach((row,r)=>{ let cx=x0; const by=y0+hh+rh*r+20;
+    row.forEach((v,i)=>{ const c=cols[i]; s+=c.a==='l'?T(cx+8,by,v,'t'):TM(cx+c.w/2,by,v,'t'); cx+=c.w; }); });
+  return s;
+}
+function sheet9(){
+  const cols=[{w:70,label:'アドレス'},{w:80,label:'機器記号'},{w:300,label:'名称',a:'l'},{w:90,label:'図面位置'}];
+  const inRows=IN.map((d,i)=>d.k==='spare'?[d.a,'—','予備','—']:[d.a,d.d,d.name,`7/${colOf(xIn(i))}`]);
+  const outRows=OUT.map((d,i)=>d.k==='spare'?[d.a,'—','予備','—']:[d.a,d.d,d.name,`8/${colOf(xIn(i))}`]);
+  let s=table(60,96,'入力　PLC1 スロット0　RX40C7',cols,inRows)+table(650,96,'出力　PLC1 スロット1　RY40PT5P',cols,outRows);
+  s+=revSmall(622,124+30*4+15);
+  s+=T(60,640,'※ 本表と配線図（7・8頁）、PLCプログラムのデバイスコメントは一致させること','ts');
+  s+=mk(1,44,84)+mk(2,634,84)+mk(3,44,124+30*11+15)+mk(4,44,636);
+  return s;
+}
+
+const SHEETS={
+  4:{title:'安全回路',build:sheet4,
+    cap:'安全回路の一部。接点の場所（loc）と線番で、頁をまたいだ接続を表します。',
+    notes:[
+      '非常停止ボタンは接点が2つ（2チャンネル）です。点線は「同じボタンの接点」という意味です。JSONでは、機器 EMS1 1つに接点を2つ持たせます。',
+      '安全リレー（SRU1・SRU2）とコンタクタ（KM1・KM2）は、本体と接点が別の場所に描かれます（分離表示）。箱の中やコイルの下にある「13-14 4/5」は、その接点が描かれている場所（4頁の5列目）を指します。',
+      '線番（211、212…）は電線を特定するキーです。改訂の前後で差分を取るときの手がかりになります。',
+      '他の頁へ続く矢印（7/2）です。ここからPLC入力 X03 につながります。頁をまたぐ接続は、JSONの中で結び直す必要があります。',
+      'ライトカーテンは投光器と受光器の組です。受光器から出る OSSD1・OSSD2 の2本が安全リレーに入ります。',
+      '改訂マーク △B は、改訂履歴の「B：ライトカーテン LC1 追加」に対応します。差分チェックで使います。',
+      '表題欄（図番・改訂・頁）の内容は、JSONの document に入れます。'
+    ],
+    json:`{
+  "document": {
+    "drawing_no": "E-2026-0412",
+    "revision": "B",
+    "sheet": { "no": 4, "of": 12, "title": "安全回路" }
+  },
+  "components": [
+    {
+      "id": "EMS1",
+      "type": "emergency_stop",
+      "name": "非常停止（操作盤）",
+      "contacts": [
+        { "terminals": ["11", "12"], "kind": "NC", "loc": "4/2" },
+        { "terminals": ["21", "22"], "kind": "NC", "loc": "4/2" }
+      ]
+    },
+    {
+      "id": "KM1",
+      "type": "safety_contactor",
+      "coil": { "loc": "4/5" },
+      "contacts": [
+        { "terminals": ["13", "14"], "kind": "NO", "loc": "4/8" },
+        { "terminals": ["21", "22"], "kind": "NC", "loc": "4/3" }
+      ]
+    }
+  ],
+  "nets": [
+    { "wire_no": "211", "connects": ["SRU1:S11", "EMS2:12"] },
+    { "wire_no": "212", "connects": ["EMS2:11", "EMS1:12"] },
+    { "wire_no": "261", "connects": ["SRU1:42", "PLC1:X03"],
+      "continues_to": "7/2" },
+    { "wire_no": "P24S", "connects": ["KM2:14", "PLC1.slot1:+V"],
+      "continues_to": "8/8" }
+  ],
+  "revision_marks": [
+    { "rev": "B", "note": "ライトカーテン LC1 追加", "loc": "4/2" }
+  ]
+}`},
+  7:{title:'PLC入力　スロット0',build:sheet7,
+    cap:'PLC入力ユニットと入力点の一部です。',
+    notes:[
+      'ユニットの型式（RX40C7）、スロット番号、先頭アドレス（X00）を読み取ります。三菱のX/Yは16進数なので、X09 の次は X0A です。',
+      '機器記号（PB1、SQ1、PH1…）とコメント（運転準備…）です。I/O割付表（9頁）と一致するはずなので、読み取り結果の自己チェックに使えます。',
+      '3線式センサ（茶・青・黒）です。電源線と信号線を区別して読む必要があります。',
+      '安全回路（4頁）から来る信号です。PLCが非常停止や遮光の状態を監視しています。',
+      '端子台（TB1-1…）は、盤の中と現場の機器の境目です。この図のように、線番をアドレス（X00）と同じにする書き方もあります。',
+      '予備（X0C〜X0F）です。使っていない点もJSONに残すかどうかは、これから決めます。',
+      '△B は改訂Bで追加された入力（X04）です。'
+    ],
+    json:`{
+  "plc_modules": [
+    { "id": "PLC1.slot0", "model": "RX40C7", "kind": "input",
+      "points": 16, "head_address": "X00", "common": "N24" }
+  ],
+  "io": [
+    { "address": "X00", "device": "PB1", "device_type": "push_button",
+      "contact": "NO", "comment": "運転準備",
+      "terminal_block": "TB1-1", "loc": "7/1" },
+    { "address": "X03", "device": "SRU1", "contact": "41-42",
+      "comment": "非常停止中", "comes_from": "4/7", "loc": "7/2" },
+    { "address": "X06", "device": "PH1",
+      "device_type": "photoelectric_sensor",
+      "wiring": { "brown": "P24", "blue": "N24", "black": "X06" },
+      "comment": "ワーク有", "loc": "7/4" },
+    { "address": "X0C", "device": null, "comment": "予備" }
+  ]
+}`},
+  8:{title:'PLC出力　スロット1',build:sheet8,
+    cap:'PLC出力ユニットと出力点の一部です。',
+    notes:[
+      '出力の先頭アドレスは Y10 です。スロット0 が16点の入力（X00〜X0F）なので、番号がその続きになります。スロットの並びとアドレスが合っているかも、自動でチェックできます。',
+      '電磁弁 SV1-a・SV1-b は、1つのバルブの前進側と後退側（ダブルソレノイド）です。2つを対として扱います。',
+      'ユニットの電源は、安全回路の P24S（4頁）から来ています。「非常停止で何が止まるか」に答えるには、頁をまたいで接続をたどる必要があります。',
+      '表示灯の色（緑・白）も属性として残します。',
+      '図中の注記も読み取り対象です。設計の意図が書かれていることが多いからです。'
+    ],
+    json:`{
+  "plc_modules": [
+    { "id": "PLC1.slot1", "model": "RY40PT5P", "kind": "output",
+      "points": 16, "head_address": "Y10",
+      "supply": { "net": "P24S", "comes_from": "4/8" } }
+  ],
+  "io": [
+    { "address": "Y10", "device": "SV1-a",
+      "device_type": "solenoid_valve", "comment": "クランプ前進",
+      "paired_with": "SV1-b", "loc": "8/1" },
+    { "address": "Y15", "device": "PL1", "device_type": "pilot_lamp",
+      "color": "green", "comment": "運転中", "loc": "8/3" }
+  ],
+  "notes": [
+    { "text": "出力ユニットの電源は P24S（安全24V）。非常停止・遮光中は全出力 OFF",
+      "loc": "8/5" }
+  ]
+}`},
+  9:{title:'I/O割付表',build:sheet9,
+    cap:'上が読み取り結果、下が検証ステップで出す結果の例です。',
+    notes:[
+      '入力の一覧です。アドレス、機器記号、名称、図面位置の順に並びます。表の形なので、ベクターPDFなら高い精度で読める見込みです。',
+      '出力の一覧です。PLCプログラム（GX Works のデバイスコメント）との突き合わせには、主にこの表を使います。',
+      'わざと入れた食い違いです。X0B は、この表では「エア圧低下」、配線図（7頁）では「エア圧正常」になっています。こうした不一致を見つけるのが「突き合わせ」の役目です。',
+      '表の注記にも、確認すべきルールが書かれています。'
+    ],
+    json:`{
+  "io_table": [
+    { "address": "X0B", "device": "PS1", "name": "エア圧低下",
+      "ref": "7/6" }
+  ],
+  "checks": [
+    {
+      "rule": "io_table_matches_wiring",
+      "result": "mismatch",
+      "address": "X0B",
+      "io_table": { "name": "エア圧低下", "sheet": 9 },
+      "wiring": { "comment": "エア圧正常", "loc": "7/6" },
+      "message": "I/O割付表と配線図で X0B の名称が食い違っています"
+    }
+  ]
+}`}
+};
+const CONTENTS=[[1,'表紙・図面目録'],[2,'盤外形図・機器配置図'],[3,'電源回路（主回路）'],[4,'安全回路'],[5,'操作回路（制御電源）'],[6,'PLC構成図'],
+  [7,'PLC入力 スロット0'],[8,'PLC出力 スロット1'],[9,'I/O割付表'],[10,'端子台接続図'],[11,'器具リスト（部品表）'],[12,'ケーブル表']];
+
+const cache={};
+const $=id=>document.getElementById(id);
+const idx=$('idx');
+idx.innerHTML=CONTENTS.map(([no,t])=>SHEETS[no]
+  ?`<li class="has"><button type="button" data-no="${no}" aria-current="false"><span class="no">${no}</span><span>${esc(t)}</span></button></li>`
+  :`<li><span class="no">${no}</span><span>${esc(t)}</span><span class="na">イメージなし</span></li>`).join('');
+
+function hl(json){
+  return esc(json).replace(/("[^"]+")(\s*:)/g,'<span class="k">$1</span>$2');
+}
+function show(no){
+  const sh=SHEETS[no]; if(!sh) return;
+  if(!cache[no]) cache[no]=`<svg class="sheet" viewBox="0 0 1260 891" role="img" aria-label="${esc(no+'頁 '+sh.title+' の図面イメージ')}">${frame(no,sh.title)}${sh.build()}</svg>`;
+  $('svgHost').innerHTML=cache[no];
+  $('sheetName').innerHTML=`<small>${no} / 12</small>${esc(sh.title)}`;
+  $('notes').innerHTML=sh.notes.map((t,i)=>`<li><span class="badge">${i+1}</span><div>${esc(t)}</div></li>`).join('');
+  $('jsonCap').textContent=sh.cap;
+  $('json').innerHTML=hl(sh.json);
+  idx.querySelectorAll('button').forEach(b=>b.setAttribute('aria-current',String(+b.dataset.no===no)));
+  try{localStorage.setItem('kairo-mock-sheet',String(no));}catch(e){}
+}
+idx.addEventListener('click',e=>{const b=e.target.closest('button[data-no]'); if(b) show(+b.dataset.no);});
+$('optMarks').addEventListener('change',e=>$('svgHost').classList.toggle('hide-marks',!e.target.checked));
+$('optZoom').addEventListener('change',e=>$('scroll').classList.toggle('zoom',e.target.checked));
+
+let start=4;
+const h=(location.hash||'').match(/^#s(\d+)$/);
+if(h&&SHEETS[+h[1]]) start=+h[1];
+else{ try{const v=+localStorage.getItem('kairo-mock-sheet'); if(SHEETS[v]) start=v;}catch(e){} }
+show(start);
+})();
+</script>

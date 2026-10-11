@@ -1,0 +1,3405 @@
+[
+ {
+  "round": 1,
+  "tool": "command",
+  "input": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content symbols.json; Get-Content graph.json'"
+ },
+ {
+  "round": 1,
+  "tool": "command",
+  "input": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -NoProfile -Command \"python -c \\\"import json; g=json.load(open('graph.json')); print(json.dumps(g['points'][:294])); print(open('words.json',encoding='utf-8').read())\\\"\""
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S7"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S2"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S1"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S28"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S29"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S27"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.crop",
+  "input": {
+   "x0": 100,
+   "x1": 121,
+   "y0": 214,
+   "y1": 250,
+   "dpi": 1200
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.crop",
+  "input": {
+   "x0": 100,
+   "x1": 121,
+   "y0": 214,
+   "y1": 250,
+   "dpi": 1200
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.search_pages",
+  "input": {
+   "pattern": "AXIS LS|0700|X51|X85",
+   "regex": true,
+   "max_hits": 30
+  }
+ },
+ {
+  "round": 1,
+  "tool": "command",
+  "input": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -NoProfile -Command \"python -c \\\"import re; s=open('pages.txt',encoding='utf-8').read(); p=re.split(r'=== p\\\\.(\\\\d+) ===',s); [(print('PAGE',p[i],p[i+1][:12000])) for i in range(1,len(p),2) if p[i] in ['3','4','5','6','76']];\\\"\""
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S13"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S5"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S12"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S9"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S3"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S6"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S10"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S14"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S4"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S8"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S17"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S22"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S19"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S20"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S21"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S15"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S24"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S30"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S25"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S26"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S11"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.symbol_features",
+  "input": {
+   "symbol": "S18"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "command",
+  "input": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -NoProfile -Command \"python -c \\\"import re; s=open('pages.txt',encoding='utf-8').read(); p=re.split(r'=== p\\\\.(\\\\d+) ===',s); [(print('PAGE',p[i],p[i+1])) for i in range(1,len(p),2) if p[i] in ['28','29','30','50','77']];\\\"\""
+ },
+ {
+  "round": 1,
+  "tool": "command",
+  "input": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -NoProfile -Command \"python -X utf8 -c \\\"import re; s=open('pages.txt',encoding='utf-8').read(); p=re.split(r'=== p\\\\.(\\\\d+) ===',s); [(print('PAGE',p[i],p[i+1])) for i in range(1,len(p),2) if p[i] in ['29','30','50','77']];\\\"\""
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.search_pages",
+  "input": {
+   "pattern": "0650|DC24V",
+   "regex": true,
+   "max_hits": 15
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P25"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.search_pages",
+  "input": {
+   "pattern": "DC POWER SUPPLY",
+   "max_hits": 5
+  }
+ },
+ {
+  "round": 1,
+  "tool": "command",
+  "input": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -NoProfile -Command \"python -X utf8 -c \\\"import re; s=open('pages.txt',encoding='utf-8').read(); p=re.split(r'=== p\\\\.(\\\\d+) ===',s); [(print('PAGE',p[i],re.sub(r'\\\\s+',' ',p[i+1])[:8000])) for i in range(1,len(p),2) if ('X51' in p[i+1] and p[i] not in ['27','30','76']) or ('X85' in p[i+1] and '358' in p[i+1] and p[i] not in ['29','76'])];\\\"\""
+ },
+ {
+  "round": 1,
+  "tool": "command",
+  "input": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -NoProfile -Command 'Get-Content symbols.json'"
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P9"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P251"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P16"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P18"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P19"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P38"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P86"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P112"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P149"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P174"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P131"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P20"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P39"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P87"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P117"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P154"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P178"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P136"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P22"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P40"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P62"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P89"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P118"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P155"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P179"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P205"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P240"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P23"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P41"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P63"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P90"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P119"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P156"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P180"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P206"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P241"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P42"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P44"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P57"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P59"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P60"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P203"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P234"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P191"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P61"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P204"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P239"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P193"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P71"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P72"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P83"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P85"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P99"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P100"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P114"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P116"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P134"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P135"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P146"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P148"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P162"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P163"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P175"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P177"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P188"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P189"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P207"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P209"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P219"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P220"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P231"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P233"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P30"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P101"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P127"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P128"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P259"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P25"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P46"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P65"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P92"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P121"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P151"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P182"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P211"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P236"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P261"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P262"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P270"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P271"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P286"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P287"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P288"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.trace_from",
+  "input": {
+   "point": "P289"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.crop",
+  "input": {
+   "x0": 295,
+   "x1": 411,
+   "y0": 579,
+   "y1": 624,
+   "dpi": 800
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.crop",
+  "input": {
+   "x0": 375,
+   "x1": 398,
+   "y0": 94,
+   "y1": 115,
+   "dpi": 1200
+  }
+ },
+ {
+  "round": 1,
+  "tool": "command",
+  "input": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -NoProfile -Command \"python -X utf8 -c \\\"import re; s=open('pages.txt',encoding='utf-8').read(); p=re.split(r'=== p\\\\.(\\\\d+) ===',s); [(print('PAGE',p[i],re.sub(r'\\\\s+',' ',p[i+1])[:7000])) for i in range(1,len(p),2) if p[i] in ['48','135','136','140']];\\\"\""
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.check",
+  "input": {
+   "labels": {
+    "sheet": {
+     "title": "AXIS LS",
+     "sheet_id": {
+      "value": "0650",
+      "basis": "other_page",
+      "evidence": [
+       "PDF77頁のKA4接点にコイル参照(0650/24)。本頁24行のKA4と一致。"
+      ]
+     },
+     "layout": {
+      "orientation": "horizontal",
+      "location_system": "zone_grid",
+      "lines": "01–30（上から下）",
+      "columns": "A–M（左から右）",
+      "label_placement": "機器記号は記号の上、端子・ピン番号は接続点の上、入力アドレスと用途は右。",
+      "junction_rule": "黒丸は接続。黒丸のない交差は非接続。接点間の破線は機械的連動。"
+     }
+    },
+    "regions": [
+     {
+      "id": "MACHINE_SIDE",
+      "label": "MACHINE SIDE",
+      "kind": "area",
+      "meaning": "機械側のリミットスイッチと端子台"
+     },
+     {
+      "id": "A11",
+      "label": "TU(A11)",
+      "kind": "unit",
+      "meaning": "中継ユニットTU"
+     },
+     {
+      "id": "A1",
+      "label": "NC(A1)",
+      "kind": "unit",
+      "meaning": "NC入力ユニット"
+     }
+    ],
+    "rails": [
+     {
+      "name": "1L+",
+      "polarity": "plus",
+      "polarity_basis": {
+       "value": "直流正極",
+       "basis": "drawing",
+       "evidence": [
+        "電源名1L+の+表示"
+       ]
+      },
+      "point": "P9"
+     },
+     {
+      "name": "1M",
+      "polarity": "zero",
+      "polarity_basis": {
+       "value": "直流0V",
+       "basis": "other_page",
+       "evidence": [
+        "PDF48頁 DC POWER SUPPLYのGS1出力1M（DC0V）"
+       ]
+      },
+      "point": "P251"
+     }
+    ],
+    "components": [
+     {
+      "id": "SQ1",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "機械式リミットスイッチ",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "X AXIS ZERO RETURN DEC LS",
+       "basis": "drawing",
+       "evidence": [
+        "本頁X0.00入力の用途表記と配線"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ1.b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "機械式b接点",
+        "ports": [
+         {
+          "name": "SQ1:b.1",
+          "point": "P16"
+         },
+         {
+          "name": "SQ1:b.2",
+          "point": "P18"
+         }
+        ],
+        "bbox": [
+         106.86,
+         100.32,
+         115.74,
+         104.64
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "XT31",
+      "name": null,
+      "kind": "terminal_block",
+      "symbol": null,
+      "region": "MACHINE_SIDE",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "XT31:420",
+        "point": "P19"
+       },
+       {
+        "name": "XT31:421",
+        "point": "P38"
+       },
+       {
+        "name": "XT31:400",
+        "point": "P86"
+       },
+       {
+        "name": "XT31:401",
+        "point": "P112"
+       },
+       {
+        "name": "XT31:402",
+        "point": "P149"
+       },
+       {
+        "name": "XT31:403",
+        "point": "P174"
+       },
+       {
+        "name": "XT31:358",
+        "point": "P131"
+       }
+      ]
+     },
+     {
+      "id": "X31",
+      "name": null,
+      "kind": "connector",
+      "symbol": null,
+      "region": "A11",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "X31:10",
+        "point": "P20"
+       },
+       {
+        "name": "X31:11",
+        "point": "P39"
+       },
+       {
+        "name": "X31:4",
+        "point": "P87"
+       },
+       {
+        "name": "X31:5",
+        "point": "P117"
+       },
+       {
+        "name": "X31:6",
+        "point": "P154"
+       },
+       {
+        "name": "X31:8",
+        "point": "P178"
+       },
+       {
+        "name": "X31:9",
+        "point": "P136"
+       }
+      ]
+     },
+     {
+      "id": "X01",
+      "name": null,
+      "kind": "connector",
+      "symbol": null,
+      "region": "A11",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "X01:12",
+        "point": "P22"
+       },
+       {
+        "name": "X01:28",
+        "point": "P40"
+       },
+       {
+        "name": "X01:44",
+        "point": "P62"
+       },
+       {
+        "name": "X01:3",
+        "point": "P89"
+       },
+       {
+        "name": "X01:20",
+        "point": "P118"
+       },
+       {
+        "name": "X01:35",
+        "point": "P155"
+       },
+       {
+        "name": "X01:2",
+        "point": "P179"
+       },
+       {
+        "name": "X01:19",
+        "point": "P205"
+       },
+       {
+        "name": "X01:34",
+        "point": "P240"
+       }
+      ]
+     },
+     {
+      "id": "XCS41",
+      "name": null,
+      "kind": "connector",
+      "symbol": null,
+      "region": "A1",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "XCS41:7/A4",
+        "point": "P23"
+       },
+       {
+        "name": "XCS41:8/B4",
+        "point": "P41"
+       },
+       {
+        "name": "XCS41:9/A5",
+        "point": "P63"
+       },
+       {
+        "name": "XCS41:11/A6",
+        "point": "P90"
+       },
+       {
+        "name": "XCS41:15/A8",
+        "point": "P119"
+       },
+       {
+        "name": "XCS41:12/B6",
+        "point": "P156"
+       },
+       {
+        "name": "XCS41:16/B8",
+        "point": "P180"
+       },
+       {
+        "name": "XCS41:13/A7",
+        "point": "P206"
+       },
+       {
+        "name": "XCS41:17/A9",
+        "point": "P241"
+       }
+      ]
+     },
+     {
+      "id": "SQ2",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "機械式リミットスイッチ",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "Y AXIS ZERO RETURN DEC LS",
+       "basis": "drawing",
+       "evidence": [
+        "本頁X0.01入力の用途表記と配線"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ2.b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "機械式b接点",
+        "ports": [
+         {
+          "name": "SQ2:b.1",
+          "point": "P42"
+         },
+         {
+          "name": "SQ2:b.2",
+          "point": "P44"
+         }
+        ],
+        "bbox": [
+         106.86,
+         146.88,
+         115.74,
+         151.26
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ3",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "機械式リミットスイッチ",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "Z AXIS ZERO RETURN DEC LS",
+       "basis": "drawing",
+       "evidence": [
+        "本頁X0.02入力の用途表記と配線"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ3.b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "機械式b接点",
+        "ports": [
+         {
+          "name": "SQ3:b.1",
+          "point": "P57"
+         },
+         {
+          "name": "SQ3:b.2",
+          "point": "P59"
+         }
+        ],
+        "bbox": [
+         106.86,
+         170.22,
+         115.74,
+         174.54
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "XT71",
+      "name": null,
+      "kind": "terminal_block",
+      "symbol": null,
+      "region": "MACHINE_SIDE",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "XT71:422",
+        "point": "P60"
+       },
+       {
+        "name": "XT71:404",
+        "point": "P203"
+       },
+       {
+        "name": "XT71:405",
+        "point": "P234"
+       },
+       {
+        "name": "XT71:358",
+        "point": "P191"
+       }
+      ]
+     },
+     {
+      "id": "X71",
+      "name": null,
+      "kind": "connector",
+      "symbol": null,
+      "region": "A11",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "X71:8",
+        "point": "P61"
+       },
+       {
+        "name": "X71:4",
+        "point": "P204"
+       },
+       {
+        "name": "X71:5",
+        "point": "P239"
+       },
+       {
+        "name": "X71:7",
+        "point": "P193"
+       }
+      ]
+     },
+     {
+      "id": "SQ4",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "機械式リミットスイッチ",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "+X AXIS OVERTRAVEL LS",
+       "basis": "drawing",
+       "evidence": [
+        "本頁X0.04入力の用途表記と配線"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ4.a",
+        "kind": "contact",
+        "contact": "a",
+        "symbol": "機械連動a接点",
+        "ports": [
+         {
+          "name": "SQ4:a.1",
+          "point": "P71"
+         },
+         {
+          "name": "SQ4:a.2",
+          "point": "P72"
+         }
+        ],
+        "bbox": [
+         106.86,
+         221.16,
+         116.58,
+         226.02
+        ]
+       },
+       {
+        "id": "SQ4.b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "機械式b接点",
+        "ports": [
+         {
+          "name": "SQ4:b.1",
+          "point": "P83"
+         },
+         {
+          "name": "SQ4:b.2",
+          "point": "P85"
+         }
+        ],
+        "bbox": [
+         106.86,
+         240.12,
+         115.74,
+         244.44
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ5",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "機械式リミットスイッチ",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "-X AXIS OVERTRAVEL LS",
+       "basis": "drawing",
+       "evidence": [
+        "本頁X0.08入力の用途表記と配線"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ5.a",
+        "kind": "contact",
+        "contact": "a",
+        "symbol": "機械連動a接点",
+        "ports": [
+         {
+          "name": "SQ5:a.1",
+          "point": "P99"
+         },
+         {
+          "name": "SQ5:a.2",
+          "point": "P100"
+         }
+        ],
+        "bbox": [
+         106.86,
+         267.78,
+         116.58,
+         272.58
+        ]
+       },
+       {
+        "id": "SQ5.b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "機械式b接点",
+        "ports": [
+         {
+          "name": "SQ5:b.1",
+          "point": "P114"
+         },
+         {
+          "name": "SQ5:b.2",
+          "point": "P116"
+         }
+        ],
+        "bbox": [
+         106.86,
+         286.74,
+         115.74,
+         291.06
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ6",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "機械式リミットスイッチ",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "+Y AXIS OVERTRAVEL LS",
+       "basis": "drawing",
+       "evidence": [
+        "本頁X0.05入力の用途表記と配線"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ6.a",
+        "kind": "contact",
+        "contact": "a",
+        "symbol": "機械連動a接点",
+        "ports": [
+         {
+          "name": "SQ6:a.1",
+          "point": "P134"
+         },
+         {
+          "name": "SQ6:a.2",
+          "point": "P135"
+         }
+        ],
+        "bbox": [
+         106.86,
+         360.96,
+         116.58,
+         365.82
+        ]
+       },
+       {
+        "id": "SQ6.b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "機械式b接点",
+        "ports": [
+         {
+          "name": "SQ6:b.1",
+          "point": "P146"
+         },
+         {
+          "name": "SQ6:b.2",
+          "point": "P148"
+         }
+        ],
+        "bbox": [
+         106.86,
+         379.92,
+         115.74,
+         384.24
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ7",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "機械式リミットスイッチ",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "-Y AXIS OVERTRAVEL LS",
+       "basis": "drawing",
+       "evidence": [
+        "本頁X0.09入力の用途表記と配線"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ7.a",
+        "kind": "contact",
+        "contact": "a",
+        "symbol": "機械連動a接点",
+        "ports": [
+         {
+          "name": "SQ7:a.1",
+          "point": "P162"
+         },
+         {
+          "name": "SQ7:a.2",
+          "point": "P163"
+         }
+        ],
+        "bbox": [
+         106.86,
+         407.58,
+         116.58,
+         412.44
+        ]
+       },
+       {
+        "id": "SQ7.b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "機械式b接点",
+        "ports": [
+         {
+          "name": "SQ7:b.1",
+          "point": "P175"
+         },
+         {
+          "name": "SQ7:b.2",
+          "point": "P177"
+         }
+        ],
+        "bbox": [
+         106.86,
+         426.54,
+         115.74,
+         430.86
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ8",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "機械式リミットスイッチ",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "+Z AXIS OVERTRAVEL LS",
+       "basis": "drawing",
+       "evidence": [
+        "本頁X0.06入力の用途表記と配線"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ8.a",
+        "kind": "contact",
+        "contact": "a",
+        "symbol": "機械連動a接点",
+        "ports": [
+         {
+          "name": "SQ8:a.1",
+          "point": "P188"
+         },
+         {
+          "name": "SQ8:a.2",
+          "point": "P189"
+         }
+        ],
+        "bbox": [
+         106.86,
+         454.14,
+         116.58,
+         459
+        ]
+       },
+       {
+        "id": "SQ8.b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "機械式b接点",
+        "ports": [
+         {
+          "name": "SQ8:b.1",
+          "point": "P207"
+         },
+         {
+          "name": "SQ8:b.2",
+          "point": "P209"
+         }
+        ],
+        "bbox": [
+         106.86,
+         473.1,
+         115.74,
+         477.48
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ9",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "機械式リミットスイッチ",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "-Z AXIS OVERTRAVEL LS",
+       "basis": "drawing",
+       "evidence": [
+        "本頁X0.10入力の用途表記と配線"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ9.a",
+        "kind": "contact",
+        "contact": "a",
+        "symbol": "機械連動a接点",
+        "ports": [
+         {
+          "name": "SQ9:a.1",
+          "point": "P219"
+         },
+         {
+          "name": "SQ9:a.2",
+          "point": "P220"
+         }
+        ],
+        "bbox": [
+         106.86,
+         500.76,
+         116.58,
+         505.62
+        ]
+       },
+       {
+        "id": "SQ9.b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "機械式b接点",
+        "ports": [
+         {
+          "name": "SQ9:b.1",
+          "point": "P231"
+         },
+         {
+          "name": "SQ9:b.2",
+          "point": "P233"
+         }
+        ],
+        "bbox": [
+         106.86,
+         519.72,
+         115.74,
+         524.04
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "X51",
+      "name": null,
+      "kind": "connector",
+      "symbol": null,
+      "region": "A11",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "X51:16",
+        "point": "P30"
+       },
+       {
+        "name": "X51:10",
+        "point": "P101"
+       },
+       {
+        "name": "X51:11",
+        "point": "P127"
+       },
+       {
+        "name": "X51:13",
+        "point": "P128"
+       }
+      ]
+     },
+     {
+      "id": "X85",
+      "name": null,
+      "kind": "connector",
+      "symbol": null,
+      "region": "A11",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "X85:37",
+        "point": "P259"
+       }
+      ]
+     },
+     {
+      "id": "A1",
+      "name": "NC",
+      "kind": "nc_unit",
+      "symbol": "NC入力",
+      "region": "A1",
+      "purpose": {
+       "value": "各軸原点復帰減速・オーバートラベル信号の入力",
+       "basis": "drawing",
+       "evidence": [
+        "NC(A1)とX0.00〜X0.10の表記"
+       ]
+      },
+      "elements": [],
+      "terminals": [
+       {
+        "name": "A1:X0.00",
+        "point": "P25"
+       },
+       {
+        "name": "A1:X0.01",
+        "point": "P46"
+       },
+       {
+        "name": "A1:X0.02",
+        "point": "P65"
+       },
+       {
+        "name": "A1:X0.04",
+        "point": "P92"
+       },
+       {
+        "name": "A1:X0.08",
+        "point": "P121"
+       },
+       {
+        "name": "A1:X0.05",
+        "point": "P151"
+       },
+       {
+        "name": "A1:X0.09",
+        "point": "P182"
+       },
+       {
+        "name": "A1:X0.06",
+        "point": "P211"
+       },
+       {
+        "name": "A1:X0.10",
+        "point": "P236"
+       }
+      ]
+     },
+     {
+      "id": "A11",
+      "name": "TU",
+      "kind": "terminal_unit",
+      "symbol": null,
+      "region": "A11",
+      "purpose": {
+       "value": "機械側信号の中継およびオーバートラベル検出",
+       "basis": "drawing",
+       "evidence": [
+        "TU(A11)内の配線とKA4回路"
+       ]
+      },
+      "elements": [],
+      "terminals": []
+     },
+     {
+      "id": "KA4",
+      "name": null,
+      "kind": "relay",
+      "symbol": "リレーコイル",
+      "region": "A11",
+      "purpose": {
+       "value": "AXIS OVERTRAVEL",
+       "basis": "drawing",
+       "evidence": [
+        "本頁24–25行のKA4・V4・R4・HL4回路"
+       ]
+      },
+      "elements": [
+       {
+        "id": "KA4",
+        "kind": "coil",
+        "contact": null,
+        "symbol": "リレーコイル",
+        "ports": [
+         {
+          "name": "KA4:1",
+          "point": "P261"
+         },
+         {
+          "name": "KA4:12",
+          "point": "P262"
+         }
+        ],
+        "bbox": [
+         370.35,
+         586.98,
+         378.03,
+         600.57
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "V4",
+      "name": null,
+      "kind": "diode",
+      "symbol": "ダイオード（左カソード・右アノード）",
+      "region": "A11",
+      "purpose": {
+       "value": "KA4コイルの逆起電力抑制",
+       "basis": "inferred",
+       "evidence": [
+        "本頁24–25行のKA4・V4・R4・HL4回路"
+       ]
+      },
+      "elements": [
+       {
+        "id": "V4",
+        "kind": "diode",
+        "contact": null,
+        "symbol": "ダイオード（左カソード・右アノード）",
+        "ports": [
+         {
+          "name": "V4:1",
+          "point": "P270"
+         },
+         {
+          "name": "V4:2",
+          "point": "P271"
+         }
+        ],
+        "bbox": [
+         370.44,
+         600.57,
+         378.18,
+         607.5
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "R4",
+      "name": null,
+      "kind": "resistor",
+      "symbol": "抵抗器",
+      "region": "A11",
+      "purpose": {
+       "value": "HL4の電流制限",
+       "basis": "inferred",
+       "evidence": [
+        "本頁24–25行のKA4・V4・R4・HL4回路"
+       ]
+      },
+      "elements": [
+       {
+        "id": "R4",
+        "kind": "resistor",
+        "contact": null,
+        "symbol": "抵抗器",
+        "ports": [
+         {
+          "name": "R4:1",
+          "point": "P286"
+         },
+         {
+          "name": "R4:2",
+          "point": "P287"
+         }
+        ],
+        "bbox": [
+         303.36,
+         613.38,
+         318.9,
+         621.18
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "HL4",
+      "name": null,
+      "kind": "lamp",
+      "symbol": "発光ダイオード（左アノード・右カソード）",
+      "region": "A11",
+      "purpose": {
+       "value": "オーバートラベル表示",
+       "basis": "inferred",
+       "evidence": [
+        "本頁24–25行のKA4・V4・R4・HL4回路"
+       ]
+      },
+      "elements": [
+       {
+        "id": "HL4",
+        "kind": "lamp",
+        "contact": null,
+        "symbol": "発光ダイオード（左アノード・右カソード）",
+        "ports": [
+         {
+          "name": "HL4:1",
+          "point": "P288"
+         },
+         {
+          "name": "HL4:2",
+          "point": "P289"
+         }
+        ],
+        "bbox": [
+         340.32,
+         610.2,
+         350.04,
+         621.18
+        ]
+       }
+      ],
+      "terminals": []
+     }
+    ],
+    "plc_io": [
+     {
+      "address": "X0.00",
+      "direction": "input",
+      "port": "A1:X0.00",
+      "point": "P25",
+      "device": "SQ1",
+      "comment": "X AXIS ZERO RETURN DEC LS"
+     },
+     {
+      "address": "X0.01",
+      "direction": "input",
+      "port": "A1:X0.01",
+      "point": "P46",
+      "device": "SQ2",
+      "comment": "Y AXIS ZERO RETURN DEC LS"
+     },
+     {
+      "address": "X0.02",
+      "direction": "input",
+      "port": "A1:X0.02",
+      "point": "P65",
+      "device": "SQ3",
+      "comment": "Z AXIS ZERO RETURN DEC LS"
+     },
+     {
+      "address": "X0.04",
+      "direction": "input",
+      "port": "A1:X0.04",
+      "point": "P92",
+      "device": "SQ4",
+      "comment": "+X AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.08",
+      "direction": "input",
+      "port": "A1:X0.08",
+      "point": "P121",
+      "device": "SQ5",
+      "comment": "-X AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.05",
+      "direction": "input",
+      "port": "A1:X0.05",
+      "point": "P151",
+      "device": "SQ6",
+      "comment": "+Y AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.09",
+      "direction": "input",
+      "port": "A1:X0.09",
+      "point": "P182",
+      "device": "SQ7",
+      "comment": "-Y AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.06",
+      "direction": "input",
+      "port": "A1:X0.06",
+      "point": "P211",
+      "device": "SQ8",
+      "comment": "+Z AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.10",
+      "direction": "input",
+      "port": "A1:X0.10",
+      "point": "P236",
+      "device": "SQ9",
+      "comment": "-Z AXIS OVERTRAVEL LS"
+     }
+    ],
+    "open_ends": [
+     {
+      "port": "X51:16",
+      "note": "本頁ではコネクタ外側の配線先を描いていない。線番420。未使用とは断定しない。",
+      "evidence": [
+       "PDF30頁X51 PIN/LINE NO.表でピンと線番を確認。PDF139頁XT51および全頁X51検索では該当ピンの外部接続先は確認できない。"
+      ]
+     },
+     {
+      "port": "X51:10",
+      "note": "本頁ではコネクタ外側の配線先を描いていない。線番400。未使用とは断定しない。",
+      "evidence": [
+       "PDF30頁X51 PIN/LINE NO.表でピンと線番を確認。PDF139頁XT51および全頁X51検索では該当ピンの外部接続先は確認できない。"
+      ]
+     },
+     {
+      "port": "X51:11",
+      "note": "本頁ではコネクタ外側の配線先を描いていない。線番401。未使用とは断定しない。",
+      "evidence": [
+       "PDF30頁X51 PIN/LINE NO.表でピンと線番を確認。PDF139頁XT51および全頁X51検索では該当ピンの外部接続先は確認できない。"
+      ]
+     },
+     {
+      "port": "X51:13",
+      "note": "本頁ではコネクタ外側の配線先を描いていない。線番358。未使用とは断定しない。",
+      "evidence": [
+       "PDF30頁X51 PIN/LINE NO.表でピンと線番を確認。PDF139頁XT51および全頁X51検索では該当ピンの外部接続先は確認できない。"
+      ]
+     },
+     {
+      "port": "X85:37",
+      "note": "本頁ではコネクタ外側の配線先を描いていない。線番358。未使用とは断定しない。",
+      "evidence": [
+       "PDF29頁X85 PIN/LINE NO.表で37=358。全頁X85/358検索では外側の接続先は確認できない。"
+      ]
+     }
+    ],
+    "conventions": [
+     {
+      "id": "terminal_no_is_wire_no",
+      "rule": "本頁XT31・XT71の数字端子名は同一ネットの線番としても使われる。コネクタのピン番号とは区別する。",
+      "basis": "other_page",
+      "evidence": [
+       "PDF28頁X01 PIN/LINE NO.：12=420、28=421、44=422、3=400、20=401、35=402、2=403、19=404、34=405。",
+       "PDF30頁X31/X71 PIN/LINE NO.が本頁XT31/XT71の数字と一致。"
+      ]
+     }
+    ],
+    "cross_references": [
+     {
+      "text": "0700/23",
+      "kind": "contact_location",
+      "component": "KA4",
+      "target_sheet": "0700",
+      "target_line": 23,
+      "target_page": 77
+     }
+    ],
+    "tables": [
+     {
+      "title": null,
+      "rows": [
+       [
+        "STD",
+        "48",
+        "510",
+        "612",
+        ""
+       ],
+       [
+        "CE",
+        "1.5Kw",
+        "2.5Kw",
+        "4Kw",
+        ""
+       ]
+      ],
+      "note": null
+     }
+    ],
+    "unresolved": [],
+    "needs_review": [
+     {
+      "what": "V4・R4・HL4の用途",
+      "reason": "逆起電力抑制・電流制限・表示の用途は回路構成から推定。",
+      "ref": "V4,R4,HL4"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.page_image",
+  "input": {
+   "page": 48,
+   "dpi": 100
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp:pdf.preview",
+  "input": {
+   "labels": {
+    "sheet": {
+     "title": "AXIS LS",
+     "sheet_id": {
+      "value": "0650",
+      "basis": "other_page",
+      "evidence": [
+       "PDF77頁のKA4接点にコイル参照(0650/24)。本頁24行のKA4と一致。"
+      ]
+     },
+     "layout": {
+      "orientation": "horizontal",
+      "location_system": "zone_grid",
+      "lines": "01–30（上から下）",
+      "columns": "A–M（左から右）",
+      "label_placement": "機器記号は記号の上、端子・ピン番号は接続点の上、入力アドレスと用途は右。",
+      "junction_rule": "黒丸は接続。黒丸のない交差は非接続。接点間の破線は機械的連動。"
+     }
+    },
+    "regions": [
+     {
+      "id": "MACHINE_SIDE",
+      "label": "MACHINE SIDE",
+      "kind": "area",
+      "meaning": "機械側のリミットスイッチと端子台"
+     },
+     {
+      "id": "A11",
+      "label": "TU(A11)",
+      "kind": "unit",
+      "meaning": "中継ユニットTU"
+     },
+     {
+      "id": "A1",
+      "label": "NC(A1)",
+      "kind": "unit",
+      "meaning": "NC入力ユニット"
+     }
+    ],
+    "rails": [
+     {
+      "name": "1L+",
+      "polarity": "plus",
+      "polarity_basis": {
+       "value": "直流正極",
+       "basis": "drawing",
+       "evidence": [
+        "電源名1L+の+表示"
+       ]
+      },
+      "point": "P9"
+     },
+     {
+      "name": "1M",
+      "polarity": "zero",
+      "polarity_basis": {
+       "value": "直流0V",
+       "basis": "other_page",
+       "evidence": [
+        "PDF48頁 DC POWER SUPPLYのGS1出力1M（DC0V）"
+       ]
+      },
+      "point": "P251"
+     }
+    ],
+    "components": [
+     {
+      "id": "SQ1",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "機械式リミットスイッチ",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "X AXIS ZERO RETURN DEC LS",
+       "basis": "drawing",
+       "evidence": [
+        "本頁X0.00入力の用途表記と配線"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ1.b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "機械式b接点",
+        "ports": [
+         {
+          "name": "SQ1:b.1",
+          "point": "P16"
+         },
+         {
+          "name": "SQ1:b.2",
+          "point": "P18"
+         }
+        ],
+        "bbox": [
+         106.86,
+         100.32,
+         115.74,
+         104.64
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "XT31",
+      "name": null,
+      "kind": "terminal_block",
+      "symbol": null,
+      "region": "MACHINE_SIDE",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "XT31:420",
+        "point": "P19"
+       },
+       {
+        "name": "XT31:421",
+        "point": "P38"
+       },
+       {
+        "name": "XT31:400",
+        "point": "P86"
+       },
+       {
+        "name": "XT31:401",
+        "point": "P112"
+       },
+       {
+        "name": "XT31:402",
+        "point": "P149"
+       },
+       {
+        "name": "XT31:403",
+        "point": "P174"
+       },
+       {
+        "name": "XT31:358",
+        "point": "P131"
+       }
+      ]
+     },
+     {
+      "id": "X31",
+      "name": null,
+      "kind": "connector",
+      "symbol": null,
+      "region": "A11",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "X31:10",
+        "point": "P20"
+       },
+       {
+        "name": "X31:11",
+        "point": "P39"
+       },
+       {
+        "name": "X31:4",
+        "point": "P87"
+       },
+       {
+        "name": "X31:5",
+        "point": "P117"
+       },
+       {
+        "name": "X31:6",
+        "point": "P154"
+       },
+       {
+        "name": "X31:8",
+        "point": "P178"
+       },
+       {
+        "name": "X31:9",
+        "point": "P136"
+       }
+      ]
+     },
+     {
+      "id": "X01",
+      "name": null,
+      "kind": "connector",
+      "symbol": null,
+      "region": "A11",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "X01:12",
+        "point": "P22"
+       },
+       {
+        "name": "X01:28",
+        "point": "P40"
+       },
+       {
+        "name": "X01:44",
+        "point": "P62"
+       },
+       {
+        "name": "X01:3",
+        "point": "P89"
+       },
+       {
+        "name": "X01:20",
+        "point": "P118"
+       },
+       {
+        "name": "X01:35",
+        "point": "P155"
+       },
+       {
+        "name": "X01:2",
+        "point": "P179"
+       },
+       {
+        "name": "X01:19",
+        "point": "P205"
+       },
+       {
+        "name": "X01:34",
+        "point": "P240"
+       }
+      ]
+     },
+     {
+      "id": "XCS41",
+      "name": null,
+      "kind": "connector",
+      "symbol": null,
+      "region": "A1",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "XCS41:7/A4",
+        "point": "P23"
+       },
+       {
+        "name": "XCS41:8/B4",
+        "point": "P41"
+       },
+       {
+        "name": "XCS41:9/A5",
+        "point": "P63"
+       },
+       {
+        "name": "XCS41:11/A6",
+        "point": "P90"
+       },
+       {
+        "name": "XCS41:15/A8",
+        "point": "P119"
+       },
+       {
+        "name": "XCS41:12/B6",
+        "point": "P156"
+       },
+       {
+        "name": "XCS41:16/B8",
+        "point": "P180"
+       },
+       {
+        "name": "XCS41:13/A7",
+        "point": "P206"
+       },
+       {
+        "name": "XCS41:17/A9",
+        "point": "P241"
+       }
+      ]
+     },
+     {
+      "id": "SQ2",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "機械式リミットスイッチ",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "Y AXIS ZERO RETURN DEC LS",
+       "basis": "drawing",
+       "evidence": [
+        "本頁X0.01入力の用途表記と配線"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ2.b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "機械式b接点",
+        "ports": [
+         {
+          "name": "SQ2:b.1",
+          "point": "P42"
+         },
+         {
+          "name": "SQ2:b.2",
+          "point": "P44"
+         }
+        ],
+        "bbox": [
+         106.86,
+         146.88,
+         115.74,
+         151.26
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ3",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "機械式リミットスイッチ",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "Z AXIS ZERO RETURN DEC LS",
+       "basis": "drawing",
+       "evidence": [
+        "本頁X0.02入力の用途表記と配線"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ3.b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "機械式b接点",
+        "ports": [
+         {
+          "name": "SQ3:b.1",
+          "point": "P57"
+         },
+         {
+          "name": "SQ3:b.2",
+          "point": "P59"
+         }
+        ],
+        "bbox": [
+         106.86,
+         170.22,
+         115.74,
+         174.54
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "XT71",
+      "name": null,
+      "kind": "terminal_block",
+      "symbol": null,
+      "region": "MACHINE_SIDE",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "XT71:422",
+        "point": "P60"
+       },
+       {
+        "name": "XT71:404",
+        "point": "P203"
+       },
+       {
+        "name": "XT71:405",
+        "point": "P234"
+       },
+       {
+        "name": "XT71:358",
+        "point": "P191"
+       }
+      ]
+     },
+     {
+      "id": "X71",
+      "name": null,
+      "kind": "connector",
+      "symbol": null,
+      "region": "A11",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "X71:8",
+        "point": "P61"
+       },
+       {
+        "name": "X71:4",
+        "point": "P204"
+       },
+       {
+        "name": "X71:5",
+        "point": "P239"
+       },
+       {
+        "name": "X71:7",
+        "point": "P193"
+       }
+      ]
+     },
+     {
+      "id": "SQ4",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "機械式リミットスイッチ",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "+X AXIS OVERTRAVEL LS",
+       "basis": "drawing",
+       "evidence": [
+        "本頁X0.04入力の用途表記と配線"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ4.a",
+        "kind": "contact",
+        "contact": "a",
+        "symbol": "機械連動a接点",
+        "ports": [
+         {
+          "name": "SQ4:a.1",
+          "point": "P71"
+         },
+         {
+          "name": "SQ4:a.2",
+          "point": "P72"
+         }
+        ],
+        "bbox": [
+         106.86,
+         221.16,
+         116.58,
+         226.02
+        ]
+       },
+       {
+        "id": "SQ4.b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "機械式b接点",
+        "ports": [
+         {
+          "name": "SQ4:b.1",
+          "point": "P83"
+         },
+         {
+          "name": "SQ4:b.2",
+          "point": "P85"
+         }
+        ],
+        "bbox": [
+         106.86,
+         240.12,
+         115.74,
+         244.44
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ5",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "機械式リミットスイッチ",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "-X AXIS OVERTRAVEL LS",
+       "basis": "drawing",
+       "evidence": [
+        "本頁X0.08入力の用途表記と配線"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ5.a",
+        "kind": "contact",
+        "contact": "a",
+        "symbol": "機械連動a接点",
+        "ports": [
+         {
+          "name": "SQ5:a.1",
+          "point": "P99"
+         },
+         {
+          "name": "SQ5:a.2",
+          "point": "P100"
+         }
+        ],
+        "bbox": [
+         106.86,
+         267.78,
+         116.58,
+         272.58
+        ]
+       },
+       {
+        "id": "SQ5.b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "機械式b接点",
+        "ports": [
+         {
+          "name": "SQ5:b.1",
+          "point": "P114"
+         },
+         {
+          "name": "SQ5:b.2",
+          "point": "P116"
+         }
+        ],
+        "bbox": [
+         106.86,
+         286.74,
+         115.74,
+         291.06
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ6",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "機械式リミットスイッチ",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "+Y AXIS OVERTRAVEL LS",
+       "basis": "drawing",
+       "evidence": [
+        "本頁X0.05入力の用途表記と配線"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ6.a",
+        "kind": "contact",
+        "contact": "a",
+        "symbol": "機械連動a接点",
+        "ports": [
+         {
+          "name": "SQ6:a.1",
+          "point": "P134"
+         },
+         {
+          "name": "SQ6:a.2",
+          "point": "P135"
+         }
+        ],
+        "bbox": [
+         106.86,
+         360.96,
+         116.58,
+         365.82
+        ]
+       },
+       {
+        "id": "SQ6.b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "機械式b接点",
+        "ports": [
+         {
+          "name": "SQ6:b.1",
+          "point": "P146"
+         },
+         {
+          "name": "SQ6:b.2",
+          "point": "P148"
+         }
+        ],
+        "bbox": [
+         106.86,
+         379.92,
+         115.74,
+         384.24
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ7",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "機械式リミットスイッチ",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "-Y AXIS OVERTRAVEL LS",
+       "basis": "drawing",
+       "evidence": [
+        "本頁X0.09入力の用途表記と配線"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ7.a",
+        "kind": "contact",
+        "contact": "a",
+        "symbol": "機械連動a接点",
+        "ports": [
+         {
+          "name": "SQ7:a.1",
+          "point": "P162"
+         },
+         {
+          "name": "SQ7:a.2",
+          "point": "P163"
+         }
+        ],
+        "bbox": [
+         106.86,
+         407.58,
+         116.58,
+         412.44
+        ]
+       },
+       {
+        "id": "SQ7.b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "機械式b接点",
+        "ports": [
+         {
+          "name": "SQ7:b.1",
+          "point": "P175"
+         },
+         {
+          "name": "SQ7:b.2",
+          "point": "P177"
+         }
+        ],
+        "bbox": [
+         106.86,
+         426.54,
+         115.74,
+         430.86
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ8",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "機械式リミットスイッチ",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "+Z AXIS OVERTRAVEL LS",
+       "basis": "drawing",
+       "evidence": [
+        "本頁X0.06入力の用途表記と配線"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ8.a",
+        "kind": "contact",
+        "contact": "a",
+        "symbol": "機械連動a接点",
+        "ports": [
+         {
+          "name": "SQ8:a.1",
+          "point": "P188"
+         },
+         {
+          "name": "SQ8:a.2",
+          "point": "P189"
+         }
+        ],
+        "bbox": [
+         106.86,
+         454.14,
+         116.58,
+         459
+        ]
+       },
+       {
+        "id": "SQ8.b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "機械式b接点",
+        "ports": [
+         {
+          "name": "SQ8:b.1",
+          "point": "P207"
+         },
+         {
+          "name": "SQ8:b.2",
+          "point": "P209"
+         }
+        ],
+        "bbox": [
+         106.86,
+         473.1,
+         115.74,
+         477.48
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ9",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "機械式リミットスイッチ",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "-Z AXIS OVERTRAVEL LS",
+       "basis": "drawing",
+       "evidence": [
+        "本頁X0.10入力の用途表記と配線"
+       ]
+      },
+      "elements": [
+       {
+        "id": "SQ9.a",
+        "kind": "contact",
+        "contact": "a",
+        "symbol": "機械連動a接点",
+        "ports": [
+         {
+          "name": "SQ9:a.1",
+          "point": "P219"
+         },
+         {
+          "name": "SQ9:a.2",
+          "point": "P220"
+         }
+        ],
+        "bbox": [
+         106.86,
+         500.76,
+         116.58,
+         505.62
+        ]
+       },
+       {
+        "id": "SQ9.b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "機械式b接点",
+        "ports": [
+         {
+          "name": "SQ9:b.1",
+          "point": "P231"
+         },
+         {
+          "name": "SQ9:b.2",
+          "point": "P233"
+         }
+        ],
+        "bbox": [
+         106.86,
+         519.72,
+         115.74,
+         524.04
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "X51",
+      "name": null,
+      "kind": "connector",
+      "symbol": null,
+      "region": "A11",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "X51:16",
+        "point": "P30"
+       },
+       {
+        "name": "X51:10",
+        "point": "P101"
+       },
+       {
+        "name": "X51:11",
+        "point": "P127"
+       },
+       {
+        "name": "X51:13",
+        "point": "P128"
+       }
+      ]
+     },
+     {
+      "id": "X85",
+      "name": null,
+      "kind": "connector",
+      "symbol": null,
+      "region": "A11",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "X85:37",
+        "point": "P259"
+       }
+      ]
+     },
+     {
+      "id": "A1",
+      "name": "NC",
+      "kind": "nc_unit",
+      "symbol": "NC入力",
+      "region": "A1",
+      "purpose": {
+       "value": "各軸原点復帰減速・オーバートラベル信号の入力",
+       "basis": "drawing",
+       "evidence": [
+        "NC(A1)とX0.00〜X0.10の表記"
+       ]
+      },
+      "elements": [],
+      "terminals": [
+       {
+        "name": "A1:X0.00",
+        "point": "P25"
+       },
+       {
+        "name": "A1:X0.01",
+        "point": "P46"
+       },
+       {
+        "name": "A1:X0.02",
+        "point": "P65"
+       },
+       {
+        "name": "A1:X0.04",
+        "point": "P92"
+       },
+       {
+        "name": "A1:X0.08",
+        "point": "P121"
+       },
+       {
+        "name": "A1:X0.05",
+        "point": "P151"
+       },
+       {
+        "name": "A1:X0.09",
+        "point": "P182"
+       },
+       {
+        "name": "A1:X0.06",
+        "point": "P211"
+       },
+       {
+        "name": "A1:X0.10",
+        "point": "P236"
+       }
+      ]
+     },
+     {
+      "id": "A11",
+      "name": "TU",
+      "kind": "terminal_unit",
+      "symbol": null,
+      "region": "A11",
+      "purpose": {
+       "value": "機械側信号の中継およびオーバートラベル検出",
+       "basis": "drawing",
+       "evidence": [
+        "TU(A11)内の配線とKA4回路"
+       ]
+      },
+      "elements": [],
+      "terminals": []
+     },
+     {
+      "id": "KA4",
+      "name": null,
+      "kind": "relay",
+      "symbol": "リレーコイル",
+      "region": "A11",
+      "purpose": {
+       "value": "AXIS OVERTRAVEL",
+       "basis": "drawing",
+       "evidence": [
+        "本頁24–25行のKA4・V4・R4・HL4回路"
+       ]
+      },
+      "elements": [
+       {
+        "id": "KA4",
+        "kind": "coil",
+        "contact": null,
+        "symbol": "リレーコイル",
+        "ports": [
+         {
+          "name": "KA4:1",
+          "point": "P261"
+         },
+         {
+          "name": "KA4:12",
+          "point": "P262"
+         }
+        ],
+        "bbox": [
+         370.35,
+         586.98,
+         378.03,
+         600.57
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "V4",
+      "name": null,
+      "kind": "diode",
+      "symbol": "ダイオード（左カソード・右アノード）",
+      "region": "A11",
+      "purpose": {
+       "value": "KA4コイルの逆起電力抑制",
+       "basis": "inferred",
+       "evidence": [
+        "本頁24–25行のKA4・V4・R4・HL4回路"
+       ]
+      },
+      "elements": [
+       {
+        "id": "V4",
+        "kind": "diode",
+        "contact": null,
+        "symbol": "ダイオード（左カソード・右アノード）",
+        "ports": [
+         {
+          "name": "V4:1",
+          "point": "P270"
+         },
+         {
+          "name": "V4:2",
+          "point": "P271"
+         }
+        ],
+        "bbox": [
+         370.44,
+         600.57,
+         378.18,
+         607.5
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "R4",
+      "name": null,
+      "kind": "resistor",
+      "symbol": "抵抗器",
+      "region": "A11",
+      "purpose": {
+       "value": "HL4の電流制限",
+       "basis": "inferred",
+       "evidence": [
+        "本頁24–25行のKA4・V4・R4・HL4回路"
+       ]
+      },
+      "elements": [
+       {
+        "id": "R4",
+        "kind": "resistor",
+        "contact": null,
+        "symbol": "抵抗器",
+        "ports": [
+         {
+          "name": "R4:1",
+          "point": "P286"
+         },
+         {
+          "name": "R4:2",
+          "point": "P287"
+         }
+        ],
+        "bbox": [
+         303.36,
+         613.38,
+         318.9,
+         621.18
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "HL4",
+      "name": null,
+      "kind": "lamp",
+      "symbol": "発光ダイオード（左アノード・右カソード）",
+      "region": "A11",
+      "purpose": {
+       "value": "オーバートラベル表示",
+       "basis": "inferred",
+       "evidence": [
+        "本頁24–25行のKA4・V4・R4・HL4回路"
+       ]
+      },
+      "elements": [
+       {
+        "id": "HL4",
+        "kind": "lamp",
+        "contact": null,
+        "symbol": "発光ダイオード（左アノード・右カソード）",
+        "ports": [
+         {
+          "name": "HL4:1",
+          "point": "P288"
+         },
+         {
+          "name": "HL4:2",
+          "point": "P289"
+         }
+        ],
+        "bbox": [
+         340.32,
+         610.2,
+         350.04,
+         621.18
+        ]
+       }
+      ],
+      "terminals": []
+     }
+    ],
+    "plc_io": [
+     {
+      "address": "X0.00",
+      "direction": "input",
+      "port": "A1:X0.00",
+      "point": "P25",
+      "device": "SQ1",
+      "comment": "X AXIS ZERO RETURN DEC LS"
+     },
+     {
+      "address": "X0.01",
+      "direction": "input",
+      "port": "A1:X0.01",
+      "point": "P46",
+      "device": "SQ2",
+      "comment": "Y AXIS ZERO RETURN DEC LS"
+     },
+     {
+      "address": "X0.02",
+      "direction": "input",
+      "port": "A1:X0.02",
+      "point": "P65",
+      "device": "SQ3",
+      "comment": "Z AXIS ZERO RETURN DEC LS"
+     },
+     {
+      "address": "X0.04",
+      "direction": "input",
+      "port": "A1:X0.04",
+      "point": "P92",
+      "device": "SQ4",
+      "comment": "+X AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.08",
+      "direction": "input",
+      "port": "A1:X0.08",
+      "point": "P121",
+      "device": "SQ5",
+      "comment": "-X AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.05",
+      "direction": "input",
+      "port": "A1:X0.05",
+      "point": "P151",
+      "device": "SQ6",
+      "comment": "+Y AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.09",
+      "direction": "input",
+      "port": "A1:X0.09",
+      "point": "P182",
+      "device": "SQ7",
+      "comment": "-Y AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.06",
+      "direction": "input",
+      "port": "A1:X0.06",
+      "point": "P211",
+      "device": "SQ8",
+      "comment": "+Z AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.10",
+      "direction": "input",
+      "port": "A1:X0.10",
+      "point": "P236",
+      "device": "SQ9",
+      "comment": "-Z AXIS OVERTRAVEL LS"
+     }
+    ],
+    "open_ends": [
+     {
+      "port": "X51:16",
+      "note": "本頁ではコネクタ外側の配線先を描いていない。線番420。未使用とは断定しない。",
+      "evidence": [
+       "PDF30頁X51 PIN/LINE NO.表でピンと線番を確認。PDF139頁XT51および全頁X51検索では該当ピンの外部接続先は確認できない。"
+      ]
+     },
+     {
+      "port": "X51:10",
+      "note": "本頁ではコネクタ外側の配線先を描いていない。線番400。未使用とは断定しない。",
+      "evidence": [
+       "PDF30頁X51 PIN/LINE NO.表でピンと線番を確認。PDF139頁XT51および全頁X51検索では該当ピンの外部接続先は確認できない。"
+      ]
+     },
+     {
+      "port": "X51:11",
+      "note": "本頁ではコネクタ外側の配線先を描いていない。線番401。未使用とは断定しない。",
+      "evidence": [
+       "PDF30頁X51 PIN/LINE NO.表でピンと線番を確認。PDF139頁XT51および全頁X51検索では該当ピンの外部接続先は確認できない。"
+      ]
+     },
+     {
+      "port": "X51:13",
+      "note": "本頁ではコネクタ外側の配線先を描いていない。線番358。未使用とは断定しない。",
+      "evidence": [
+       "PDF30頁X51 PIN/LINE NO.表でピンと線番を確認。PDF139頁XT51および全頁X51検索では該当ピンの外部接続先は確認できない。"
+      ]
+     },
+     {
+      "port": "X85:37",
+      "note": "本頁ではコネクタ外側の配線先を描いていない。線番358。未使用とは断定しない。",
+      "evidence": [
+       "PDF29頁X85 PIN/LINE NO.表で37=358。全頁X85/358検索では外側の接続先は確認できない。"
+      ]
+     }
+    ],
+    "conventions": [
+     {
+      "id": "terminal_no_is_wire_no",
+      "rule": "本頁XT31・XT71の数字端子名は同一ネットの線番としても使われる。コネクタのピン番号とは区別する。",
+      "basis": "other_page",
+      "evidence": [
+       "PDF28頁X01 PIN/LINE NO.：12=420、28=421、44=422、3=400、20=401、35=402、2=403、19=404、34=405。",
+       "PDF30頁X31/X71 PIN/LINE NO.が本頁XT31/XT71の数字と一致。"
+      ]
+     }
+    ],
+    "cross_references": [
+     {
+      "text": "0700/23",
+      "kind": "contact_location",
+      "component": "KA4",
+      "target_sheet": "0700",
+      "target_line": 23,
+      "target_page": 77
+     }
+    ],
+    "tables": [
+     {
+      "title": null,
+      "rows": [
+       [
+        "STD",
+        "48",
+        "510",
+        "612",
+        ""
+       ],
+       [
+        "CE",
+        "1.5Kw",
+        "2.5Kw",
+        "4Kw",
+        ""
+       ]
+      ],
+      "note": null
+     }
+    ],
+    "unresolved": [],
+    "needs_review": [
+     {
+      "what": "V4・R4・HL4の用途",
+      "reason": "逆起電力抑制・電流制限・表示の用途は回路構成から推定。",
+      "ref": "V4,R4,HL4"
+     }
+    ]
+   }
+  }
+ }
+]

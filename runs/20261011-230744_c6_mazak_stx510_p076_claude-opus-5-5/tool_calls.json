@@ -1,0 +1,2734 @@
+[
+ {
+  "round": 1,
+  "tool": "mcp__pdf__run_python",
+  "input": {
+   "code": "import json\ng=json.load(open('/work/graph.json'))\nfor p in g['points']:\n    print(p['id'],p['kind'],[round(v,1) for v in (p.get('x',0),p.get('y',0))] if 'x' in p else p)\nprint(len(g['runs']))\nprint(g['points'][0])"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp__pdf__crop",
+  "input": {
+   "x0": 90,
+   "y0": 210,
+   "x1": 150,
+   "y1": 250,
+   "dpi": 1200
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp__pdf__run_python",
+  "input": {
+   "code": "import json\ng=json.load(open('/work/graph.json'))\nfrom collections import defaultdict\nadj=defaultdict(set)\nfor r in g['runs']:\n    adj[r['a']].add(r['b']);adj[r['b']].add(r['a'])\nseen=set();comps=[]\npts={p['id']:p for p in g['points']}\nfor p in pts:\n    if p in seen: continue\n    st=[p];c=[]\n    seen.add(p)\n    while st:\n        q=st.pop();c.append(q)\n        for n in adj[q]:\n            if n not in seen: seen.add(n);st.append(n)\n    if len(c)>1 and any(pts[q]['y']<700 for q in c):\n        print(sorted(c,key=lambda q:int(q[1:])))\nprint(g['runs'][0].keys())"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp__pdf__run_python",
+  "input": {
+   "code": "t=open('/work/pages.txt',encoding='utf-8').read()\nimport re\npages=re.split(r'=== p\\.(\\d+) ===',t)\nd={int(pages[i]):pages[i+1] for i in range(1,len(pages),2)}\nprint(d[76][:1500])\nfor k in ['0700','40652','KA4','1L+','XT31','X85']:\n    print(k,[p for p in d if k in d[p]][:30])\nfor p in [75,77]:\n    print(p,d[p][:400].replace('\\n',' '))"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp__pdf__run_python",
+  "input": {
+   "code": "for p in [40,74,77,78,209]:\n    i=d[p].find('0700');print(p,d[p][max(0,i-300):i+200].replace('\\n',' '));print('---')\nfor p in [12,13]:\n    i=d[p].find('1L+');print(p,d[p][max(0,i-200):i+300].replace('\\n',' '))"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp__pdf__run_python",
+  "input": {
+   "code": "import re\nt=open('/work/pages.txt',encoding='utf-8').read()\npages=re.split(r'=== p\\.(\\d+) ===',t)\nd={int(pages[i]):pages[i+1] for i in range(1,len(pages),2)}\nfor p in [40,74,77,78,209]:\n    i=d[p].find('0700');print(p,d[p][max(0,i-300):i+200].replace('\\n',' '));print('---')\nfor p in [12]:\n    i=d[p].find('1L+');print(p,d[p][max(0,i-300):i+300].replace('\\n',' '))\nprint([p for p in d if '24V' in d[p] and '1L+' in d[p]][:10])"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp__pdf__page_image",
+  "input": {
+   "page": 40
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp__pdf__run_python",
+  "input": {
+   "code": "import re\nt=open('/work/pages.txt',encoding='utf-8').read()\npages=re.split(r'=== p\\.(\\d+) ===',t)\nd={int(pages[i]):pages[i+1] for i in range(1,len(pages),2)}\nfor p in range(70,80):\n    m=re.findall(r'676 001 \\d+, ?\\d',d[p]);print(p,m)"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp__pdf__run_python",
+  "input": {
+   "code": "import json\nL=[]\ndef np(n,p): return {\"name\":n,\"point\":p}\nrails=[{\"name\":\"1L+\",\"polarity\":\"plus\",\"polarity_basis\":{\"value\":\"plus\",\"basis\":\"inferred\",\"evidence\":[\"'+' in name 1L+\",\"1L+ used as DC24V control supply on many pages e.g. p.12,p.75\"]},\"point\":\"P9\"},\n {\"name\":\"1M\",\"polarity\":\"zero\",\"polarity_basis\":{\"value\":\"zero\",\"basis\":\"inferred\",\"evidence\":[\"1M is the common return of KA4 coil and HL4 (paired with 1L+)\"]},\"point\":\"P251\"}]\ncomps=[]\nsq={\"SQ1\":(\"P16\",\"P18\",None,None),\"SQ2\":(\"P42\",\"P44\",None,None),\"SQ3\":(\"P57\",\"P59\",None,None),\n\"SQ4\":(\"P83\",\"P85\",\"P71\",\"P72\"),\"SQ5\":(\"P114\",\"P116\",\"P99\",\"P100\"),\"SQ6\":(\"P146\",\"P148\",\"P134\",\"P135\"),\n\"SQ7\":(\"P175\",\"P177\",\"P162\",\"P163\"),\"SQ8\":(\"P207\",\"P209\",\"P188\",\"P189\"),\"SQ9\":(\"P231\",\"P233\",\"P219\",\"P220\")}\nys={\"SQ1\":104.6,\"SQ2\":151.2,\"SQ3\":174.5,\"SQ4\":244.4,\"SQ5\":291.0,\"SQ6\":384.2,\"SQ7\":430.8,\"SQ8\":477.4,\"SQ9\":524.0}\npurp={\"SQ1\":\"X AXIS ZERO RETURN DEC LS\",\"SQ2\":\"Y AXIS ZERO RETURN DEC LS\",\"SQ3\":\"Z AXIS ZERO RETURN DEC LS\",\"SQ4\":\"+X AXIS OVERTRAVEL LS\",\"SQ5\":\"-X AXIS OVERTRAVEL LS\",\"SQ6\":\"+Y AXIS OVERTRAVEL LS\",\"SQ7\":\"-Y AXIS OVERTRAVEL LS\",\"SQ8\":\"+Z AXIS OVERTRAVEL LS\",\"SQ9\":\"-Z AXIS OVERTRAVEL LS\"}\nfor k,(b1,b2,a1,a2) in sq.items():\n    y=ys[k]\n    el=[{\"id\":\"b\",\"kind\":\"contact\",\"contact\":\"b\",\"symbol\":\"limit_switch_nc\",\"ports\":[np(k+\":b.1\",b1),np(k+\":b.2\",b2)],\"bbox\":[106.9,y-5,115.1,y+0.5]}]\n    if a1:\n        el.append({\"id\":\"a\",\"kind\":\"contact\",\"contact\":\"a\",\"symbol\":\"limit_switch_no\",\"ports\":[np(k+\":a.1\",a1),np(k+\":a.2\",a2)],\"bbox\":[106.9,y-23.5,116.5,y-17]})\n    comps.append({\"id\":k,\"name\":None,\"kind\":\"limit_switch\",\"symbol\":\"limit_switch\",\"region\":\"MACHINE_SIDE\",\"purpose\":{\"value\":purp[k],\"basis\":\"drawing\",\"evidence\":[\"comment at right of the same row: \"+purp[k]]},\"elements\":el,\"terminals\":[]})\nxt={\"XT31\":[(\"420\",\"P19\"),(\"421\",\"P38\"),(\"400\",\"P86\"),(\"401\",\"P112\"),(\"358\",\"P131\"),(\"402\",\"P149\"),(\"403\",\"P174\")],\"XT71\":[(\"422\",\"P60\"),(\"358\",\"P191\"),(\"404\",\"P203\"),(\"405\",\"P234\")]}\nfor k,v in xt.items():\n    comps.append({\"id\":k,\"name\":None,\"kind\":\"terminal_block\",\"symbol\":None,\"region\":\"MACHINE_SIDE\",\"purpose\":None,\"elements\":[],\"terminals\":[np(f\"{k}:{n}\",p) for n,p in v]})\ncn={\"X31\":[(\"10\",\"P20\"),(\"11\",\"P39\"),(\"4\",\"P87\"),(\"5\",\"P117\"),(\"9\",\"P136\"),(\"6\",\"P154\"),(\"8\",\"P178\")],\n\"X51\":[(\"16\",\"P30\"),(\"10\",\"P101\"),(\"11\",\"P127\"),(\"13\",\"P128\")],\n\"X71\":[(\"8\",\"P61\"),(\"7\",\"P193\"),(\"4\",\"P204\"),(\"5\",\"P239\")],\n\"X01\":[(\"12\",\"P22\"),(\"28\",\"P40\"),(\"44\",\"P62\"),(\"3\",\"P89\"),(\"20\",\"P118\"),(\"35\",\"P155\"),(\"2\",\"P179\"),(\"19\",\"P205\"),(\"34\",\"P240\")],\n\"X85\":[(\"37\",\"P259\")]}\nfor k,v in cn.items():\n    comps.append({\"id\":k,\"name\":None,\"kind\":\"connector\",\"symbol\":None,\"region\":\"TU_A11\",\"purpose\":None,\"elements\":[],\"terminals\":[np(f\"{k}:{n}\",p) for n,p in v]})\nxcs=[(\"7/A4\",\"P23\"),(\"8/B4\",\"P41\"),(\"9/A5\",\"P63\"),(\"11/A6\",\"P90\"),(\"15/A8\",\"P119\"),(\"12/B6\",\"P156\"),(\"16/B8\",\"P180\"),(\"13/A7\",\"P206\"),(\"17/A9\",\"P241\")]\ncomps.append({\"id\":\"XCS41\",\"name\":None,\"kind\":\"connector\",\"symbol\":None,\"region\":\"NC_A1\",\"purpose\":None,\"elements\":[],\"terminals\":[np(f\"XCS41:{n}\",p) for n,p in xcs]})\nio=[(\"X0.00\",\"P25\",104.6,\"SQ1\"),(\"X0.01\",\"P46\",151.2,\"SQ2\"),(\"X0.02\",\"P65\",174.5,\"SQ3\"),(\"X0.04\",\"P92\",244.4,\"SQ4\"),(\"X0.08\",\"P121\",291.0,\"SQ5\"),(\"X0.05\",\"P151\",384.2,\"SQ6\"),(\"X0.09\",\"P182\",430.8,\"SQ7\"),(\"X0.06\",\"P211\",477.4,\"SQ8\"),(\"X0.10\",\"P236\",524.0,\"SQ9\")]\ncomps.append({\"id\":\"A1\",\"name\":\"NC\",\"kind\":\"nc_unit\",\"symbol\":None,\"region\":\"NC_A1\",\"purpose\":{\"value\":\"NC/PLC input unit\",\"basis\":\"drawing\",\"evidence\":[\"NC(A1)\"]},\"elements\":[],\"terminals\":[np(\"A1:\"+a,p) for a,p,_,_ in io]})\ncomps.append({\"id\":\"A11\",\"name\":\"TU\",\"kind\":\"terminal_unit\",\"symbol\":None,\"region\":\"TU_A11\",\"purpose\":None,\"elements\":[],\"terminals\":[]})\ncomps.append({\"id\":\"KA4\",\"name\":None,\"kind\":\"relay\",\"symbol\":\"relay_coil\",\"region\":\"TU_A11\",\"purpose\":{\"value\":\"AXIS OVERTRAVEL\",\"basis\":\"drawing\",\"evidence\":[\"comment AXIS OVERTRAVEL, contact at 0700/23 (p.77)\"]},\n \"elements\":[{\"id\":\"coil\",\"kind\":\"coil\",\"contact\":None,\"symbol\":\"coil\",\"ports\":[np(\"KA4:1\",\"P261\"),np(\"KA4:12\",\"P262\")],\"bbox\":[370.4,587.0,378.0,600.6]}],\"terminals\":[]})\ncomps.append({\"id\":\"V4\",\"name\":None,\"kind\":\"diode\",\"symbol\":\"diode\",\"region\":\"TU_A11\",\"purpose\":{\"value\":\"surge suppression diode across KA4 coil\",\"basis\":\"inferred\",\"evidence\":[\"connected in parallel with KA4 coil\"]},\n \"elements\":[{\"id\":\"body\",\"kind\":\"diode\",\"contact\":None,\"symbol\":\"diode\",\"ports\":[np(\"V4:1\",\"P270\"),np(\"V4:2\",\"P271\")],\"bbox\":[370.4,600.6,378.2,608.6]}],\"terminals\":[]})\ncomps.append({\"id\":\"R4\",\"name\":None,\"kind\":\"resistor\",\"symbol\":\"resistor\",\"region\":\"TU_A11\",\"purpose\":{\"value\":\"current limit resistor for HL4\",\"basis\":\"inferred\",\"evidence\":[\"in series with HL4\"]},\n \"elements\":[{\"id\":\"body\",\"kind\":\"resistor\",\"contact\":None,\"symbol\":\"resistor\",\"ports\":[np(\"R4:1\",\"P286\"),np(\"R4:2\",\"P287\")],\"bbox\":[303.4,613.4,318.9,621.2]}],\"terminals\":[]})\ncomps.append({\"id\":\"HL4\",\"name\":None,\"kind\":\"led\",\"symbol\":\"led\",\"region\":\"TU_A11\",\"purpose\":{\"value\":\"axis overtravel indicator\",\"basis\":\"inferred\",\"evidence\":[\"LED in parallel with KA4 coil\"]},\n \"elements\":[{\"id\":\"body\",\"kind\":\"lamp\",\"contact\":None,\"symbol\":\"led\",\"ports\":[np(\"HL4:1\",\"P288\"),np(\"HL4:2\",\"P289\")],\"bbox\":[340.3,610.2,350.0,621.0]}],\"terminals\":[]})\nplc=[{\"address\":a,\"direction\":\"input\",\"port\":\"A1:\"+a,\"point\":p,\"device\":s,\"comment\":purp[s]} for a,p,_,s in io]\nlabels={\"sheet\":{\"title\":\"AXIS LS\",\"sheet_id\":{\"value\":\"0650\",\"basis\":\"inferred\",\"evidence\":[\"DRWN NO. 676 001 40652,0; other pages refer as e.g. 0700/23 where p.77 has DRWN NO. 676 001 40701 (last digit = edition)\"]},\n \"layout\":{\"orientation\":\"horizontal\",\"location_system\":\"line_number\",\"lines\":\"01-30 rows on left\",\"columns\":\"A-M on top\",\"label_placement\":\"device name above symbol, terminal block name above number above circle; connector name above pin number\",\"junction_rule\":\"black dot = connection; crossing without dot = no connection\"}},\n \"regions\":[{\"id\":\"MACHINE_SIDE\",\"label\":\"MACHINE SIDE\",\"kind\":\"area\",\"meaning\":\"devices on machine side\"},{\"id\":\"TU_A11\",\"label\":\"TU(A11)\",\"kind\":\"unit\",\"meaning\":\"terminal unit A11\"},{\"id\":\"NC_A1\",\"label\":\"NC(A1)\",\"kind\":\"unit\",\"meaning\":\"NC unit A1 (PLC inputs)\"}],\n \"rails\":rails,\"components\":comps,\"plc_io\":plc,\"open_ends\":[],\n \"conventions\":[{\"id\":\"sheet_reference\",\"rule\":\"Cross reference 'SSSS/LL' = sheet number (DRWN NO. 676 001 4SSSE minus last edition digit) / line number\",\"basis\":\"other_page\",\"evidence\":[\"p.77 DRWN NO 676 001 40701 contains KA4 contact; this page refers 0700/23\"]}],\n \"cross_references\":[{\"text\":\"0700/23\",\"kind\":\"contact_location\",\"component\":\"KA4\",\"target_sheet\":\"0700\",\"target_line\":23,\"target_page\":77}],\n \"tables\":[{\"title\":None,\"rows\":[[\"STD\",\"48\",\"510\",\"612\",\"\"],[\"CE\",\"1.5Kw\",\"2.5Kw\",\"4Kw\",\"\"]],\"note\":\"model applicability table\"}],\n \"unresolved\":[],\n \"needs_review\":[{\"what\":\"1M polarity zero\",\"reason\":\"inferred from naming; not written on this page\",\"ref\":\"1M\"},\n  {\"what\":\"SQ contact types (b for signal contact, a for upper contact)\",\"reason\":\"judged from symbol shape (blade crossing stop = NC)\",\"ref\":\"SQ4\"},\n  {\"what\":\"sheet id 0650\",\"reason\":\"inferred from drawing number convention\",\"ref\":None},\n  {\"what\":\"XCS41 pin names kept as written '7/A4' etc.\",\"reason\":\"two numbering systems in one label\",\"ref\":\"XCS41\"}]}\njson.dump(labels,open('/tmp/l.json','w'))\nprint(json.dumps(labels)[:100])\nopen('/tmp/x','w')\nimport sys;sys.stdout.write(json.dumps(labels))"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp__pdf__search_pages",
+  "input": {
+   "pattern": "X51",
+   "max_hits": 15
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp__pdf__run_python",
+  "input": {
+   "code": "import re\nt=open('/work/pages.txt',encoding='utf-8').read()\npages=re.split(r'=== p\\.(\\d+) ===',t)\nd={int(pages[i]):pages[i+1] for i in range(1,len(pages),2)}\nprint(d[30][:1500].replace('\\n',' '))"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp__pdf__run_python",
+  "input": {
+   "code": "import re\nt=open('/work/pages.txt',encoding='utf-8').read()\npages=re.split(r'=== p\\.(\\d+) ===',t)\nd={int(pages[i]):pages[i+1] for i in range(1,len(pages),2)}\ns=d[30].replace('\\n',' ');i=s.find('X51');print(s[1400:4000])"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp__pdf__run_python",
+  "input": {
+   "code": "import json\nl=json.load(open('/tmp/l.json')) if False else None\nprint('skip')"
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp__pdf__check",
+  "input": {
+   "labels": {
+    "sheet": {
+     "title": "AXIS LS",
+     "sheet_id": {
+      "value": "0650",
+      "basis": "inferred",
+      "evidence": [
+       "DRWN NO. 676 001 40652,0; p.77 (DRWN NO. 676 001 40701) is referenced as sheet 0700, last digit = edition"
+      ]
+     },
+     "layout": {
+      "orientation": "horizontal",
+      "location_system": "line_number",
+      "lines": "01-30 rows on left",
+      "columns": "A-M on top",
+      "label_placement": "device name above symbol; terminal block name above number above circle; connector name above pin number",
+      "junction_rule": "black dot = connection; crossing without dot = no connection"
+     }
+    },
+    "regions": [
+     {
+      "id": "MACHINE_SIDE",
+      "label": "MACHINE SIDE",
+      "kind": "area",
+      "meaning": "devices on machine side"
+     },
+     {
+      "id": "TU_A11",
+      "label": "TU(A11)",
+      "kind": "unit",
+      "meaning": "terminal unit A11"
+     },
+     {
+      "id": "NC_A1",
+      "label": "NC(A1)",
+      "kind": "unit",
+      "meaning": "NC unit A1 (PLC inputs)"
+     }
+    ],
+    "rails": [
+     {
+      "name": "1L+",
+      "polarity": "plus",
+      "polarity_basis": {
+       "value": "plus",
+       "basis": "inferred",
+       "evidence": [
+        "'+' in name 1L+",
+        "1L+ paired with 1M on many pages e.g. p.75, p.30 connector tables"
+       ]
+      },
+      "point": "P9"
+     },
+     {
+      "name": "1M",
+      "polarity": "zero",
+      "polarity_basis": {
+       "value": "zero",
+       "basis": "inferred",
+       "evidence": [
+        "1M is the common return of KA4 coil and HL4 (paired with 1L+)"
+       ]
+      },
+      "point": "P251"
+     }
+    ],
+    "components": [
+     {
+      "id": "SQ1",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "limit_switch",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "X AXIS ZERO RETURN DEC LS",
+       "basis": "drawing",
+       "evidence": [
+        "comment on row 03"
+       ]
+      },
+      "elements": [
+       {
+        "id": "b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "limit_switch_nc",
+        "ports": [
+         {
+          "name": "SQ1:b.1",
+          "point": "P16"
+         },
+         {
+          "name": "SQ1:b.2",
+          "point": "P18"
+         }
+        ],
+        "bbox": [
+         106.9,
+         99.6,
+         115.1,
+         105.1
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ2",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "limit_switch",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "Y AXIS ZERO RETURN DEC LS",
+       "basis": "drawing",
+       "evidence": [
+        "comment on row 05"
+       ]
+      },
+      "elements": [
+       {
+        "id": "b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "limit_switch_nc",
+        "ports": [
+         {
+          "name": "SQ2:b.1",
+          "point": "P42"
+         },
+         {
+          "name": "SQ2:b.2",
+          "point": "P44"
+         }
+        ],
+        "bbox": [
+         106.9,
+         146.2,
+         115.1,
+         151.7
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ3",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "limit_switch",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "Z AXIS ZERO RETURN DEC LS",
+       "basis": "drawing",
+       "evidence": [
+        "comment on row 06"
+       ]
+      },
+      "elements": [
+       {
+        "id": "b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "limit_switch_nc",
+        "ports": [
+         {
+          "name": "SQ3:b.1",
+          "point": "P57"
+         },
+         {
+          "name": "SQ3:b.2",
+          "point": "P59"
+         }
+        ],
+        "bbox": [
+         106.9,
+         169.5,
+         115.1,
+         175
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ4",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "limit_switch",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "+X AXIS OVERTRAVEL LS",
+       "basis": "drawing",
+       "evidence": [
+        "comment on row 09"
+       ]
+      },
+      "elements": [
+       {
+        "id": "b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "limit_switch_nc",
+        "ports": [
+         {
+          "name": "SQ4:b.1",
+          "point": "P83"
+         },
+         {
+          "name": "SQ4:b.2",
+          "point": "P85"
+         }
+        ],
+        "bbox": [
+         106.9,
+         239.4,
+         115.1,
+         244.9
+        ]
+       },
+       {
+        "id": "a",
+        "kind": "contact",
+        "contact": "a",
+        "symbol": "limit_switch_no",
+        "ports": [
+         {
+          "name": "SQ4:a.1",
+          "point": "P71"
+         },
+         {
+          "name": "SQ4:a.2",
+          "point": "P72"
+         }
+        ],
+        "bbox": [
+         106.9,
+         220.9,
+         116.5,
+         227.4
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ5",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "limit_switch",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "-X AXIS OVERTRAVEL LS",
+       "basis": "drawing",
+       "evidence": [
+        "comment on row 11"
+       ]
+      },
+      "elements": [
+       {
+        "id": "b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "limit_switch_nc",
+        "ports": [
+         {
+          "name": "SQ5:b.1",
+          "point": "P114"
+         },
+         {
+          "name": "SQ5:b.2",
+          "point": "P116"
+         }
+        ],
+        "bbox": [
+         106.9,
+         286,
+         115.1,
+         291.5
+        ]
+       },
+       {
+        "id": "a",
+        "kind": "contact",
+        "contact": "a",
+        "symbol": "limit_switch_no",
+        "ports": [
+         {
+          "name": "SQ5:a.1",
+          "point": "P99"
+         },
+         {
+          "name": "SQ5:a.2",
+          "point": "P100"
+         }
+        ],
+        "bbox": [
+         106.9,
+         267.5,
+         116.5,
+         274
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ6",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "limit_switch",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "+Y AXIS OVERTRAVEL LS",
+       "basis": "drawing",
+       "evidence": [
+        "comment on row 15"
+       ]
+      },
+      "elements": [
+       {
+        "id": "b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "limit_switch_nc",
+        "ports": [
+         {
+          "name": "SQ6:b.1",
+          "point": "P146"
+         },
+         {
+          "name": "SQ6:b.2",
+          "point": "P148"
+         }
+        ],
+        "bbox": [
+         106.9,
+         379.2,
+         115.1,
+         384.7
+        ]
+       },
+       {
+        "id": "a",
+        "kind": "contact",
+        "contact": "a",
+        "symbol": "limit_switch_no",
+        "ports": [
+         {
+          "name": "SQ6:a.1",
+          "point": "P134"
+         },
+         {
+          "name": "SQ6:a.2",
+          "point": "P135"
+         }
+        ],
+        "bbox": [
+         106.9,
+         360.7,
+         116.5,
+         367.2
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ7",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "limit_switch",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "-Y AXIS OVERTRAVEL LS",
+       "basis": "drawing",
+       "evidence": [
+        "comment on row 17"
+       ]
+      },
+      "elements": [
+       {
+        "id": "b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "limit_switch_nc",
+        "ports": [
+         {
+          "name": "SQ7:b.1",
+          "point": "P175"
+         },
+         {
+          "name": "SQ7:b.2",
+          "point": "P177"
+         }
+        ],
+        "bbox": [
+         106.9,
+         425.8,
+         115.1,
+         431.3
+        ]
+       },
+       {
+        "id": "a",
+        "kind": "contact",
+        "contact": "a",
+        "symbol": "limit_switch_no",
+        "ports": [
+         {
+          "name": "SQ7:a.1",
+          "point": "P162"
+         },
+         {
+          "name": "SQ7:a.2",
+          "point": "P163"
+         }
+        ],
+        "bbox": [
+         106.9,
+         407.3,
+         116.5,
+         413.8
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ8",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "limit_switch",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "+Z AXIS OVERTRAVEL LS",
+       "basis": "drawing",
+       "evidence": [
+        "comment on row 19"
+       ]
+      },
+      "elements": [
+       {
+        "id": "b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "limit_switch_nc",
+        "ports": [
+         {
+          "name": "SQ8:b.1",
+          "point": "P207"
+         },
+         {
+          "name": "SQ8:b.2",
+          "point": "P209"
+         }
+        ],
+        "bbox": [
+         106.9,
+         472.4,
+         115.1,
+         477.9
+        ]
+       },
+       {
+        "id": "a",
+        "kind": "contact",
+        "contact": "a",
+        "symbol": "limit_switch_no",
+        "ports": [
+         {
+          "name": "SQ8:a.1",
+          "point": "P188"
+         },
+         {
+          "name": "SQ8:a.2",
+          "point": "P189"
+         }
+        ],
+        "bbox": [
+         106.9,
+         453.9,
+         116.5,
+         460.4
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "SQ9",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": "limit_switch",
+      "region": "MACHINE_SIDE",
+      "purpose": {
+       "value": "-Z AXIS OVERTRAVEL LS",
+       "basis": "drawing",
+       "evidence": [
+        "comment on row 21"
+       ]
+      },
+      "elements": [
+       {
+        "id": "b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": "limit_switch_nc",
+        "ports": [
+         {
+          "name": "SQ9:b.1",
+          "point": "P231"
+         },
+         {
+          "name": "SQ9:b.2",
+          "point": "P233"
+         }
+        ],
+        "bbox": [
+         106.9,
+         519,
+         115.1,
+         524.5
+        ]
+       },
+       {
+        "id": "a",
+        "kind": "contact",
+        "contact": "a",
+        "symbol": "limit_switch_no",
+        "ports": [
+         {
+          "name": "SQ9:a.1",
+          "point": "P219"
+         },
+         {
+          "name": "SQ9:a.2",
+          "point": "P220"
+         }
+        ],
+        "bbox": [
+         106.9,
+         500.5,
+         116.5,
+         507
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "XT31",
+      "name": null,
+      "kind": "terminal_block",
+      "symbol": null,
+      "region": "MACHINE_SIDE",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "XT31:420",
+        "point": "P19"
+       },
+       {
+        "name": "XT31:421",
+        "point": "P38"
+       },
+       {
+        "name": "XT31:400",
+        "point": "P86"
+       },
+       {
+        "name": "XT31:401",
+        "point": "P112"
+       },
+       {
+        "name": "XT31:358",
+        "point": "P131"
+       },
+       {
+        "name": "XT31:402",
+        "point": "P149"
+       },
+       {
+        "name": "XT31:403",
+        "point": "P174"
+       }
+      ]
+     },
+     {
+      "id": "XT71",
+      "name": null,
+      "kind": "terminal_block",
+      "symbol": null,
+      "region": "MACHINE_SIDE",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "XT71:422",
+        "point": "P60"
+       },
+       {
+        "name": "XT71:358",
+        "point": "P191"
+       },
+       {
+        "name": "XT71:404",
+        "point": "P203"
+       },
+       {
+        "name": "XT71:405",
+        "point": "P234"
+       }
+      ]
+     },
+     {
+      "id": "X31",
+      "name": null,
+      "kind": "connector",
+      "symbol": null,
+      "region": "TU_A11",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "X31:10",
+        "point": "P20"
+       },
+       {
+        "name": "X31:11",
+        "point": "P39"
+       },
+       {
+        "name": "X31:4",
+        "point": "P87"
+       },
+       {
+        "name": "X31:5",
+        "point": "P117"
+       },
+       {
+        "name": "X31:9",
+        "point": "P136"
+       },
+       {
+        "name": "X31:6",
+        "point": "P154"
+       },
+       {
+        "name": "X31:8",
+        "point": "P178"
+       }
+      ]
+     },
+     {
+      "id": "X51",
+      "name": null,
+      "kind": "connector",
+      "symbol": null,
+      "region": "TU_A11",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "X51:16",
+        "point": "P30"
+       },
+       {
+        "name": "X51:10",
+        "point": "P101"
+       },
+       {
+        "name": "X51:11",
+        "point": "P127"
+       },
+       {
+        "name": "X51:13",
+        "point": "P128"
+       }
+      ]
+     },
+     {
+      "id": "X71",
+      "name": null,
+      "kind": "connector",
+      "symbol": null,
+      "region": "TU_A11",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "X71:8",
+        "point": "P61"
+       },
+       {
+        "name": "X71:7",
+        "point": "P193"
+       },
+       {
+        "name": "X71:4",
+        "point": "P204"
+       },
+       {
+        "name": "X71:5",
+        "point": "P239"
+       }
+      ]
+     },
+     {
+      "id": "X01",
+      "name": null,
+      "kind": "connector",
+      "symbol": null,
+      "region": "TU_A11",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "X01:12",
+        "point": "P22"
+       },
+       {
+        "name": "X01:28",
+        "point": "P40"
+       },
+       {
+        "name": "X01:44",
+        "point": "P62"
+       },
+       {
+        "name": "X01:3",
+        "point": "P89"
+       },
+       {
+        "name": "X01:20",
+        "point": "P118"
+       },
+       {
+        "name": "X01:35",
+        "point": "P155"
+       },
+       {
+        "name": "X01:2",
+        "point": "P179"
+       },
+       {
+        "name": "X01:19",
+        "point": "P205"
+       },
+       {
+        "name": "X01:34",
+        "point": "P240"
+       }
+      ]
+     },
+     {
+      "id": "X85",
+      "name": null,
+      "kind": "connector",
+      "symbol": null,
+      "region": "TU_A11",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "X85:37",
+        "point": "P259"
+       }
+      ]
+     },
+     {
+      "id": "XCS41",
+      "name": null,
+      "kind": "connector",
+      "symbol": null,
+      "region": "NC_A1",
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "XCS41:7/A4",
+        "point": "P23"
+       },
+       {
+        "name": "XCS41:8/B4",
+        "point": "P41"
+       },
+       {
+        "name": "XCS41:9/A5",
+        "point": "P63"
+       },
+       {
+        "name": "XCS41:11/A6",
+        "point": "P90"
+       },
+       {
+        "name": "XCS41:15/A8",
+        "point": "P119"
+       },
+       {
+        "name": "XCS41:12/B6",
+        "point": "P156"
+       },
+       {
+        "name": "XCS41:16/B8",
+        "point": "P180"
+       },
+       {
+        "name": "XCS41:13/A7",
+        "point": "P206"
+       },
+       {
+        "name": "XCS41:17/A9",
+        "point": "P241"
+       }
+      ]
+     },
+     {
+      "id": "A1",
+      "name": "NC",
+      "kind": "nc_unit",
+      "symbol": null,
+      "region": "NC_A1",
+      "purpose": {
+       "value": "NC/PLC input unit",
+       "basis": "drawing",
+       "evidence": [
+        "NC(A1)"
+       ]
+      },
+      "elements": [],
+      "terminals": [
+       {
+        "name": "A1:X0.00",
+        "point": "P25"
+       },
+       {
+        "name": "A1:X0.01",
+        "point": "P46"
+       },
+       {
+        "name": "A1:X0.02",
+        "point": "P65"
+       },
+       {
+        "name": "A1:X0.04",
+        "point": "P92"
+       },
+       {
+        "name": "A1:X0.08",
+        "point": "P121"
+       },
+       {
+        "name": "A1:X0.05",
+        "point": "P151"
+       },
+       {
+        "name": "A1:X0.09",
+        "point": "P182"
+       },
+       {
+        "name": "A1:X0.06",
+        "point": "P211"
+       },
+       {
+        "name": "A1:X0.10",
+        "point": "P236"
+       }
+      ]
+     },
+     {
+      "id": "A11",
+      "name": "TU",
+      "kind": "terminal_unit",
+      "symbol": null,
+      "region": "TU_A11",
+      "purpose": null,
+      "elements": [],
+      "terminals": []
+     },
+     {
+      "id": "KA4",
+      "name": null,
+      "kind": "relay",
+      "symbol": "relay_coil",
+      "region": "TU_A11",
+      "purpose": {
+       "value": "AXIS OVERTRAVEL",
+       "basis": "drawing",
+       "evidence": [
+        "comment AXIS OVERTRAVEL next to KA4, contact at 0700/23 (p.77)"
+       ]
+      },
+      "elements": [
+       {
+        "id": "coil",
+        "kind": "coil",
+        "contact": null,
+        "symbol": "coil",
+        "ports": [
+         {
+          "name": "KA4:1",
+          "point": "P261"
+         },
+         {
+          "name": "KA4:12",
+          "point": "P262"
+         }
+        ],
+        "bbox": [
+         370.4,
+         587,
+         378,
+         600.6
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "V4",
+      "name": null,
+      "kind": "diode",
+      "symbol": "diode",
+      "region": "TU_A11",
+      "purpose": {
+       "value": "surge suppression diode across KA4 coil",
+       "basis": "inferred",
+       "evidence": [
+        "connected in parallel with KA4 coil"
+       ]
+      },
+      "elements": [
+       {
+        "id": "body",
+        "kind": "diode",
+        "contact": null,
+        "symbol": "diode",
+        "ports": [
+         {
+          "name": "V4:1",
+          "point": "P270"
+         },
+         {
+          "name": "V4:2",
+          "point": "P271"
+         }
+        ],
+        "bbox": [
+         370.4,
+         600.6,
+         378.2,
+         608.6
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "R4",
+      "name": null,
+      "kind": "resistor",
+      "symbol": "resistor",
+      "region": "TU_A11",
+      "purpose": {
+       "value": "current limit resistor for HL4",
+       "basis": "inferred",
+       "evidence": [
+        "in series with HL4"
+       ]
+      },
+      "elements": [
+       {
+        "id": "body",
+        "kind": "resistor",
+        "contact": null,
+        "symbol": "resistor",
+        "ports": [
+         {
+          "name": "R4:1",
+          "point": "P286"
+         },
+         {
+          "name": "R4:2",
+          "point": "P287"
+         }
+        ],
+        "bbox": [
+         303.4,
+         613.4,
+         318.9,
+         621.2
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "HL4",
+      "name": null,
+      "kind": "led",
+      "symbol": "led",
+      "region": "TU_A11",
+      "purpose": {
+       "value": "axis overtravel indicator",
+       "basis": "inferred",
+       "evidence": [
+        "LED in parallel with KA4 coil"
+       ]
+      },
+      "elements": [
+       {
+        "id": "body",
+        "kind": "lamp",
+        "contact": null,
+        "symbol": "led",
+        "ports": [
+         {
+          "name": "HL4:1",
+          "point": "P288"
+         },
+         {
+          "name": "HL4:2",
+          "point": "P289"
+         }
+        ],
+        "bbox": [
+         340.3,
+         610.2,
+         350,
+         621
+        ]
+       }
+      ],
+      "terminals": []
+     }
+    ],
+    "plc_io": [
+     {
+      "address": "X0.00",
+      "direction": "input",
+      "port": "A1:X0.00",
+      "point": "P25",
+      "device": "SQ1",
+      "comment": "X AXIS ZERO RETURN DEC LS"
+     },
+     {
+      "address": "X0.01",
+      "direction": "input",
+      "port": "A1:X0.01",
+      "point": "P46",
+      "device": "SQ2",
+      "comment": "Y AXIS ZERO RETURN DEC LS"
+     },
+     {
+      "address": "X0.02",
+      "direction": "input",
+      "port": "A1:X0.02",
+      "point": "P65",
+      "device": "SQ3",
+      "comment": "Z AXIS ZERO RETURN DEC LS"
+     },
+     {
+      "address": "X0.04",
+      "direction": "input",
+      "port": "A1:X0.04",
+      "point": "P92",
+      "device": "SQ4",
+      "comment": "+X AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.08",
+      "direction": "input",
+      "port": "A1:X0.08",
+      "point": "P121",
+      "device": "SQ5",
+      "comment": "-X AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.05",
+      "direction": "input",
+      "port": "A1:X0.05",
+      "point": "P151",
+      "device": "SQ6",
+      "comment": "+Y AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.09",
+      "direction": "input",
+      "port": "A1:X0.09",
+      "point": "P182",
+      "device": "SQ7",
+      "comment": "-Y AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.06",
+      "direction": "input",
+      "port": "A1:X0.06",
+      "point": "P211",
+      "device": "SQ8",
+      "comment": "+Z AXIS OVERTRAVEL LS"
+     },
+     {
+      "address": "X0.10",
+      "direction": "input",
+      "port": "A1:X0.10",
+      "point": "P236",
+      "device": "SQ9",
+      "comment": "-Z AXIS OVERTRAVEL LS"
+     }
+    ],
+    "open_ends": [
+     {
+      "port": "X51:16",
+      "note": "TU connector X51 continues to another cable (X51 pin16 = line 420)",
+      "evidence": [
+       "p.30 TU(A11) connector table X51: 16=420"
+      ]
+     },
+     {
+      "port": "X51:10",
+      "note": "continues off page (line 400)",
+      "evidence": [
+       "p.30 X51: 10=400"
+      ]
+     },
+     {
+      "port": "X51:11",
+      "note": "continues off page (line 401)",
+      "evidence": [
+       "p.30 X51: 11=401"
+      ]
+     },
+     {
+      "port": "X51:13",
+      "note": "continues off page (line 358)",
+      "evidence": [
+       "p.30 X51: 13=358"
+      ]
+     },
+     {
+      "port": "X85:37",
+      "note": "KA4 drive line continues to another unit via X85; destination not identified",
+      "evidence": [
+       "X85 appears on p.74,75,77 etc.; pin 37 destination not found in pages.txt"
+      ]
+     }
+    ],
+    "conventions": [
+     {
+      "id": "terminal_no_is_wire_no",
+      "rule": "Terminal numbers on XT terminal blocks equal the line (wire) numbers; connector tables list line no. per pin",
+      "basis": "other_page",
+      "evidence": [
+       "p.30 TU(A11) CONNECTOR TABLE: X31 pin4=400, 5=401, 9=358, 10=420, 11=421 match XT31 terminal numbers on this page"
+      ]
+     },
+     {
+      "id": "sheet_reference",
+      "rule": "Reference 'SSSS/LL' = sheet number (from DRWN NO. 676 001 4SSSE, last digit edition) / line number",
+      "basis": "other_page",
+      "evidence": [
+       "p.77 DRWN NO. 676 001 40701 contains KA4 contact; this page refers 0700/23"
+      ]
+     }
+    ],
+    "cross_references": [
+     {
+      "text": "0700/23",
+      "kind": "contact_location",
+      "component": "KA4",
+      "target_sheet": "0700",
+      "target_line": 23,
+      "target_page": 77
+     }
+    ],
+    "tables": [
+     {
+      "title": null,
+      "rows": [
+       [
+        "STD",
+        "48",
+        "510",
+        "612",
+        ""
+       ],
+       [
+        "CE",
+        "1.5Kw",
+        "2.5Kw",
+        "4Kw",
+        ""
+       ]
+      ],
+      "note": "model applicability table"
+     }
+    ],
+    "unresolved": [],
+    "needs_review": [
+     {
+      "what": "1M polarity zero",
+      "reason": "inferred from naming; not written on this page",
+      "ref": "1M"
+     },
+     {
+      "what": "SQ contact types (b = signal contact to NC input, a = upper contact to X51/X85 overtravel line)",
+      "reason": "judged from symbol shape (blade crossing stop line = NC)",
+      "ref": "SQ4"
+     },
+     {
+      "what": "sheet id 0650",
+      "reason": "inferred from drawing number convention",
+      "ref": null
+     },
+     {
+      "what": "XCS41 pin names kept as written '7/A4' etc.",
+      "reason": "two numbering systems in one label",
+      "ref": "XCS41"
+     },
+     {
+      "what": "X85:37 destination",
+      "reason": "not identified in other pages",
+      "ref": "X85:37"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "round": 1,
+  "tool": "mcp__pdf__preview",
+  "input": {
+   "labels": {
+    "sheet": {
+     "title": "AXIS LS",
+     "sheet_id": null,
+     "layout": {
+      "orientation": "horizontal",
+      "location_system": "line_number",
+      "lines": "",
+      "columns": "",
+      "label_placement": "",
+      "junction_rule": ""
+     }
+    },
+    "regions": [],
+    "rails": [
+     {
+      "name": "1L+",
+      "polarity": "plus",
+      "polarity_basis": {
+       "value": "plus",
+       "basis": "inferred",
+       "evidence": []
+      },
+      "point": "P9"
+     },
+     {
+      "name": "1M",
+      "polarity": "zero",
+      "polarity_basis": {
+       "value": "zero",
+       "basis": "inferred",
+       "evidence": []
+      },
+      "point": "P251"
+     }
+    ],
+    "components": [
+     {
+      "id": "SQ4",
+      "name": null,
+      "kind": "limit_switch",
+      "symbol": null,
+      "region": null,
+      "purpose": null,
+      "elements": [
+       {
+        "id": "b",
+        "kind": "contact",
+        "contact": "b",
+        "symbol": null,
+        "ports": [
+         {
+          "name": "SQ4:b.1",
+          "point": "P83"
+         },
+         {
+          "name": "SQ4:b.2",
+          "point": "P85"
+         }
+        ],
+        "bbox": [
+         106.9,
+         239.4,
+         115.1,
+         244.9
+        ]
+       },
+       {
+        "id": "a",
+        "kind": "contact",
+        "contact": "a",
+        "symbol": null,
+        "ports": [
+         {
+          "name": "SQ4:a.1",
+          "point": "P71"
+         },
+         {
+          "name": "SQ4:a.2",
+          "point": "P72"
+         }
+        ],
+        "bbox": [
+         106.9,
+         220.9,
+         116.5,
+         227.4
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "KA4",
+      "name": null,
+      "kind": "relay",
+      "symbol": null,
+      "region": null,
+      "purpose": null,
+      "elements": [
+       {
+        "id": "coil",
+        "kind": "coil",
+        "contact": null,
+        "symbol": null,
+        "ports": [
+         {
+          "name": "KA4:1",
+          "point": "P261"
+         },
+         {
+          "name": "KA4:12",
+          "point": "P262"
+         }
+        ],
+        "bbox": [
+         370.4,
+         587,
+         378,
+         600.6
+        ]
+       }
+      ],
+      "terminals": []
+     },
+     {
+      "id": "A1",
+      "name": "NC",
+      "kind": "nc_unit",
+      "symbol": null,
+      "region": null,
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "A1:X0.04",
+        "point": "P92"
+       }
+      ]
+     },
+     {
+      "id": "X85",
+      "name": null,
+      "kind": "connector",
+      "symbol": null,
+      "region": null,
+      "purpose": null,
+      "elements": [],
+      "terminals": [
+       {
+        "name": "X85:37",
+        "point": "P259"
+       }
+      ]
+     }
+    ],
+    "plc_io": [],
+    "open_ends": [],
+    "conventions": [],
+    "cross_references": [],
+    "tables": [],
+    "unresolved": [],
+    "needs_review": []
+   }
+  }
+ },
+ {
+  "round": 1,
+  "tool": "StructuredOutput",
+  "input": {
+   "sheet": {
+    "title": "AXIS LS",
+    "sheet_id": {
+     "value": "0650",
+     "basis": "inferred",
+     "evidence": [
+      "DRWN NO. 676 001 40652,0; p.77 (DRWN NO. 676 001 40701) is referenced as sheet 0700, last digit = edition"
+     ]
+    },
+    "layout": {
+     "orientation": "horizontal",
+     "location_system": "line_number",
+     "lines": "01-30 rows on left",
+     "columns": "A-M on top",
+     "label_placement": "device name above symbol; terminal block name above number above circle; connector name above pin number",
+     "junction_rule": "black dot = connection; crossing without dot = no connection"
+    }
+   },
+   "regions": [
+    {
+     "id": "MACHINE_SIDE",
+     "label": "MACHINE SIDE",
+     "kind": "area",
+     "meaning": "devices on machine side"
+    },
+    {
+     "id": "TU_A11",
+     "label": "TU(A11)",
+     "kind": "unit",
+     "meaning": "terminal unit A11"
+    },
+    {
+     "id": "NC_A1",
+     "label": "NC(A1)",
+     "kind": "unit",
+     "meaning": "NC unit A1 (PLC inputs)"
+    }
+   ],
+   "rails": [
+    {
+     "name": "1L+",
+     "polarity": "plus",
+     "polarity_basis": {
+      "value": "plus",
+      "basis": "inferred",
+      "evidence": [
+       "'+' in name 1L+",
+       "1L+ paired with 1M on many pages e.g. p.75, p.30 connector tables"
+      ]
+     },
+     "point": "P9"
+    },
+    {
+     "name": "1M",
+     "polarity": "zero",
+     "polarity_basis": {
+      "value": "zero",
+      "basis": "inferred",
+      "evidence": [
+       "1M is the common return of KA4 coil and HL4 (paired with 1L+)"
+      ]
+     },
+     "point": "P251"
+    }
+   ],
+   "components": [
+    {
+     "id": "SQ1",
+     "name": null,
+     "kind": "limit_switch",
+     "symbol": "limit_switch",
+     "region": "MACHINE_SIDE",
+     "purpose": {
+      "value": "X AXIS ZERO RETURN DEC LS",
+      "basis": "drawing",
+      "evidence": [
+       "comment on row 03"
+      ]
+     },
+     "elements": [
+      {
+       "id": "b",
+       "kind": "contact",
+       "contact": "b",
+       "symbol": "limit_switch_nc",
+       "ports": [
+        {
+         "name": "SQ1:b.1",
+         "point": "P16"
+        },
+        {
+         "name": "SQ1:b.2",
+         "point": "P18"
+        }
+       ],
+       "bbox": [
+        106.9,
+        99.6,
+        115.1,
+        105.1
+       ]
+      }
+     ],
+     "terminals": []
+    },
+    {
+     "id": "SQ2",
+     "name": null,
+     "kind": "limit_switch",
+     "symbol": "limit_switch",
+     "region": "MACHINE_SIDE",
+     "purpose": {
+      "value": "Y AXIS ZERO RETURN DEC LS",
+      "basis": "drawing",
+      "evidence": [
+       "comment on row 05"
+      ]
+     },
+     "elements": [
+      {
+       "id": "b",
+       "kind": "contact",
+       "contact": "b",
+       "symbol": "limit_switch_nc",
+       "ports": [
+        {
+         "name": "SQ2:b.1",
+         "point": "P42"
+        },
+        {
+         "name": "SQ2:b.2",
+         "point": "P44"
+        }
+       ],
+       "bbox": [
+        106.9,
+        146.2,
+        115.1,
+        151.7
+       ]
+      }
+     ],
+     "terminals": []
+    },
+    {
+     "id": "SQ3",
+     "name": null,
+     "kind": "limit_switch",
+     "symbol": "limit_switch",
+     "region": "MACHINE_SIDE",
+     "purpose": {
+      "value": "Z AXIS ZERO RETURN DEC LS",
+      "basis": "drawing",
+      "evidence": [
+       "comment on row 06"
+      ]
+     },
+     "elements": [
+      {
+       "id": "b",
+       "kind": "contact",
+       "contact": "b",
+       "symbol": "limit_switch_nc",
+       "ports": [
+        {
+         "name": "SQ3:b.1",
+         "point": "P57"
+        },
+        {
+         "name": "SQ3:b.2",
+         "point": "P59"
+        }
+       ],
+       "bbox": [
+        106.9,
+        169.5,
+        115.1,
+        175
+       ]
+      }
+     ],
+     "terminals": []
+    },
+    {
+     "id": "SQ4",
+     "name": null,
+     "kind": "limit_switch",
+     "symbol": "limit_switch",
+     "region": "MACHINE_SIDE",
+     "purpose": {
+      "value": "+X AXIS OVERTRAVEL LS",
+      "basis": "drawing",
+      "evidence": [
+       "comment on row 09"
+      ]
+     },
+     "elements": [
+      {
+       "id": "b",
+       "kind": "contact",
+       "contact": "b",
+       "symbol": "limit_switch_nc",
+       "ports": [
+        {
+         "name": "SQ4:b.1",
+         "point": "P83"
+        },
+        {
+         "name": "SQ4:b.2",
+         "point": "P85"
+        }
+       ],
+       "bbox": [
+        106.9,
+        239.4,
+        115.1,
+        244.9
+       ]
+      },
+      {
+       "id": "a",
+       "kind": "contact",
+       "contact": "a",
+       "symbol": "limit_switch_no",
+       "ports": [
+        {
+         "name": "SQ4:a.1",
+         "point": "P71"
+        },
+        {
+         "name": "SQ4:a.2",
+         "point": "P72"
+        }
+       ],
+       "bbox": [
+        106.9,
+        220.9,
+        116.5,
+        227.4
+       ]
+      }
+     ],
+     "terminals": []
+    },
+    {
+     "id": "SQ5",
+     "name": null,
+     "kind": "limit_switch",
+     "symbol": "limit_switch",
+     "region": "MACHINE_SIDE",
+     "purpose": {
+      "value": "-X AXIS OVERTRAVEL LS",
+      "basis": "drawing",
+      "evidence": [
+       "comment on row 11"
+      ]
+     },
+     "elements": [
+      {
+       "id": "b",
+       "kind": "contact",
+       "contact": "b",
+       "symbol": "limit_switch_nc",
+       "ports": [
+        {
+         "name": "SQ5:b.1",
+         "point": "P114"
+        },
+        {
+         "name": "SQ5:b.2",
+         "point": "P116"
+        }
+       ],
+       "bbox": [
+        106.9,
+        286,
+        115.1,
+        291.5
+       ]
+      },
+      {
+       "id": "a",
+       "kind": "contact",
+       "contact": "a",
+       "symbol": "limit_switch_no",
+       "ports": [
+        {
+         "name": "SQ5:a.1",
+         "point": "P99"
+        },
+        {
+         "name": "SQ5:a.2",
+         "point": "P100"
+        }
+       ],
+       "bbox": [
+        106.9,
+        267.5,
+        116.5,
+        274
+       ]
+      }
+     ],
+     "terminals": []
+    },
+    {
+     "id": "SQ6",
+     "name": null,
+     "kind": "limit_switch",
+     "symbol": "limit_switch",
+     "region": "MACHINE_SIDE",
+     "purpose": {
+      "value": "+Y AXIS OVERTRAVEL LS",
+      "basis": "drawing",
+      "evidence": [
+       "comment on row 15"
+      ]
+     },
+     "elements": [
+      {
+       "id": "b",
+       "kind": "contact",
+       "contact": "b",
+       "symbol": "limit_switch_nc",
+       "ports": [
+        {
+         "name": "SQ6:b.1",
+         "point": "P146"
+        },
+        {
+         "name": "SQ6:b.2",
+         "point": "P148"
+        }
+       ],
+       "bbox": [
+        106.9,
+        379.2,
+        115.1,
+        384.7
+       ]
+      },
+      {
+       "id": "a",
+       "kind": "contact",
+       "contact": "a",
+       "symbol": "limit_switch_no",
+       "ports": [
+        {
+         "name": "SQ6:a.1",
+         "point": "P134"
+        },
+        {
+         "name": "SQ6:a.2",
+         "point": "P135"
+        }
+       ],
+       "bbox": [
+        106.9,
+        360.7,
+        116.5,
+        367.2
+       ]
+      }
+     ],
+     "terminals": []
+    },
+    {
+     "id": "SQ7",
+     "name": null,
+     "kind": "limit_switch",
+     "symbol": "limit_switch",
+     "region": "MACHINE_SIDE",
+     "purpose": {
+      "value": "-Y AXIS OVERTRAVEL LS",
+      "basis": "drawing",
+      "evidence": [
+       "comment on row 17"
+      ]
+     },
+     "elements": [
+      {
+       "id": "b",
+       "kind": "contact",
+       "contact": "b",
+       "symbol": "limit_switch_nc",
+       "ports": [
+        {
+         "name": "SQ7:b.1",
+         "point": "P175"
+        },
+        {
+         "name": "SQ7:b.2",
+         "point": "P177"
+        }
+       ],
+       "bbox": [
+        106.9,
+        425.8,
+        115.1,
+        431.3
+       ]
+      },
+      {
+       "id": "a",
+       "kind": "contact",
+       "contact": "a",
+       "symbol": "limit_switch_no",
+       "ports": [
+        {
+         "name": "SQ7:a.1",
+         "point": "P162"
+        },
+        {
+         "name": "SQ7:a.2",
+         "point": "P163"
+        }
+       ],
+       "bbox": [
+        106.9,
+        407.3,
+        116.5,
+        413.8
+       ]
+      }
+     ],
+     "terminals": []
+    },
+    {
+     "id": "SQ8",
+     "name": null,
+     "kind": "limit_switch",
+     "symbol": "limit_switch",
+     "region": "MACHINE_SIDE",
+     "purpose": {
+      "value": "+Z AXIS OVERTRAVEL LS",
+      "basis": "drawing",
+      "evidence": [
+       "comment on row 19"
+      ]
+     },
+     "elements": [
+      {
+       "id": "b",
+       "kind": "contact",
+       "contact": "b",
+       "symbol": "limit_switch_nc",
+       "ports": [
+        {
+         "name": "SQ8:b.1",
+         "point": "P207"
+        },
+        {
+         "name": "SQ8:b.2",
+         "point": "P209"
+        }
+       ],
+       "bbox": [
+        106.9,
+        472.4,
+        115.1,
+        477.9
+       ]
+      },
+      {
+       "id": "a",
+       "kind": "contact",
+       "contact": "a",
+       "symbol": "limit_switch_no",
+       "ports": [
+        {
+         "name": "SQ8:a.1",
+         "point": "P188"
+        },
+        {
+         "name": "SQ8:a.2",
+         "point": "P189"
+        }
+       ],
+       "bbox": [
+        106.9,
+        453.9,
+        116.5,
+        460.4
+       ]
+      }
+     ],
+     "terminals": []
+    },
+    {
+     "id": "SQ9",
+     "name": null,
+     "kind": "limit_switch",
+     "symbol": "limit_switch",
+     "region": "MACHINE_SIDE",
+     "purpose": {
+      "value": "-Z AXIS OVERTRAVEL LS",
+      "basis": "drawing",
+      "evidence": [
+       "comment on row 21"
+      ]
+     },
+     "elements": [
+      {
+       "id": "b",
+       "kind": "contact",
+       "contact": "b",
+       "symbol": "limit_switch_nc",
+       "ports": [
+        {
+         "name": "SQ9:b.1",
+         "point": "P231"
+        },
+        {
+         "name": "SQ9:b.2",
+         "point": "P233"
+        }
+       ],
+       "bbox": [
+        106.9,
+        519,
+        115.1,
+        524.5
+       ]
+      },
+      {
+       "id": "a",
+       "kind": "contact",
+       "contact": "a",
+       "symbol": "limit_switch_no",
+       "ports": [
+        {
+         "name": "SQ9:a.1",
+         "point": "P219"
+        },
+        {
+         "name": "SQ9:a.2",
+         "point": "P220"
+        }
+       ],
+       "bbox": [
+        106.9,
+        500.5,
+        116.5,
+        507
+       ]
+      }
+     ],
+     "terminals": []
+    },
+    {
+     "id": "XT31",
+     "name": null,
+     "kind": "terminal_block",
+     "symbol": null,
+     "region": "MACHINE_SIDE",
+     "purpose": null,
+     "elements": [],
+     "terminals": [
+      {
+       "name": "XT31:420",
+       "point": "P19"
+      },
+      {
+       "name": "XT31:421",
+       "point": "P38"
+      },
+      {
+       "name": "XT31:400",
+       "point": "P86"
+      },
+      {
+       "name": "XT31:401",
+       "point": "P112"
+      },
+      {
+       "name": "XT31:358",
+       "point": "P131"
+      },
+      {
+       "name": "XT31:402",
+       "point": "P149"
+      },
+      {
+       "name": "XT31:403",
+       "point": "P174"
+      }
+     ]
+    },
+    {
+     "id": "XT71",
+     "name": null,
+     "kind": "terminal_block",
+     "symbol": null,
+     "region": "MACHINE_SIDE",
+     "purpose": null,
+     "elements": [],
+     "terminals": [
+      {
+       "name": "XT71:422",
+       "point": "P60"
+      },
+      {
+       "name": "XT71:358",
+       "point": "P191"
+      },
+      {
+       "name": "XT71:404",
+       "point": "P203"
+      },
+      {
+       "name": "XT71:405",
+       "point": "P234"
+      }
+     ]
+    },
+    {
+     "id": "X31",
+     "name": null,
+     "kind": "connector",
+     "symbol": null,
+     "region": "TU_A11",
+     "purpose": null,
+     "elements": [],
+     "terminals": [
+      {
+       "name": "X31:10",
+       "point": "P20"
+      },
+      {
+       "name": "X31:11",
+       "point": "P39"
+      },
+      {
+       "name": "X31:4",
+       "point": "P87"
+      },
+      {
+       "name": "X31:5",
+       "point": "P117"
+      },
+      {
+       "name": "X31:9",
+       "point": "P136"
+      },
+      {
+       "name": "X31:6",
+       "point": "P154"
+      },
+      {
+       "name": "X31:8",
+       "point": "P178"
+      }
+     ]
+    },
+    {
+     "id": "X51",
+     "name": null,
+     "kind": "connector",
+     "symbol": null,
+     "region": "TU_A11",
+     "purpose": null,
+     "elements": [],
+     "terminals": [
+      {
+       "name": "X51:16",
+       "point": "P30"
+      },
+      {
+       "name": "X51:10",
+       "point": "P101"
+      },
+      {
+       "name": "X51:11",
+       "point": "P127"
+      },
+      {
+       "name": "X51:13",
+       "point": "P128"
+      }
+     ]
+    },
+    {
+     "id": "X71",
+     "name": null,
+     "kind": "connector",
+     "symbol": null,
+     "region": "TU_A11",
+     "purpose": null,
+     "elements": [],
+     "terminals": [
+      {
+       "name": "X71:8",
+       "point": "P61"
+      },
+      {
+       "name": "X71:7",
+       "point": "P193"
+      },
+      {
+       "name": "X71:4",
+       "point": "P204"
+      },
+      {
+       "name": "X71:5",
+       "point": "P239"
+      }
+     ]
+    },
+    {
+     "id": "X01",
+     "name": null,
+     "kind": "connector",
+     "symbol": null,
+     "region": "TU_A11",
+     "purpose": null,
+     "elements": [],
+     "terminals": [
+      {
+       "name": "X01:12",
+       "point": "P22"
+      },
+      {
+       "name": "X01:28",
+       "point": "P40"
+      },
+      {
+       "name": "X01:44",
+       "point": "P62"
+      },
+      {
+       "name": "X01:3",
+       "point": "P89"
+      },
+      {
+       "name": "X01:20",
+       "point": "P118"
+      },
+      {
+       "name": "X01:35",
+       "point": "P155"
+      },
+      {
+       "name": "X01:2",
+       "point": "P179"
+      },
+      {
+       "name": "X01:19",
+       "point": "P205"
+      },
+      {
+       "name": "X01:34",
+       "point": "P240"
+      }
+     ]
+    },
+    {
+     "id": "X85",
+     "name": null,
+     "kind": "connector",
+     "symbol": null,
+     "region": "TU_A11",
+     "purpose": null,
+     "elements": [],
+     "terminals": [
+      {
+       "name": "X85:37",
+       "point": "P259"
+      }
+     ]
+    },
+    {
+     "id": "XCS41",
+     "name": null,
+     "kind": "connector",
+     "symbol": null,
+     "region": "NC_A1",
+     "purpose": null,
+     "elements": [],
+     "terminals": [
+      {
+       "name": "XCS41:7/A4",
+       "point": "P23"
+      },
+      {
+       "name": "XCS41:8/B4",
+       "point": "P41"
+      },
+      {
+       "name": "XCS41:9/A5",
+       "point": "P63"
+      },
+      {
+       "name": "XCS41:11/A6",
+       "point": "P90"
+      },
+      {
+       "name": "XCS41:15/A8",
+       "point": "P119"
+      },
+      {
+       "name": "XCS41:12/B6",
+       "point": "P156"
+      },
+      {
+       "name": "XCS41:16/B8",
+       "point": "P180"
+      },
+      {
+       "name": "XCS41:13/A7",
+       "point": "P206"
+      },
+      {
+       "name": "XCS41:17/A9",
+       "point": "P241"
+      }
+     ]
+    },
+    {
+     "id": "A1",
+     "name": "NC",
+     "kind": "nc_unit",
+     "symbol": null,
+     "region": "NC_A1",
+     "purpose": {
+      "value": "NC/PLC input unit",
+      "basis": "drawing",
+      "evidence": [
+       "NC(A1)"
+      ]
+     },
+     "elements": [],
+     "terminals": [
+      {
+       "name": "A1:X0.00",
+       "point": "P25"
+      },
+      {
+       "name": "A1:X0.01",
+       "point": "P46"
+      },
+      {
+       "name": "A1:X0.02",
+       "point": "P65"
+      },
+      {
+       "name": "A1:X0.04",
+       "point": "P92"
+      },
+      {
+       "name": "A1:X0.08",
+       "point": "P121"
+      },
+      {
+       "name": "A1:X0.05",
+       "point": "P151"
+      },
+      {
+       "name": "A1:X0.09",
+       "point": "P182"
+      },
+      {
+       "name": "A1:X0.06",
+       "point": "P211"
+      },
+      {
+       "name": "A1:X0.10",
+       "point": "P236"
+      }
+     ]
+    },
+    {
+     "id": "A11",
+     "name": "TU",
+     "kind": "terminal_unit",
+     "symbol": null,
+     "region": "TU_A11",
+     "purpose": null,
+     "elements": [],
+     "terminals": []
+    },
+    {
+     "id": "KA4",
+     "name": null,
+     "kind": "relay",
+     "symbol": "relay_coil",
+     "region": "TU_A11",
+     "purpose": {
+      "value": "AXIS OVERTRAVEL",
+      "basis": "drawing",
+      "evidence": [
+       "comment AXIS OVERTRAVEL next to KA4, contact at 0700/23 (p.77)"
+      ]
+     },
+     "elements": [
+      {
+       "id": "coil",
+       "kind": "coil",
+       "contact": null,
+       "symbol": "coil",
+       "ports": [
+        {
+         "name": "KA4:1",
+         "point": "P261"
+        },
+        {
+         "name": "KA4:12",
+         "point": "P262"
+        }
+       ],
+       "bbox": [
+        370.4,
+        587,
+        378,
+        600.6
+       ]
+      }
+     ],
+     "terminals": []
+    },
+    {
+     "id": "V4",
+     "name": null,
+     "kind": "diode",
+     "symbol": "diode",
+     "region": "TU_A11",
+     "purpose": {
+      "value": "surge suppression diode across KA4 coil",
+      "basis": "inferred",
+      "evidence": [
+       "connected in parallel with KA4 coil"
+      ]
+     },
+     "elements": [
+      {
+       "id": "body",
+       "kind": "diode",
+       "contact": null,
+       "symbol": "diode",
+       "ports": [
+        {
+         "name": "V4:1",
+         "point": "P270"
+        },
+        {
+         "name": "V4:2",
+         "point": "P271"
+        }
+       ],
+       "bbox": [
+        370.4,
+        600.6,
+        378.2,
+        608.6
+       ]
+      }
+     ],
+     "terminals": []
+    },
+    {
+     "id": "R4",
+     "name": null,
+     "kind": "resistor",
+     "symbol": "resistor",
+     "region": "TU_A11",
+     "purpose": {
+      "value": "current limit resistor for HL4",
+      "basis": "inferred",
+      "evidence": [
+       "in series with HL4"
+      ]
+     },
+     "elements": [
+      {
+       "id": "body",
+       "kind": "resistor",
+       "contact": null,
+       "symbol": "resistor",
+       "ports": [
+        {
+         "name": "R4:1",
+         "point": "P286"
+        },
+        {
+         "name": "R4:2",
+         "point": "P287"
+        }
+       ],
+       "bbox": [
+        303.4,
+        613.4,
+        318.9,
+        621.2
+       ]
+      }
+     ],
+     "terminals": []
+    },
+    {
+     "id": "HL4",
+     "name": null,
+     "kind": "led",
+     "symbol": "led",
+     "region": "TU_A11",
+     "purpose": {
+      "value": "axis overtravel indicator",
+      "basis": "inferred",
+      "evidence": [
+       "LED in parallel with KA4 coil"
+      ]
+     },
+     "elements": [
+      {
+       "id": "body",
+       "kind": "lamp",
+       "contact": null,
+       "symbol": "led",
+       "ports": [
+        {
+         "name": "HL4:1",
+         "point": "P288"
+        },
+        {
+         "name": "HL4:2",
+         "point": "P289"
+        }
+       ],
+       "bbox": [
+        340.3,
+        610.2,
+        350,
+        621
+       ]
+      }
+     ],
+     "terminals": []
+    }
+   ],
+   "plc_io": [
+    {
+     "address": "X0.00",
+     "direction": "input",
+     "port": "A1:X0.00",
+     "point": "P25",
+     "device": "SQ1",
+     "comment": "X AXIS ZERO RETURN DEC LS"
+    },
+    {
+     "address": "X0.01",
+     "direction": "input",
+     "port": "A1:X0.01",
+     "point": "P46",
+     "device": "SQ2",
+     "comment": "Y AXIS ZERO RETURN DEC LS"
+    },
+    {
+     "address": "X0.02",
+     "direction": "input",
+     "port": "A1:X0.02",
+     "point": "P65",
+     "device": "SQ3",
+     "comment": "Z AXIS ZERO RETURN DEC LS"
+    },
+    {
+     "address": "X0.04",
+     "direction": "input",
+     "port": "A1:X0.04",
+     "point": "P92",
+     "device": "SQ4",
+     "comment": "+X AXIS OVERTRAVEL LS"
+    },
+    {
+     "address": "X0.08",
+     "direction": "input",
+     "port": "A1:X0.08",
+     "point": "P121",
+     "device": "SQ5",
+     "comment": "-X AXIS OVERTRAVEL LS"
+    },
+    {
+     "address": "X0.05",
+     "direction": "input",
+     "port": "A1:X0.05",
+     "point": "P151",
+     "device": "SQ6",
+     "comment": "+Y AXIS OVERTRAVEL LS"
+    },
+    {
+     "address": "X0.09",
+     "direction": "input",
+     "port": "A1:X0.09",
+     "point": "P182",
+     "device": "SQ7",
+     "comment": "-Y AXIS OVERTRAVEL LS"
+    },
+    {
+     "address": "X0.06",
+     "direction": "input",
+     "port": "A1:X0.06",
+     "point": "P211",
+     "device": "SQ8",
+     "comment": "+Z AXIS OVERTRAVEL LS"
+    },
+    {
+     "address": "X0.10",
+     "direction": "input",
+     "port": "A1:X0.10",
+     "point": "P236",
+     "device": "SQ9",
+     "comment": "-Z AXIS OVERTRAVEL LS"
+    }
+   ],
+   "open_ends": [
+    {
+     "port": "X51:16",
+     "note": "TU connector X51 continues to another cable (X51 pin16 = line 420)",
+     "evidence": [
+      "p.30 TU(A11) connector table X51: 16=420"
+     ]
+    },
+    {
+     "port": "X51:10",
+     "note": "continues off page (line 400)",
+     "evidence": [
+      "p.30 X51: 10=400"
+     ]
+    },
+    {
+     "port": "X51:11",
+     "note": "continues off page (line 401)",
+     "evidence": [
+      "p.30 X51: 11=401"
+     ]
+    },
+    {
+     "port": "X51:13",
+     "note": "continues off page (line 358)",
+     "evidence": [
+      "p.30 X51: 13=358"
+     ]
+    },
+    {
+     "port": "X85:37",
+     "note": "KA4 drive line continues to another unit via X85; destination not identified",
+     "evidence": [
+      "X85 appears on p.74,75,77 etc.; pin 37 destination not found in pages.txt"
+     ]
+    }
+   ],
+   "conventions": [
+    {
+     "id": "terminal_no_is_wire_no",
+     "rule": "Terminal numbers on XT terminal blocks equal the line (wire) numbers; connector tables list line no. per pin",
+     "basis": "other_page",
+     "evidence": [
+      "p.30 TU(A11) CONNECTOR TABLE: X31 pin4=400, 5=401, 9=358, 10=420, 11=421 match XT31 terminal numbers on this page"
+     ]
+    },
+    {
+     "id": "sheet_reference",
+     "rule": "Reference 'SSSS/LL' = sheet number (from DRWN NO. 676 001 4SSSE, last digit edition) / line number",
+     "basis": "other_page",
+     "evidence": [
+      "p.77 DRWN NO. 676 001 40701 contains KA4 contact; this page refers 0700/23"
+     ]
+    }
+   ],
+   "cross_references": [
+    {
+     "text": "0700/23",
+     "kind": "contact_location",
+     "component": "KA4",
+     "target_sheet": "0700",
+     "target_line": 23,
+     "target_page": 77
+    }
+   ],
+   "tables": [
+    {
+     "title": null,
+     "rows": [
+      [
+       "STD",
+       "48",
+       "510",
+       "612",
+       ""
+      ],
+      [
+       "CE",
+       "1.5Kw",
+       "2.5Kw",
+       "4Kw",
+       ""
+      ]
+     ],
+     "note": "model applicability table"
+    }
+   ],
+   "unresolved": [],
+   "needs_review": [
+    {
+     "what": "1M polarity zero",
+     "reason": "inferred from naming; not written on this page",
+     "ref": "1M"
+    },
+    {
+     "what": "SQ contact types (b = signal contact to NC input, a = upper contact to X51/X85 overtravel line)",
+     "reason": "judged from symbol shape (blade crossing stop line = NC)",
+     "ref": "SQ4"
+    },
+    {
+     "what": "sheet id 0650",
+     "reason": "inferred from drawing number convention",
+     "ref": null
+    },
+    {
+     "what": "XCS41 pin names kept as written '7/A4' etc.",
+     "reason": "two numbering systems in one label",
+     "ref": "XCS41"
+    },
+    {
+     "what": "X85:37 destination",
+     "reason": "not identified in other pages",
+     "ref": "X85:37"
+    }
+   ]
+  }
+ }
+]

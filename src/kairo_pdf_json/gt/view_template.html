@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITLE__</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --panel: #ffffff; --ink: #1d2330; --sub: #5b6475; --line: #d9dde5;
+    --ok: #1e7d3a; --ng: #c0392b; --accent: #2b5cad; --selbg: #eaf1fd; --hl: #e8590c;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font: 14px/1.6 "Yu Gothic UI", "Meiryo", system-ui, sans-serif; }
+  header { padding: 10px 18px; background: var(--panel); border-bottom: 1px solid var(--line);
+    display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; }
+  header h1 { margin: 0; font-size: 18px; }
+  header p { margin: 0; color: var(--sub); font-size: 13px; flex-basis: 100%; }
+  header a { font-size: 13px; color: var(--accent); }
+  main { display: grid; grid-template-columns: minmax(0, 1fr) 470px; gap: 14px; padding: 12px 18px; }
+  @media (max-width: 1100px) { main { grid-template-columns: 1fr; } }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; padding: 8px 12px;
+    border-bottom: 1px solid var(--line); }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .seg button { border: 0; background: #fff; padding: 4px 10px; font: inherit; cursor: pointer; }
+  .seg button + button { border-left: 1px solid var(--line); }
+  .seg button.on { background: var(--accent); color: #fff; }
+  label.small { color: var(--sub); font-size: 13px; display: inline-flex; gap: 6px; align-items: center; }
+  .legend { display: flex; flex-wrap: wrap; gap: 4px 14px; padding: 6px 12px; border-bottom: 1px solid var(--line);
+    font-size: 13px; min-height: 34px; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend i { display: inline-block; width: 22px; height: 4px; border-radius: 2px; }
+  .stage { height: calc(100vh - 150px); min-height: 460px; overflow: auto; background: #fff; }
+  svg { display: block; width: 100%; height: auto; }
+
+  /* drawing */
+  .net path { fill: none; stroke: var(--c); stroke-width: 1.15; stroke-linecap: round; stroke-linejoin: round; }
+  .net circle { fill: var(--c); }
+  #ctx .net path { stroke-width: .8; cursor: pointer; }
+  #ctx .net:hover path { stroke: #5b6475; stroke-width: 1.2; }
+  #ctx.hidden { display: none; }
+  .sym path { fill: none; stroke: #111; stroke-width: .45; stroke-linejoin: round; }
+  .sym circle { fill: #fff; stroke: #111; stroke-width: .45; }
+  .sym.hl path, .sym.hl circle { stroke: var(--hl); stroke-width: .7; }
+  .frame { fill: rgba(232, 89, 12, .08); stroke: var(--hl); stroke-width: .6; stroke-dasharray: 2 1.2; }
+  .mark { fill: none; stroke: var(--hl); stroke-width: .7; }
+  .lbl { fill: #222; font-family: "MS Mincho", "Yu Mincho", serif; }
+  .tag rect { fill: #e8f5e9; stroke: #2e7d32; stroke-width: .3; }
+  .tag text { fill: #1b5e20; font-size: 4.3px; font-family: "Yu Gothic UI", "Meiryo", sans-serif; }
+  .open path { stroke: #b8860b; stroke-width: .6; stroke-dasharray: 1.4 1; fill: none; }
+  .open circle { fill: #fff3cd; stroke: #b8860b; stroke-width: .4; }
+  .open text { fill: #8a6100; font-size: 5px; font-weight: bold; text-anchor: middle; font-family: sans-serif; }
+  svg.overlay #sel .net path { stroke-width: 2.4; stroke-opacity: .55; }
+  svg.overlay #sel .sym:not(.hl), svg.overlay #sel .lbl { display: none; }
+  svg.notags .tag { display: none; }
+
+  /* right panel */
+  aside { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+  aside section { padding: 10px 12px; }
+  aside h2 { margin: 0 0 6px; font-size: 15px; display: flex; justify-content: space-between; align-items: baseline; }
+  aside h2 small { color: var(--sub); font-weight: normal; font-size: 12.5px; }
+  .tabs { display: flex; gap: 4px; margin-bottom: 8px; }
+  .tabs button { flex: 1; font: inherit; padding: 5px 6px; border: 1px solid var(--line); border-radius: 6px;
+    background: #fff; cursor: pointer; }
+  .tabs button.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .tabs button small { opacity: .85; }
+  .list { display: flex; flex-direction: column; gap: 4px; max-height: 300px; overflow: auto; }
+  .pi { display: grid; grid-template-columns: 1fr auto; gap: 0 8px; align-items: center; text-align: left;
+    border: 1px solid var(--line); border-radius: 6px; background: #fff; padding: 5px 8px; font: inherit; cursor: pointer; }
+  .pi:hover { border-color: #aab8d3; }
+  .pi.sel { background: var(--selbg); border-color: var(--accent); }
+  .pi .tt { font-weight: 600; }
+  .pi .sub { color: var(--sub); font-size: 12.5px; }
+  .pi .badge { grid-row: 1 / span 2; grid-column: 2; font-size: 12px; padding: 1px 8px; border-radius: 10px;
+    border: 1px solid var(--line); color: var(--sub); white-space: nowrap; }
+  .pi .badge.ok { background: var(--ok); border-color: var(--ok); color: #fff; }
+  .pi .badge.ng { background: var(--ng); border-color: var(--ng); color: #fff; }
+  .flow { list-style: none; margin: 6px 0; padding: 0; }
+  .flow li { position: relative; padding: 3px 8px 3px 10px; border-left: 3px solid var(--accent); background: #f7f9fc;
+    border-radius: 0 4px 4px 0; }
+  .flow li + li { margin-top: 14px; }
+  .flow li + li::before { content: "↓"; position: absolute; left: 6px; top: -16px; color: var(--sub); font-size: 12px; }
+  .meta { margin: 6px 0 0; padding-left: 1.1em; color: var(--sub); font-size: 13px; }
+  .meta.plain { color: var(--ink); font-size: 14px; }
+  table.cells { border-collapse: collapse; margin: 6px 0; }
+  table.cells td { border: 1px solid var(--line); padding: 2px 10px; }
+  .verdict { display: flex; gap: 6px; margin-top: 10px; }
+  .verdict button { font: inherit; padding: 3px 14px; border-radius: 5px; border: 1px solid var(--line);
+    background: #fff; cursor: pointer; }
+  .verdict button.ok.on { background: var(--ok); color: #fff; border-color: var(--ok); }
+  .verdict button.ng.on { background: var(--ng); color: #fff; border-color: var(--ng); }
+  .verdict .next { margin-left: auto; }
+  textarea { width: 100%; margin-top: 6px; min-height: 52px; font: inherit; padding: 6px;
+    border: 1px solid var(--line); border-radius: 5px; resize: vertical; }
+  .detail.drop { outline: 2px dashed var(--accent); outline-offset: 2px; }
+  .thumbs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .thumb { position: relative; }
+  .thumb img { height: 64px; border: 1px solid var(--line); border-radius: 4px; display: block; }
+  .thumb button { position: absolute; top: -6px; right: -6px; width: 20px; height: 20px; border-radius: 50%;
+    border: 0; background: #444; color: #fff; cursor: pointer; line-height: 18px; padding: 0; }
+  .hint { color: var(--sub); font-size: 12.5px; }
+  .small-btn { font: inherit; font-size: 13px; padding: 3px 10px; border-radius: 5px; border: 1px solid var(--line);
+    background: #fff; cursor: pointer; }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .actions button { font: inherit; padding: 6px 12px; border-radius: 6px; border: 0; background: var(--accent);
+    color: #fff; cursor: pointer; }
+  .actions button.sec { background: #fff; color: var(--accent); border: 1px solid var(--accent); }
+  #msg { color: var(--ok); font-size: 13px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>__TITLE__</h1>
+  <a href="__PDF__#page=__PAGE_NO__" target="_blank">原本の PDF を開く</a>
+  <p>右の一覧で項目を選ぶと、図の上で光ります（回路の筋は線、機器と「その他」はオレンジの枠）。線は正解データの線（PDF の線データから追跡したもの）、緑の札は読み取りです。</p>
+</header>
+<main>
+  <div class="card">
+    <div class="toolbar">
+      <span class="seg" id="mode">
+        <button data-mode="only" class="on">選んだものだけ</button>
+        <button data-mode="overlay">元の図面に重ねる</button>
+      </span>
+      <label class="small">元の図面の濃さ <input type="range" id="fade" min="0" max="100" value="10"></label>
+      <span class="seg" id="zoom">
+        <button data-z="1" class="on">1倍</button><button data-z="2">2倍</button><button data-z="3">3倍</button>
+      </span>
+      <label class="small"><input type="checkbox" id="showctx" checked> ほかの線もうすく表示</label>
+      <label class="small"><input type="checkbox" id="tags" checked> 読み取りの注記（緑の札）</label>
+    </div>
+    <div class="legend" id="legend"></div>
+    <div class="stage" id="stage">
+      <svg id="svg" viewBox="__VIEWBOX__" xmlns="http://www.w3.org/2000/svg">
+        <image id="bg" href="__IMAGE__" x="0" y="0" width="__PAGE_W__" height="__PAGE_H__" opacity="0.1" preserveAspectRatio="none"/>
+        <g id="ctx" style="--c:#9aa3b2">__CONTEXT__</g>
+        <g id="sel"></g>
+      </svg>
+    </div>
+  </div>
+
+  <aside>
+    <section class="card">
+      <div class="tabs" id="tabs">
+        <button data-tab="circuits" class="on">回路の筋 <small id="cnt-circuits"></small></button>
+        <button data-tab="comps">機器 <small id="cnt-comps"></small></button>
+        <button data-tab="others">その他 <small id="cnt-others"></small></button>
+      </div>
+      <div class="list" id="list"></div>
+      <p class="hint" style="margin:6px 0 0">↑↓キーでも選べます（メモ入力中以外）。</p>
+    </section>
+    <section class="card detail" id="detail"></section>
+    <section class="card">
+      <h2>進み具合 <small id="progress"></small></h2>
+      <div class="actions">
+        <button id="copy" class="sec">結果をコピー（文章だけ）</button>
+        <button id="export">結果をファイルに保存（画像も含む）</button>
+      </div>
+      <p class="hint" id="msg" style="margin:6px 0 0"></p>
+    </section>
+  </aside>
+</main>
+<input type="file" id="filepick" accept="image/*" multiple hidden>
+
+<script>
+const DATA = __DATA__;
+const SAMPLE = "__SAMPLE__", PAGE = __PAGE_NO__, TITLE = "__SHEET_TITLE__";
+const KEY = "__STORAGE_KEY__";
+const TABS = {circuits: "回路の筋", comps: "機器", others: "その他"};
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+let st = {};
+try { st = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { st = {}; }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} };
+const svg = $("svg"), bg = $("bg");
+let tab = "circuits", cur = null;
+const items = () => DATA[tab];
+const find = key => Object.values(DATA).flat().find(x => x.key === key);
+
+/* ---- images: blobs in IndexedDB ---- */
+const IDB_NAME = "kairo-review", IDB_STORE = "images";
+let dbp = null;
+function idb() {
+  if (!dbp) dbp = new Promise((res, rej) => {
+    const r = indexedDB.open(IDB_NAME, 1);
+    r.onupgradeneeded = () => r.result.createObjectStore(IDB_STORE);
+    r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error);
+  });
+  return dbp;
+}
+async function idbDo(mode, fn) {
+  const db = await idb();
+  return new Promise((res, rej) => {
+    const tx = db.transaction(IDB_STORE, mode); const req = fn(tx.objectStore(IDB_STORE));
+    tx.oncomplete = () => res(req && req.result); tx.onerror = () => rej(tx.error);
+  });
+}
+const imgKey = id => `${KEY}|${id}`;
+async function shrink(file) {
+  try {
+    const bmp = await createImageBitmap(file); const max = 2400;
+    if (Math.max(bmp.width, bmp.height) <= max) return file;
+    const k = max / Math.max(bmp.width, bmp.height), c = document.createElement("canvas");
+    c.width = Math.round(bmp.width * k); c.height = Math.round(bmp.height * k);
+    c.getContext("2d").drawImage(bmp, 0, 0, c.width, c.height);
+    return await new Promise(r => c.toBlob(r, "image/png"));
+  } catch (e) { return file; }
+}
+async function addImages(key, files) {
+  const imgs = [...files].filter(f => f && f.type && f.type.startsWith("image/"));
+  for (const f of imgs) {
+    const iid = Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+    const blob = await shrink(f);
+    try { await idbDo("readwrite", s => s.put({blob, name: f.name || "pasted.png", type: blob.type || f.type}, imgKey(iid))); }
+    catch (e) { $("msg").textContent = "画像を保存できませんでした（ブラウザの保存領域を確認してください）"; return; }
+    const s = st[key] || (st[key] = {}); s.imgs = (s.imgs || []).concat(iid);
+  }
+  save(); fillThumbs(key); renderList();
+}
+async function removeImage(key, iid) {
+  try { await idbDo("readwrite", s => s.delete(imgKey(iid))); } catch (e) {}
+  st[key].imgs = (st[key].imgs || []).filter(x => x !== iid); save(); fillThumbs(key); renderList();
+}
+const urls = {};
+async function fillThumbs(key) {
+  const box = document.querySelector(".thumbs"); if (!box || cur !== key) return;
+  box.innerHTML = "";
+  for (const iid of (st[key] && st[key].imgs) || []) {
+    let rec = null; try { rec = await idbDo("readonly", s => s.get(imgKey(iid))); } catch (e) {}
+    if (!rec) continue;
+    urls[iid] = urls[iid] || URL.createObjectURL(rec.blob);
+    box.insertAdjacentHTML("beforeend", `<div class="thumb"><a href="${urls[iid]}" target="_blank"><img src="${urls[iid]}" alt="添付画像"></a><button type="button" data-rm="${iid}" title="削除">×</button></div>`);
+  }
+}
+
+/* ---- list and detail ---- */
+const label = v => v === "ok" ? ["正しい", "ok"] : v === "ng" ? ["違う", "ng"] : ["未確認", ""];
+function renderList() {
+  $("list").innerHTML = items().map(p => {
+    const s = st[p.key] || {}; const [t, c] = label(s.v); const n = (s.imgs || []).length;
+    return `<button class="pi${p.key === cur ? " sel" : ""}" data-key="${esc(p.key)}">
+      <span class="tt">${esc(p.title)}</span><span class="badge ${c}">${t}${s.n || n ? " ✎" : ""}</span>
+      <span class="sub">${esc(p.sub || "")}</span></button>`;
+  }).join("");
+  let all = 0, done = 0;
+  for (const t of Object.keys(TABS)) {
+    const d = DATA[t].filter(p => (st[p.key] || {}).v).length;
+    $("cnt-" + t).textContent = `${d}/${DATA[t].length}`;
+    all += DATA[t].length; done += d;
+  }
+  $("progress").textContent = `確認済み ${done} / ${all}`;
+}
+function renderDetail() {
+  const p = find(cur); const s = st[cur] || {};
+  $("detail").innerHTML = `<h2>${esc(p.title)} <small>${esc(p.sub || "")}</small></h2>
+    ${p.steps.length ? `<ol class="flow">${p.steps.map(x => `<li>${esc(x)}</li>`).join("")}</ol>` : ""}
+    ${p.html || ""}
+    <ul class="meta${p.steps.length ? "" : " plain"}">${p.meta.filter(Boolean).map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+    <div class="verdict"><button class="ok${s.v === "ok" ? " on" : ""}" data-v="ok">正しい</button>
+      <button class="ng${s.v === "ng" ? " on" : ""}" data-v="ng">違う</button>
+      <button class="small-btn next" id="next">次へ →</button></div>
+    <textarea id="note" placeholder="違う点・気づいたこと（画像は Ctrl+V で貼り付け、またはここへドラッグ）">${esc(s.n || "")}</textarea>
+    <div class="thumbs"></div>
+    <div style="margin-top:6px"><button class="small-btn" id="addimg">画像を追加</button></div>`;
+  fillThumbs(cur);
+  $("legend").innerHTML = p.legend.length
+    ? p.legend.map(([n, c]) => `<span><i style="background:${c}"></i>${esc(n)}</span>`).join("")
+    : `<span class="hint">オレンジの枠：選んだ項目の位置</span>`;
+}
+function select(key, scroll = true) {
+  cur = key;
+  $("sel").innerHTML = find(key).svg || "";
+  renderList(); renderDetail();
+  if (scroll) scrollToItem();
+  const it = document.querySelector(`.pi[data-key="${CSS.escape(key)}"]`); if (it) it.scrollIntoView({block: "nearest"});
+}
+function scrollToItem() {
+  const p = find(cur); if (!p.bbox) return;
+  const vb = svg.viewBox.baseVal; const k = svg.clientWidth / vb.width, s = $("stage");
+  const cx = ((p.bbox[0] + p.bbox[2]) / 2 - vb.x) * k, cy = ((p.bbox[1] + p.bbox[3]) / 2 - vb.y) * k;
+  s.scrollTo({left: Math.max(0, cx - s.clientWidth / 2), top: Math.max(0, cy - s.clientHeight / 2), behavior: "smooth"});
+}
+function setTab(t, key) {
+  tab = t;
+  document.querySelectorAll("#tabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === t));
+  select(key || items()[0].key);
+}
+function move(d) {
+  const list = items(); const i = list.findIndex(x => x.key === cur);
+  select(list[(i + d + list.length) % list.length].key);
+}
+
+$("tabs").addEventListener("click", e => { const b = e.target.closest("button[data-tab]"); if (b) setTab(b.dataset.tab); });
+$("list").addEventListener("click", e => { const b = e.target.closest(".pi"); if (b) select(b.dataset.key); });
+$("ctx").addEventListener("click", e => {
+  const g = e.target.closest(".net"); if (!g) return;
+  const hit = DATA.circuits.filter(c => c.nets.includes(g.dataset.net));
+  if (hit.length) setTab("circuits", hit[0].key);
+});
+$("detail").addEventListener("click", e => {
+  const vb = e.target.closest("button[data-v]");
+  if (vb) { const s = st[cur] || (st[cur] = {}); s.v = s.v === vb.dataset.v ? undefined : vb.dataset.v; save(); renderList(); renderDetail(); return; }
+  if (e.target.closest("#next")) {
+    const all = Object.keys(TABS).flatMap(t => DATA[t].map(x => [t, x]));
+    const i = all.findIndex(([, x]) => x.key === cur);
+    const nxt = all.slice(i + 1).concat(all.slice(0, i)).find(([, x]) => !(st[x.key] || {}).v) || all[(i + 1) % all.length];
+    setTab(nxt[0], nxt[1].key); return;
+  }
+  if (e.target.closest("#addimg")) { $("filepick").value = ""; $("filepick").click(); return; }
+  const rm = e.target.closest("button[data-rm]"); if (rm) { e.preventDefault(); removeImage(cur, rm.dataset.rm); }
+});
+$("filepick").addEventListener("change", e => addImages(cur, e.target.files));
+$("detail").addEventListener("input", e => { if (e.target.id === "note") { (st[cur] || (st[cur] = {})).n = e.target.value; save(); renderList(); } });
+$("detail").addEventListener("paste", e => {
+  const files = [...(e.clipboardData ? e.clipboardData.items : [])].filter(i => i.type.startsWith("image/")).map(i => i.getAsFile());
+  if (files.length) { e.preventDefault(); addImages(cur, files); }
+});
+$("detail").addEventListener("dragover", e => { e.preventDefault(); $("detail").classList.add("drop"); });
+$("detail").addEventListener("dragleave", () => $("detail").classList.remove("drop"));
+$("detail").addEventListener("drop", e => { e.preventDefault(); $("detail").classList.remove("drop"); addImages(cur, e.dataTransfer.files); });
+document.addEventListener("keydown", e => {
+  if (e.target.closest("textarea, input")) return;
+  if (e.key === "ArrowDown") { e.preventDefault(); move(1); }
+  if (e.key === "ArrowUp") { e.preventDefault(); move(-1); }
+});
+
+/* ---- view controls ---- */
+$("mode").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  document.querySelectorAll("#mode button").forEach(x => x.classList.toggle("on", x === b));
+  const overlay = b.dataset.mode === "overlay";
+  svg.classList.toggle("overlay", overlay);
+  $("fade").value = overlay ? 100 : 10; bg.setAttribute("opacity", $("fade").value / 100);
+});
+$("fade").addEventListener("input", () => bg.setAttribute("opacity", $("fade").value / 100));
+$("zoom").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  document.querySelectorAll("#zoom button").forEach(x => x.classList.toggle("on", x === b));
+  svg.style.width = (100 * Number(b.dataset.z)) + "%"; setTimeout(scrollToItem, 50);
+});
+$("showctx").addEventListener("change", e => $("ctx").classList.toggle("hidden", !e.target.checked));
+$("tags").addEventListener("change", e => svg.classList.toggle("notags", !e.target.checked));
+
+/* ---- results ---- */
+$("copy").onclick = async () => {
+  const lines = [`${SAMPLE} p.${PAGE}「${TITLE}」正解データの確認結果`];
+  for (const t of Object.keys(TABS)) {
+    lines.push(`■ ${TABS[t]}`);
+    for (const p of DATA[t]) {
+      const s = st[p.key] || {}; const n = (s.imgs || []).length;
+      lines.push(`- ${p.title}：${label(s.v)[0]}${s.n ? "：" + s.n.replace(/\n/g, " ") : ""}${n ? `（画像 ${n} 枚）` : ""}`);
+    }
+  }
+  const text = lines.join("\n");
+  try { await navigator.clipboard.writeText(text); }
+  catch (e) { const t = document.createElement("textarea"); t.value = text; document.body.appendChild(t); t.select(); document.execCommand("copy"); t.remove(); }
+  $("msg").textContent = "コピーしました。画像はコピーに入らないので、画像を付けたときはファイルに保存してください。";
+};
+const toB64 = blob => new Promise(r => { const fr = new FileReader(); fr.onload = () => r(String(fr.result).split(",")[1]); fr.readAsDataURL(blob); });
+$("export").onclick = async () => {
+  const out_items = {};
+  for (const p of Object.values(DATA).flat()) {
+    const s = st[p.key] || {}; const images = [];
+    for (const iid of s.imgs || []) {
+      let rec = null; try { rec = await idbDo("readonly", x => x.get(imgKey(iid))); } catch (e) {}
+      if (rec) images.push({id: iid, name: rec.name, type: rec.type, data: await toB64(rec.blob)});
+    }
+    if (s.v || s.n || images.length) out_items[p.key] = {title: p.title, verdict: s.v || null, note: s.n || "", images};
+  }
+  const now = new Date(), ts = now.toISOString().replace(/[-:]/g, "").slice(0, 15);
+  const out = {kind: "kairo-review", sample_id: SAMPLE, page: PAGE, title: TITLE, saved_at: now.toISOString(), items: out_items};
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(out)], {type: "application/json"}));
+  a.download = `review_${SAMPLE}_p${String(PAGE).padStart(3, "0")}_${ts}.json`;
+  document.body.appendChild(a); a.click(); a.remove();
+  $("msg").textContent = `「${a.download}」を保存しました（通常はダウンロードフォルダ）。保存したことを Claude に伝えてください。`;
+};
+
+const m = location.hash.match(/(circuits|comps|others)=(.+)$/);
+if (m && DATA[m[1]].some(x => x.key === decodeURIComponent(m[2]))) { tab = m[1]; setTab(m[1], decodeURIComponent(m[2])); }
+else setTab("circuits");
+</script>
+</body>
+</html>
