@@ -15,7 +15,12 @@ WORK = DERIVED / "ai_input_p076"
 @pytest.fixture
 def tools(monkeypatch):
     if not (WORK / "symbols.json").exists():
-        pytest.skip("local inputs not prepared")
+        if not (DERIVED / "p076.vector.json").exists():
+            pytest.skip("local sample not extracted (kairo fetch, kairo extract)")
+        from kairo_pdf_json.run.experiment import prepare_inputs
+        from kairo_pdf_json.samples import load_sample
+
+        prepare_inputs(load_sample("c6_mazak_stx510"), 76, WORK, symbols=True)
     monkeypatch.setenv("KAIRO_WORK", str(WORK))
     monkeypatch.setenv("KAIRO_PDF", str(PROJECT_ROOT / "samples/raw/c6_mazak_stx510/original.pdf"))
     monkeypatch.setenv("KAIRO_PAGE", "76")
